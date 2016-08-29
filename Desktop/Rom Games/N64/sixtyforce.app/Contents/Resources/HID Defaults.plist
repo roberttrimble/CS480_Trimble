@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>d:{v:1356, p:616, p:1, u:4}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:15, c:21, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:14, c:20, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:27, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:49, c:27, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:48, c:26, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:48, c:26, min:127, max:255}</string>
+			<string>m:{t:2, p:9, u:9, c:15, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:11, c:17, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:12, c:18, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:4, c:10, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:53, c:29, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:53, c:29, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:50, c:28, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:50, c:28, min:127, max:255}</string>
+			<string>m:{t:2, p:9, u:5, c:11, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:7, c:13, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:8, c:14, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:6, c:12, min:0, max:1}</string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>10</integer>
+		<key>Name</key>
+		<string>PlayStation 3 Controller</string>
+	</dict>
+	<key>d:{v:1118, p:514, p:1, u:5}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:1, p:9, u:1, c:14, min:0, max:1}</string>
+			<string>m:{t:1, p:9, u:2, c:15, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:23, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:49, c:23, min:0, max:32767}</string>
+			<string>m:{t:1, p:1, u:48, c:22, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:48, c:22, min:0, max:32767}</string>
+			<string>m:{t:1, p:1, u:50, c:20, min:127, max:255}</string>
+			<string></string>
+			<string>m:{t:1, p:1, u:53, c:21, min:127, max:255}</string>
+			<string>m:{t:2, p:9, u:7, c:10, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:52, c:25, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:52, c:25, min:0, max:32767}</string>
+			<string>m:{t:1, p:1, u:51, c:24, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:51, c:24, min:0, max:32767}</string>
+			<string>m:{t:2, p:9, u:11, c:6, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:12, c:7, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:13, c:8, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:14, c:9, min:0, max:1}</string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>10</integer>
+		<key>Name</key>
+		<string>Xbox Controller</string>
+	</dict>
+	<key>d:{v:1118, p:654, p:1, u:5}</key>
+	<dict>
+		<key>Dead Zone</key>
+		<integer>10</integer>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:1, c:21, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:2, c:22, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:28, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:49, c:28, min:0, max:32767}</string>
+			<string>m:{t:1, p:1, u:48, c:27, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:48, c:27, min:0, max:32767}</string>
+			<string>m:{t:1, p:1, u:50, c:25, min:127, max:255}</string>
+			<string>m:{t:2, p:9, u:5, c:18, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:6, c:19, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:9, c:14, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:52, c:30, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:52, c:30, min:0, max:32767}</string>
+			<string>m:{t:1, p:1, u:51, c:29, min:0, max:-32768}</string>
+			<string>m:{t:1, p:1, u:51, c:29, min:0, max:32767}</string>
+			<string>m:{t:2, p:9, u:12, c:10, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:13, c:11, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:14, c:12, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:15, c:13, min:0, max:1}</string>
+		</array>
+		<key>Force Feedback</key>
+		<true/>
+		<key>Name</key>
+		<string>Xbox 360 Controller</string>
+	</dict>
+	<key>d:{v:1149, p:16391, p:1, u:4}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:1, c:23, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:2, c:24, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:80, min:2048, max:0}</string>
+			<string>m:{t:1, p:1, u:49, c:80, min:2048, max:4096}</string>
+			<string>m:{t:1, p:1, u:48, c:79, min:2048, max:0}</string>
+			<string>m:{t:1, p:1, u:48, c:79, min:2048, max:4096}</string>
+			<string>m:{t:2, p:9, u:7, c:29, min:0, max:1}</string>
+			<string>m:{t:1, p:255, u:1025, c:82, min:127, max:0}</string>
+			<string>m:{t:1, p:255, u:1026, c:83, min:127, max:0}</string>
+			<string>m:{t:2, p:9, u:9, c:31, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:6, c:28, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:3, c:25, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:4, c:26, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:5, c:27, min:0, max:1}</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>33</integer>
+		<key>Force Feedback</key>
+		<true/>
+		<key>Name</key>
+		<string>Gravis Xterminator Force</string>
+	</dict>
+	<key>d:{v:1783, p:1, p:1, u:4}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:1, c:3, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:4, c:6, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:18, min:0, max:-1200}</string>
+			<string>m:{t:1, p:1, u:49, c:18, min:0, max:1200}</string>
+			<string>m:{t:1, p:1, u:48, c:17, min:0, max:-1200}</string>
+			<string>m:{t:1, p:1, u:48, c:17, min:0, max:1200}</string>
+			<string>m:{t:2, p:9, u:10, c:12, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:7, c:9, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:8, c:10, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:9, c:11, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:6, c:8, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:2, c:4, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:5, c:7, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:3, c:5, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:11, c:13, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:12, c:14, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:13, c:15, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:14, c:16, min:0, max:1}</string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>0</integer>
+		<key>Force Feedback</key>
+		<true/>
+		<key>Name</key>
+		<string>Adaptoid</string>
+	</dict>
+	<key>d:{v:8738, p:16416, p:1, u:5}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:5, c:7, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:6, c:8, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:21, min:63, max:0}</string>
+			<string>m:{t:1, p:1, u:49, c:21, min:63, max:127}</string>
+			<string>m:{t:1, p:1, u:48, c:20, min:63, max:0}</string>
+			<string>m:{t:1, p:1, u:48, c:20, min:63, max:127}</string>
+			<string>m:{t:2, p:9, u:15, c:17, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:14, c:16, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:12, c:14, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:10, c:12, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:54, c:23, min:63, max:0}</string>
+			<string>m:{t:1, p:1, u:54, c:23, min:63, max:127}</string>
+			<string>m:{t:1, p:1, u:53, c:22, min:63, max:127}</string>
+			<string>m:{t:1, p:1, u:53, c:22, min:63, max:0}</string>
+			<string>m:{t:2, p:9, u:1, c:3, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:2, c:4, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:3, c:5, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:4, c:6, min:0, max:1}</string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>15</integer>
+		<key>Force Feedback</key>
+		<true/>
+		<key>Name</key>
+		<string>Macally iShock II</string>
+	</dict>
+	<key>d:{v:2341, p:1000, p:1, u:4}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:1, c:3, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:2, c:4, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:20, min:31, max:0}</string>
+			<string>m:{t:1, p:1, u:49, c:20, min:31, max:63}</string>
+			<string>m:{t:1, p:1, u:48, c:19, min:31, max:0}</string>
+			<string>m:{t:1, p:1, u:48, c:19, min:31, max:63}</string>
+			<string>m:{t:1, p:1, u:54, c:24, min:15, max:31}</string>
+			<string>m:{t:2, p:9, u:7, c:9, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:55, c:25, min:15, max:31}</string>
+			<string>m:{t:2, p:9, u:10, c:12, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:53, c:23, min:15, max:0}</string>
+			<string>m:{t:1, p:1, u:53, c:23, min:15, max:31}</string>
+			<string>m:{t:1, p:1, u:50, c:22, min:15, max:0}</string>
+			<string>m:{t:1, p:1, u:50, c:22, min:15, max:31}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:8, max:0}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:8, max:4}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:8, max:6}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:8, max:2}</string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>10</integer>
+		<key>Name</key>
+		<string>Wii Classic Controller</string>
+	</dict>
+	<key>d:{v:3727, p:12307, p:1, u:4}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:2, c:25, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:3, c:26, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:49, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:49, c:49, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:48, c:48, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:48, c:48, min:127, max:255}</string>
+			<string>m:{t:2, p:9, u:9, c:32, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:7, c:30, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:8, c:31, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:10, c:33, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:50, c:46, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:50, c:46, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:53, c:47, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:53, c:47, min:127, max:0}</string>
+			<string>m:{t:2, p:9, u:13, c:36, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:15, c:38, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:16, c:39, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:14, c:37, min:0, max:1}</string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>10</integer>
+		<key>Name</key>
+		<string>N64 Controller Adapter</string>
+	</dict>
+	<key>d:{v:8738, p:96, p:1, u:4}</key>
+	<dict>
+		<key>Button Map</key>
+		<array>
+			<string>m:{t:2, p:9, u:2, c:6, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:1, c:5, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:49, c:18, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:49, c:18, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:48, c:17, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:48, c:17, min:127, max:255}</string>
+			<string>m:{t:2, p:9, u:7, c:11, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:5, c:9, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:6, c:10, min:0, max:1}</string>
+			<string>m:{t:2, p:9, u:10, c:14, min:0, max:1}</string>
+			<string>m:{t:1, p:1, u:53, c:20, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:53, c:20, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:50, c:19, min:127, max:0}</string>
+			<string>m:{t:1, p:1, u:50, c:19, min:127, max:255}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:15, max:0}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:15, max:4}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:15, max:6}</string>
+			<string>m:{t:1, p:1, u:57, c:21, min:15, max:2}</string>
+		</array>
+		<key>Dead Zone</key>
+		<integer>10</integer>
+		<key>Name</key>
+		<string>Macally iShock X</string>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>gba</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>BA_Cart.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Boycott Advance ROM Image</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>AGBc</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array/>
+			<key>CFBundleTypeIconFile</key>
+			<string>BA_Freeze.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Boycott Advance Saved State</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>AGBf</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array/>
+			<key>CFBundleTypeIconFile</key>
+			<string>BA_Battery.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Boycott Advance Battery RAM</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>AGBs</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array/>
+			<key>CFBundleTypeIconFile</key>
+			<string>BA_BIOS.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Boycott Advance BIOS</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>AGBi</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>Boycott Advance</string>
+	<key>CFBundleGetInfoString</key>
+	<string>0.4.0, Copyright 2005-08 Richard F. Bannister</string>
+	<key>CFBundleIconFile</key>
+	<string>BA_App.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.bannister.boycottadvance</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Boycott Advance</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.4.0</string>
+	<key>CFBundleSignature</key>
+	<string>BArb</string>
+	<key>CFBundleVersion</key>
+	<string>0.4.0</string>
+	<key>LSRequiresCarbon</key>
+	<true/>
+</dict>
+</plist>

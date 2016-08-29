@@ -1,0 +1,2089 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFZE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6106</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+		<key>Expanded Memory</key>
+		<integer>0</integer>
+	</dict>
+	<key>CLBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>CZLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>N22E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N2ME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N2PE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N2VE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N32E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N3HE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N3PE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N3TE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>-1</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>-1</integer>
+	</dict>
+	<key>N7IE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N8IE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N8ME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N8WE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N9BE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N9CE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N9FE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N9HE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>N9ME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NACE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NADE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NAGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NAHE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NAIE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NALE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NAME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NARE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NASE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NAYE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>-1</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NB2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NB3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NB4E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NB7E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NB9E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NBDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NBEE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBHE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NBIE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NBLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NBOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBSE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NBWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBYE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NBZE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NC2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NCDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCEE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCHE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NCKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NCLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NCSE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NCTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NCUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NCWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6106</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NCYE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>ND3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>ND4E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDDJ</key>
+	<dict>
+		<key>CIC</key>
+		<integer>8303</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDEE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDHE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDNE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NDQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NDTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NDWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NDYE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NDZE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NEAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NEGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NELE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NENE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NEPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NERE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NETE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NF9E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NFBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NFDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NFFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NFGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NFHE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NFLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NFOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NFQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>-1</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>-1</integer>
+	</dict>
+	<key>NFUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NFWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NFXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6101</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NG2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NG5E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NGAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NGBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NGCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NGEE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NGME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NGNE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NGRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NGVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NGXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NH5E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NH9E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHNE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NHXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NICE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NIJE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NISE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NIVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NJAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NJFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NJME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NJOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NJPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NJQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NK2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NK4E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NKAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NKEE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NKGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NKIE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NKJE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NKKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NKTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NL2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NLCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NLGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NLRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NM3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NM4E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NM6E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NM8E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NMBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NMDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NMEE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NMFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NMGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NMIE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NMKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NMLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NMOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NMQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NMRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NMTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NMUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NMVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>-1</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>-1</integer>
+	</dict>
+	<key>NMWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NMXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NMYE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NN2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NN6E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>-1</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>-1</integer>
+	</dict>
+	<key>NNAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NNBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NNCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NNLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NNME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NNSE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NO7E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NOBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NOFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NOHE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NOWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NP3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NP9E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NPDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NPFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NPGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NPNE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NPOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NPQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>-1</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>-1</integer>
+	</dict>
+	<key>NPRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NPUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NPWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NPXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NQ2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NQ8E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NQ9E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NQBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NQCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NQKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NR2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NR3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NR6E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NRDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NREE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NRGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRIE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NROE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRSE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NRTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NRZE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NS6E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NSUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSYE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NSZE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>-1</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>-1</integer>
+	</dict>
+	<key>NT2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NT4E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NT9E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NTAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NTEA</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6103</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NTFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NTHE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NTIE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NTJE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NTKE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NTME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NTNE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NTPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NTQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NTTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NTUE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NV3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NV8E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NVCE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NVGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NVLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NVRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NW2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NW3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NW4E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+	</dict>
+	<key>NW8E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWAE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWBE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWDE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWIE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWLE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NWME</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWNE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWQE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWRE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NWSE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWTE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWVE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NWXE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NWZE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NX2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NX3E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NXFE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NXGE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NXOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>1</integer>
+	</dict>
+	<key>NY2E</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NYPE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NYSE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6106</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>2</integer>
+	</dict>
+	<key>NYWE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>3</integer>
+	</dict>
+	<key>NZOE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6102</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>0</integer>
+	</dict>
+	<key>NZSE</key>
+	<dict>
+		<key>CIC</key>
+		<integer>6105</integer>
+		<key>Cartridge Memory Type</key>
+		<integer>4</integer>
+		<key>Expanded Memory</key>
+		<integer>1</integer>
+	</dict>
+</dict>
+</plist>

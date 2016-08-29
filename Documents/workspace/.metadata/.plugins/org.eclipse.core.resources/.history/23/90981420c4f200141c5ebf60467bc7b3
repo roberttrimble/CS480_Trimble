@@ -1,0 +1,17 @@
+import javax.swing.*;
+import java.awt.event.*;
+
+
+
+public class Testclass 
+{ 
+	
+	
+	
+	public static void main (String argv []) 
+	{ 
+		new Testclass(Testclass)
+	}
+
+}
+
