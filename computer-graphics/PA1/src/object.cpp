@@ -79,7 +79,7 @@ Object::~Object()
 
 void Object::Update(unsigned int dt)
 {
-  angle += dt * M_PI/100;
+  angle += dt * M_PI/1000;
   model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 1.0, 0.0));
 }
 
