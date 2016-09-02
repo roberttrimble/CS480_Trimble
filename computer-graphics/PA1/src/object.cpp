@@ -81,14 +81,13 @@ void Object::Update(unsigned int dt)
 {
   angle += dt * M_PI/1000;
   
-  
-  model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) 
-          * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+  //Multiply the model's rotation by the translation
+  //this causes the "orbit"
+  model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+  //Then multiply by another rotation
+  //this causes the spin while in "orbit"
           * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
           
-  //model = glm::translate(glm::mat4(1.0f), glm::vec3(-4.0, 0.0, 0.0))
-  //model = glm::rotate(glm::mat4(1.0f), (-angle), glm::vec3(0.0, 12.0, 0.0));
-  //model = glm::translate(glm::mat4(1.0f), glm::vec3(-4.0, 0.0, 0.0));
   
   
   
