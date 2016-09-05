@@ -1,4 +1,5 @@
 #include "shader.h"
+#include <ifstream>
 
 Shader::Shader()
 {
@@ -36,10 +37,14 @@ bool Shader::Initialize()
 bool Shader::AddShader(GLenum ShaderType)
 {
   std::string s;
+  std::ifstream file("../shaders/vertex_shader.txt");
 
   if(ShaderType == GL_VERTEX_SHADER)
   {
-    s = "#version 330\n \
+    s = ((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    
+    
+    /*s = "#version 330\n \
           \
           layout (location = 0) in vec3 v_position; \
           layout (location = 1) in vec3 v_color; \
@@ -56,7 +61,7 @@ bool Shader::AddShader(GLenum ShaderType)
             gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * v; \
             color = v_color; \
           } \
-          ";
+          ";*/
   }
   else if(ShaderType == GL_FRAGMENT_SHADER)
   {
