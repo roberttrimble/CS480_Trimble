@@ -42,7 +42,7 @@ bool Shader::AddShader(GLenum ShaderType)
   if(ShaderType == GL_VERTEX_SHADER)
   {
     std::string fileString((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    s = fileString;
+    s = fileString + '/0';
     
     
     /*s = "#version 330\n \
