@@ -43,6 +43,9 @@ add_custom_target("${PROJECT_NAME}_SUCCESSFUL" ALL
                   COMMAND ${CMAKE_COMMAND} -E echo "  Compile complete!"
                   COMMAND ${CMAKE_COMMAND} -E echo "====================="
                   COMMAND ${CMAKE_COMMAND} -E echo "${CMAKE_CURRENT_BINARY_DIR}"
+                  
+                  # Added for PA1
+                  COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/shaders/ ${CMAKE_CURRENT_BINARY_DIR}/shaders
                  )
 
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${OPENGL_LIBRARY} ${SDL2_LIBRARY})
