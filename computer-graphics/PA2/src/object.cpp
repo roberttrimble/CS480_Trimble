@@ -61,6 +61,12 @@ Object::Object()
   }
 
   angle = 0.0f;
+  
+  //Set the orbit and rotation bools for the planet
+  planetOrbitMoving = true;
+  planetOrbitForward = true;
+  planetRotMoving = true;
+  planetRotForward = true;
 
   glGenBuffers(1, &VB);
   glBindBuffer(GL_ARRAY_BUFFER, VB);
@@ -79,7 +85,32 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, char keyboardInput)
 {
-  if (keyboardInput == 'a')
+  angle += dt * M_PI/1000;
+  
+  switch (keyboardInput)
+  {
+    //Start or Stop planet orbit
+    case 'a':
+      if (planetOrbitMoving == true)
+      {
+        model = (glm::rotate(glm::mat4(1.0f), (0), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+        planetOrbitMoving = false;
+      } else if (planetOrbitMoving == false)
+      {
+        model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+        planetOrbitMoving = true;
+      }
+     
+     
+    default:
+      model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+      
+  }
+  
+  /*if (keyboardInput == 'a')
   {
     angle += dt * M_PI/1000;
   }
@@ -94,7 +125,7 @@ void Object::Update(unsigned int dt, char keyboardInput)
   //Then multiply by another rotation
   //this causes the spin while in "orbit"
           * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
-          
+  */     
   
   
   
