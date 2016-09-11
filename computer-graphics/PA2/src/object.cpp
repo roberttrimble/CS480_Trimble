@@ -91,9 +91,9 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
     //Start or Stop planet orbit
     case 'a':
       if (newInput == true && planetOrbitMoving == true)
-        planerOrbitMoving = false
+        planetOrbitMoving = false;
       else if (newInput == true && planetOrbitMoving == false)
-        planerOrbitMoving = true)
+        planetOrbitMoving = true;
     
       if (planetOrbitMoving == true)
       {
