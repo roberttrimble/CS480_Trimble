@@ -67,6 +67,7 @@ void Engine::Run()
     }
 
     // Update and render the graphics
+    keyboardInput = 's';
     m_graphics->Update(m_DT, keyboardInput);
     m_graphics->Render();
 
