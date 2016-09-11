@@ -54,6 +54,7 @@ void Engine::Run()
 {
   m_running = true;
   keyboardInput = '+';
+  newInput = false;
 
   while(m_running)
   {
@@ -67,8 +68,8 @@ void Engine::Run()
     }
 
     // Update and render the graphics
-    //keyboardInput = 's';
-    m_graphics->Update(m_DT, keyboardInput);
+    m_graphics->Update(m_DT, keyboardInput, newInput);
+    newInput= false;
     m_graphics->Render();
 
     // Swap to the Window
@@ -92,9 +93,11 @@ void Engine::Keyboard()
         break;
       case SDLK_a:
         keyboardInput = 'a';
+        newInput = true;
         break;
       case SDLK_s:
         keyboardInput = 's';
+        newInput = true;
         break;
       default:
         break;
