@@ -67,7 +67,7 @@ void Engine::Run()
     }
 
     // Update and render the graphics
-    keyboardInput = 's';
+    //keyboardInput = 's';
     m_graphics->Update(m_DT, keyboardInput);
     m_graphics->Render();
 
@@ -78,12 +78,12 @@ void Engine::Run()
 
 char Engine::Keyboard()
 {
-  if(m_event.type == SDL_QUIT)
+  /*if(m_event.type == SDL_QUIT)
   {
     m_running = false;
     return '\0';
   }
-  else if (m_event.type == SDL_KEYDOWN)
+  else*/ if (m_event.type == SDL_KEYDOWN)
   {
     // handle key down events here
     switch (m_event.key.keysym.sym)
