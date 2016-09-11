@@ -91,12 +91,24 @@ void Engine::Keyboard()
       case SDLK_ESCAPE:
         m_running = false;
         break;
+      //start or stops orbit
       case SDLK_a:
         keyboardInput = 'a';
         newInput = true;
         break;
+      //reverses orbit
       case SDLK_s:
         keyboardInput = 's';
+        newInput = true;
+        break;
+      //start or stops rotation
+      case SDLK_k:
+        keyboardInput = 'k';
+        newInput = true;
+        break;
+      //reverses rotation
+      case SDLK_l:
+        keyboardInput = 'l';
         newInput = true;
         break;
       default:
