@@ -100,7 +100,7 @@ void Object::Update(unsigned int dt, char keyboardInput)
               * glm::rotate(glm::mat4(1.0f), (angle2), glm::vec3(0.0, 12.0, 0.0));
         break;
       } 
-      else if (planetOrbitMoving == false)
+      else //if (planetOrbitMoving == false)
       {
         angle += dt * M_PI/1000;
         planetOrbitMoving = true;
