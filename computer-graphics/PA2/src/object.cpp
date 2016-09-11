@@ -90,6 +90,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   switch (keyboardInput)
   {
     //Start or Stop planet orbit
+    /////////////////////////////
     case 'a':
       if (newInput == true && planetOrbitMoving == true)
         planetOrbitMoving = false;
@@ -112,6 +113,38 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
         break;
       }
+      
+      //Reverse planet orbit
+      ///////////////////////
+     case 's':
+      if (newInput == true && planetOrbitForward == true)
+        planetOrbitForward = false;
+      else if (newInput == true && planetOrbitForward == false)
+        planetOrbitForward = true;
+    
+      if (planetOrbitForward == false)
+      {
+        orbitAngle += dt * M_PI/1000;
+        orbitAngle = -(orbitAngle);
+        rotAngle += dt * M_PI/1000;
+        model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+        break;
+      } 
+      else if (planetOrbitForward == true)
+      {
+        orbitAngle += dt * M_PI/1000;
+        rotAngle += dt * M_PI/1000;
+        model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+        break;
+      }
+     
+     
+     
+     
+     
+     
      
     default:
       orbitAngle += dt * M_PI/1000;
