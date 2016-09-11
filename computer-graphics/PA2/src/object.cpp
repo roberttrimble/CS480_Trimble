@@ -83,13 +83,18 @@ Object::~Object()
   Indices.clear();
 }
 
-void Object::Update(unsigned int dt, char keyboardInput)
+void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
   
   switch (keyboardInput)
   {
     //Start or Stop planet orbit
     case 'a':
+      if (newInput == true && planetOrbitMoving == true)
+        planerOrbitMoving = false
+      else if (newInput == true && planetOrbitMoving == false)
+        planerOrbitMoving = true)
+    
       if (planetOrbitMoving == true)
       {
         angle += 0;
