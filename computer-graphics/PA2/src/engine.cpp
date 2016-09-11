@@ -92,9 +92,11 @@ char Engine::Keyboard()
         return NULL;
         break;
       case SDLK_a:
+        keyboardInput = 'a';
         return 'a';
         break
       case SDLK_s:
+        keyboardInput = 's';
         return 's';
         break;
       default:
