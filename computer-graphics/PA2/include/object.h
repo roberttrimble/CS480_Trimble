@@ -22,6 +22,12 @@ class Object
     GLuint IB;
 
     float angle;
+    
+    //Bools added for PA2 for keyboard interactions
+    bool planetOrbitMoving;
+    bool planetOrbitForward;
+    bool planetRotMoving;
+    bool planetRotForward;
 };
 
 #endif /* OBJECT_H */
