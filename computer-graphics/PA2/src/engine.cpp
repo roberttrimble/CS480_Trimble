@@ -53,7 +53,7 @@ bool Engine::Initialize()
 void Engine::Run()
 {
   m_running = true;
-  char keyboardInput = 's';
+  char keyboardInput = 'a';
 
   while(m_running)
   {
