@@ -95,20 +95,18 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
       else if (newInput == true && planetOrbitMoving == false)
         planetOrbitMoving = true;
     
-      if (planetOrbitMoving == true)
+      if (planetOrbitMoving == false)
       {
         angle += 0;
         float angle2 = angle;
         angle2 += dt * M_PI/1000;
-        planetOrbitMoving = false;
         model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (angle2), glm::vec3(0.0, 12.0, 0.0));
         break;
       } 
-      else //if (planetOrbitMoving == false)
+      else if (planetOrbitMoving == true)
       {
         angle += dt * M_PI/1000;
-        planetOrbitMoving = true;
         model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
         break;
