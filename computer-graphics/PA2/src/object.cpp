@@ -93,7 +93,7 @@ void Object::Update(unsigned int dt, char keyboardInput)
     case 'a':
       if (planetOrbitMoving == true)
       {
-        model = (glm::rotate(glm::mat4(1.0f), 0.0, glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+        model = (glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
         planetOrbitMoving = false;
       } else if (planetOrbitMoving == false)
