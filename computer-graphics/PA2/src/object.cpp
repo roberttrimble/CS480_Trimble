@@ -77,9 +77,11 @@ Object::~Object()
   Indices.clear();
 }
 
-void Object::Update(unsigned int dt)
+void Object::Update(unsigned int dt, char keyboardInput)
 {
   angle += dt * M_PI/1000;
+  if (keyboardInput == 's')
+    angle += dt * M_PI/ 100;
   
   //Multiply the model's rotation by the translation
   //this causes the "orbit"
