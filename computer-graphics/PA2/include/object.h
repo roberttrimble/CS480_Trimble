@@ -21,7 +21,8 @@ class Object
     GLuint VB;
     GLuint IB;
 
-    float angle;
+    float orbitAngle;
+    float rotAngle;
     
     //Bools added for PA2 for keyboard interactions
     bool planetOrbitMoving;
