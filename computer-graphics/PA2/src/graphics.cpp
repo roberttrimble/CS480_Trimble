@@ -107,10 +107,10 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt, char keyboardInput)
+void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
   // Update the object
-  m_cube->Update(dt, keyboardInput);
+  m_cube->Update(dt, keyboardInput, newInput);
 }
 
 void Graphics::Render()
