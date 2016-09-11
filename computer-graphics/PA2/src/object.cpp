@@ -125,11 +125,16 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
       else if (planetOrbitMoving == true)
       {
         if (planetOrbitForward == true)
+        {
           orbitAngle += dt * M_PI/1000;
+          rotAngle += dt * M_PI/1000;
+        }
         else
+        {
           orbitAngle -= dt * M_PI/1000;
-          
-        rotAngle += dt * M_PI/1000;
+          rotAngle += dt * M_PI/500;
+        }
+        
         model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
       }
