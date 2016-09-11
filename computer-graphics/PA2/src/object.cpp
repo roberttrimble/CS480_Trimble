@@ -86,67 +86,95 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
-  switch (keyboardInput)
+  if (newInput == true)
   {
-    //Start or Stop planet orbit
-    /////////////////////////////
-    case 'a':
-      if (newInput == true && planetOrbitMoving == true)
-        planetOrbitMoving = false;
-      else if (newInput == true && planetOrbitMoving == false)
-        planetOrbitMoving = true;
-      break;
-    
-    //Reverse planet orbit
-    ///////////////////////
-    case 's':
-      if (newInput == true && planetOrbitForward == true)
-        planetOrbitForward = false;
-      else if (newInput == true && planetOrbitForward == false)
-        planetOrbitForward = true;
-      break;
+    switch (keyboardInput)
+    {
+      //Start or Stop planet orbit
+      /////////////////////////////
+      case 'a':
+        if (planetOrbitMoving == true)
+          planetOrbitMoving = false;
+        else if (planetOrbitMoving == false)
+          planetOrbitMoving = true;
+        break;
       
-    //Start or stop planet rotation
-    ///////////////////////
-    case 'k':
-      if (newInput == true && planetRotMoving == true)
-        planetRotMoving = false;
-      else if (newInput == true && planetRotMoving == false)
-        planetRotMoving = true;
-      break;
-      
-    //Reverse planet rotation
-    ///////////////////////
-    case 'l':
-      if (newInput == true && planetRotForward == true)
-        planetRotForward = false;
-      else if (newInput == true && planetRotForward == false)
-        planetRotForward = true;
-      break;
-     
-    default:
-      break;
+      //Reverse planet orbit
+      ///////////////////////
+      case 's':
+        if (planetOrbitForward == true)
+          planetOrbitForward = false;
+        else if (planetOrbitForward == false)
+          planetOrbitForward = true;
+        break;
+        
+      //Start or stop planet rotation
+      ///////////////////////
+      case 'k':
+        if (planetRotMoving == true)
+          planetRotMoving = false;
+        else if (planetRotMoving == false)
+          planetRotMoving = true;
+        break;
+        
+      //Reverse planet rotation
+      ///////////////////////
+      case 'l':
+        if (planetRotForward == true)
+          planetRotForward = false;
+        else if (planetRotForward == false)
+          planetRotForward = true;
+        break;
+       
+      default:
+        break;
+    }
   }
   
+  /////////////////////////////
   //Move the planet accordingly
   /////////////////////////////
+  
+  ////////////////////////////////////////
   //If the planet is orbiting and rotating
+  ////////////////////////////////////////
   if (planetOrbitMoving == true && planetRotMoving == true)
   {
-    
+    //If orbit and rotation are normal
+    if (planetOrbitForward == true && planetRotForward == true)
+    {
+      orbitAngle += dt * M_PI/1000;
+      rotAngle += dt * M_PI/1000;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }
+    //If orbit is reversed but rotation is normal
+    else if (planetOrbitForward == false && planetRotForward == true)
+    {
+      orbitAngle -= dt * M_PI/1000;
+      rotAngle += dt * M_PI/500; // *2 to offset speed
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }
   }
+  /////////////////////////////////////////////
   //If the planet is orbiting but not rotating
-  else if (planetOrbitMsving == true && planetRotMoving == false)
+  /////////////////////////////////////////////
+  else if (planetOrbitMoving == true && planetRotMoving == false)
   {
     
   }
+  ////////////////////////////////////////////
   //If the planet is not orbiting but rotating
+  ////////////////////////////////////////////
   else if (planetOrbitMoving == false && planetRotMoving == true)
   {
     
   }
+  ////////////////////////////////////////////
   //If the planet is not orbiting or rotating
-  else if (planetOrbit == false && planetRotMoving == false)
+  ////////////////////////////////////////////
+  else if (planetOrbitMoving == false && planetRotMoving == false)
   {
     
   }
