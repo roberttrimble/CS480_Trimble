@@ -85,14 +85,29 @@ char Engine::Keyboard()
   else if (m_event.type == SDL_KEYDOWN)
   {
     // handle key down events here
-    if (m_event.key.keysym.sym == SDLK_ESCAPE)
+    switch (m_event.key.keysym.sym)
+    {
+      case SDLK_ESCAPE:
+        m_running = false;
+        return NULL;
+        break;
+      case SDLK_a:
+        return 'a';
+        break
+      case SDLK_s:
+        return 's';
+        break;
+      default:
+        break;
+    }
+    /*if (m_event.key.keysym.sym == SDLK_ESCAPE)
     {
       m_running = false;
       return NULL;
     }
     if (m_event.key.keysym.sym == SDLK_s) {
       return 's';
-    }
+    }*/
   }
 }
 
