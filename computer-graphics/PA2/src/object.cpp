@@ -79,8 +79,10 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, char keyboardInput)
 {
-  //if (keyboardInput == 'a')
+  if (keyboardInput == 'a')
+  {
     angle += dt * M_PI/1000;
+  }
   if (keyboardInput == 's')
   {
     angle += dt * M_PI/ 100;
