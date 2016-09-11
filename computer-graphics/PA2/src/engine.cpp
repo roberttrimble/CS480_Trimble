@@ -53,7 +53,7 @@ bool Engine::Initialize()
 void Engine::Run()
 {
   m_running = true;
-  char keyboardInput = 's';
+  keyboardInput = 's';
 
   while(m_running)
   {
@@ -94,8 +94,10 @@ char Engine::Keyboard()
         break;
       case SDLK_a:
         return 'a';
+        keyboardInput = 'a';
         break;
       case SDLK_s:
+        keyboardInput = 's';
         return 's';
         break;
       default:
