@@ -63,7 +63,7 @@ void Engine::Run()
     // Check the keyboard input
     while(SDL_PollEvent(&m_event) != 0)
     {
-      keyboardInput = Keyboard();
+      Keyboard();
     }
 
     // Update and render the graphics
@@ -76,41 +76,29 @@ void Engine::Run()
   }
 }
 
-char Engine::Keyboard()
+void Engine::Keyboard()
 {
-  /*if(m_event.type == SDL_QUIT)
+  if(m_event.type == SDL_QUIT)
   {
     m_running = false;
-    return '\0';
   }
-  else*/ if (m_event.type == SDL_KEYDOWN)
+  else if (m_event.type == SDL_KEYDOWN)
   {
     // handle key down events here
     switch (m_event.key.keysym.sym)
     {
       case SDLK_ESCAPE:
         m_running = false;
-        return '\0';
         break;
       case SDLK_a:
-        return 'a';
         keyboardInput = 'a';
         break;
       case SDLK_s:
         keyboardInput = 's';
-        return 's';
         break;
       default:
         break;
     }
-    /*if (m_event.key.keysym.sym == SDLK_ESCAPE)
-    {
-      m_running = false;
-      return NULL;
-    }
-    if (m_event.key.keysym.sym == SDLK_s) {
-      return 's';
-    }*/
   }
 }
 
