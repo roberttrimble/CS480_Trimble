@@ -80,7 +80,7 @@ char Engine::Keyboard()
   if(m_event.type == SDL_QUIT)
   {
     m_running = false;
-    return NULL;
+    return '\0';
   }
   else if (m_event.type == SDL_KEYDOWN)
   {
@@ -89,14 +89,12 @@ char Engine::Keyboard()
     {
       case SDLK_ESCAPE:
         m_running = false;
-        return NULL;
+        return '\0';
         break;
       case SDLK_a:
-        keyboardInput = 'a';
         return 'a';
-        break
+        break;
       case SDLK_s:
-        keyboardInput = 's';
         return 's';
         break;
       default:
