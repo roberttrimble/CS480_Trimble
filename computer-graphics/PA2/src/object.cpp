@@ -60,7 +60,8 @@ Object::Object()
     Indices[i] = Indices[i] - 1;
   }
 
-  angle = 0.0f;
+  orbitAngle = 0.0f;
+  rotAngle = 0.0f;
   
   //Set the orbit and rotation bools for the planet
   planetOrbitMoving = true;
@@ -97,25 +98,26 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
     
       if (planetOrbitMoving == false)
       {
-        angle += 0;
-        float angle2 = angle;
-        angle2 += dt * M_PI/1000;
-        model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-              * glm::rotate(glm::mat4(1.0f), (angle2), glm::vec3(0.0, 12.0, 0.0));
+        orbitAngle += 0;
+        rotAngle += dt * M_PI/1000;
+        model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
         break;
       } 
       else if (planetOrbitMoving == true)
       {
-        angle += dt * M_PI/1000;
-        model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+        orbitAngle += dt * M_PI/1000;
+        rotAngle += dt * M_PI/1000;
+        model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
         break;
       }
      
     default:
-      angle += dt * M_PI/1000;
-      model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+      orbitAngle += dt * M_PI/1000;
+      rotAngle += dt * M_PI/1000;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     break;
       
   }
