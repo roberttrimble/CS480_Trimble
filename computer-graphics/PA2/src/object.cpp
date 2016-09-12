@@ -134,17 +134,17 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
       case 'b': // b for left mouse button
         if (planetOrbitMoving == true || planetOrbitForward == true ||planetRotMoving == true || planetRotForward == true)
         {
-          planetOrbitMoving == false;
-          planetOrbitForward == false;
-          planetRotMoving == false;
-          planetRotForward == false;
+          planetOrbitMoving = false;
+          planetOrbitForward = false;
+          planetRotMoving = false;
+          planetRotForward = false;
         }
         else if (planetOrbitMoving == false && planetOrbitForward == false && planetRotMoving == false && planetRotForward == false)
         {
-          planetOrbitMoving == true;
-          planetOrbitForward == true;
-          planetRotMoving == true;
-          planetRotForward == true;
+          planetOrbitMoving = true;
+          planetOrbitForward = true;
+          planetRotMoving = true;
+          planetRotForward = true;
         }
        
       default:
