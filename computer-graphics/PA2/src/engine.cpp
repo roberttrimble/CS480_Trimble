@@ -115,6 +115,14 @@ void Engine::Keyboard()
         break;
     }
   }
+  else if (m_event.type == SDL_MOUSEBUTTONDOWN)
+  {
+    if (m_event.button.botton == SDL_BUTTON_LEFT)
+    {
+      keyboardInput = 'b';
+      newInput = true;
+    }
+  }
 }
 
 unsigned int Engine::getDT()
