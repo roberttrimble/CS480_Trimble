@@ -163,7 +163,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
     else if (planetOrbitForward == true && planetRotForward == false)
     {
       orbitAngle += dt * M_PI/1000;
-      rotAngle -= dt * M_PI/1000; 
+      rotAngle -= dt * M_PI/1500; 
       model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
@@ -181,8 +181,8 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   /////////////////////////////////////////////
   else if (planetOrbitMoving == true && planetRotMoving == false)
   {
-    //If orbit is normal and roate was normal
-    if (planetOrbitForward == true && planetRotForward == true)
+    //If orbit is normal and roate stopped
+    if (planetOrbitForward == true)
     {
       orbitAngle += dt * M_PI/1000;
       rotAngle += 0;
@@ -197,8 +197,8 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
       model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }*/
-    //If orbit is reversed and roate was normal
-    else if (planetOrbitForward == false && planetRotForward == true)
+    //If orbit is reversed and roate is stopped
+    else if (planetOrbitForward == false
     {
       orbitAngle -= dt * M_PI/1000;
       rotAngle += 0;
@@ -219,8 +219,8 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   ////////////////////////////////////////////
   else if (planetOrbitMoving == false && planetRotMoving == true)
   {
-    //If orbit was normal and roate is normal
-    if (planetOrbitForward == true && planetRotForward == true)
+    //If orbit is stopped and roate is normal
+    if (planetRotForward == true)
     {
       orbitAngle += 0;
       rotAngle += dt * M_PI/1000;
@@ -243,8 +243,8 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
       model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }*/
-    //If orbit was reveresed and roate is reversed
-    else if (planetOrbitForward == false && planetRotForward == false)
+    //If orbit is stopped and roate is reversed
+    else if (planetRotForward == false)
     {
       orbitAngle += 0;
       rotAngle -= dt * M_PI/1000;
