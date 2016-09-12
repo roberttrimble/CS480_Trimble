@@ -86,6 +86,9 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
+  //////////////////////////
+  //Check for a new keyboard input
+  //////////////////////////
   if (newInput == true)
   {
     switch (keyboardInput)
@@ -157,7 +160,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
     //If orbit is normal but rotation is reversed
-    else if (planetOrbitForward == false && planetRotForward == true)
+    else if (planetOrbitForward == true && planetRotForward == false)
     {
       orbitAngle += dt * M_PI/1000;
       rotAngle -= dt * M_PI/1000; 
@@ -165,10 +168,10 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
     //If orbit is reversed but rotation is reveresed
-    else if (planetOrbitForward == false && planetRotForward == true)
+    else if (planetOrbitForward == false && planetRotForward == false)
     {
       orbitAngle -= dt * M_PI/1000;
-      rotAngle -= dt * M_PI/500;
+      rotAngle -= dt * M_PI/1000;
       model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
@@ -178,21 +181,86 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   /////////////////////////////////////////////
   else if (planetOrbitMoving == true && planetRotMoving == false)
   {
-    
+    //If orbit is normal and roate was normal
+    if (planetOrbitForward == true && planetRotForward == true)
+    {
+      orbitAngle += dt * M_PI/1000;
+      rotAngle += 0;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }
+    /*//If orbit is normal and roate was reversed
+    else if (planetOrbitForward == true && planetRotForward == false)
+    {
+      orbitAngle += dt * M_PI/1000;
+      rotAngle += 0;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }*/
+    //If orbit is reversed and roate was normal
+    else if (planetOrbitForward == false && planetRotForward == true)
+    {
+      orbitAngle -= dt * M_PI/1000;
+      rotAngle += 0;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }
+    /*//If orbit is reveresed and roate was reversed
+    else if (planetOrbitForward == false && planetRotForward == false)
+    {
+      orbitAngle -= dt * M_PI/1000;
+      rotAngle += 0;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }*/
   }
   ////////////////////////////////////////////
   //If the planet is not orbiting but rotating
   ////////////////////////////////////////////
   else if (planetOrbitMoving == false && planetRotMoving == true)
   {
-    
+    //If orbit was normal and roate is normal
+    if (planetOrbitForward == true && planetRotForward == true)
+    {
+      orbitAngle += 0;
+      rotAngle += dt * M_PI/1000;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }
+    /*//If orbit was normal and roate is reversed
+    else if (planetOrbitForward == true && planetRotForward == false)
+    {
+      orbitAngle += 0;
+      rotAngle -= dt *M_PI/1000;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }*/
+    /*//If orbit was reversed and roate is normal
+    else if (planetOrbitForward == false && planetRotForward == true)
+    {
+      orbitAngle -= 0;
+      rotAngle += dt * M_PI/1000;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }*/
+    //If orbit was reveresed and roate is reversed
+    else if (planetOrbitForward == false && planetRotForward == false)
+    {
+      orbitAngle += 0;
+      rotAngle -= dt * M_PI/1000;
+      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
+    }
   }
   ////////////////////////////////////////////
   //If the planet is not orbiting or rotating
   ////////////////////////////////////////////
   else if (planetOrbitMoving == false && planetRotMoving == false)
   {
-    
+    orbitAngle += 0;
+    rotAngle += 0;
+    model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
   }
   
   
