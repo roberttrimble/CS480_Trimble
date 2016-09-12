@@ -117,7 +117,7 @@ void Engine::Keyboard()
   }
   else if (m_event.type == SDL_MOUSEBUTTONDOWN)
   {
-    if (m_event.button.botton == SDL_BUTTON_LEFT)
+    if (m_event.button.button == SDL_BUTTON_LEFT)
     {
       keyboardInput = 'b';
       newInput = true;
