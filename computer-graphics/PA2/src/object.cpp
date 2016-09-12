@@ -198,7 +198,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }*/
     //If orbit is reversed and roate is stopped
-    else if (planetOrbitForward == false
+    else if (planetOrbitForward == false)
     {
       orbitAngle -= dt * M_PI/1000;
       rotAngle += 0;
