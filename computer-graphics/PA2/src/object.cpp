@@ -128,6 +128,24 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
         else if (planetRotForward == false)
           planetRotForward = true;
         break;
+        
+      //Stop everything, and reset to defualt
+      //////////////////////////////////////
+      case 'b': // b for left mouse button
+        if (planetOrbitMoving == true || planetOrbitForward == true ||planetRotMoving == true || planetRotForward == true)
+        {
+          planetOrbitMoving == false;
+          planetOrbitForward == false;
+          planetRotMoving == false;
+          planetRotForward == false;
+        }
+        else if (planetOrbitMoving == false && planetOrbitForward == false && planetRotMoving == false && planetRotForward == false)
+        {
+          planetOrbitMoving == true;
+          planetOrbitForward == true;
+          planetRotMoving == true;
+          planetRotForward == true;
+        }
        
       default:
         break;
