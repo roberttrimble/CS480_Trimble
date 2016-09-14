@@ -16,9 +16,9 @@ make
 ```
 
 ## Instructions
-The following inputs will effect the cube: \n
-  a - starts/stops the cube's orbit.
-  s - reverses the cube's orbit.
-  k - starts/stops the the cube's rotation.
-  l - reverses the cube's rotation.
-  Left Mouse Button - stops the cube's orbit and rotation, and resets the cube back to orbiting and rotating forward.
+The following inputs will effect the cube:  
+  a - starts/stops the cube's orbit.  
+  s - reverses the cube's orbit.  
+  k - starts/stops the the cube's rotation.  
+  l - reverses the cube's rotation.  
+  Left Mouse Button - stops the cube's orbit and rotation, and resets the cube back to orbiting and rotating forward.  
