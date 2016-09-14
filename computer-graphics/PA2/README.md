@@ -16,7 +16,7 @@ make
 ```
 
 ## Instructions
-The following inputs will effect the cube:
+The following inputs will effect the cube: \n
   a - starts/stops the cube's orbit.
   s - reverses the cube's orbit.
   k - starts/stops the the cube's rotation.
