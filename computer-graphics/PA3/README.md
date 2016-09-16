@@ -1,10 +1,10 @@
-# PA2: Keyboard/mouse inputs
+# PA3: Moons
 
 ## General Notes
-PA2 builds upon PA1. In this project, specific keyboard and mouse inputs change the behavior of the "planet". This is done primarily through a switch statement to determine what button was pressed. Then if/else if statements to update the object accordingly.
+PA3 builds upon PA2. In this project, specific keyboard and mouse inputs change the behavior of the "planet". This is done primarily through a switch statement to determine what button was pressed. Then if/else if statements to update the object accordingly.
 
 ## Building and Running
-This project was built and primarily tested on OSX 10.10.5. To run, go into the PA2 directory, and enter the following commands.
+This project was built and primarily tested on OSX 10.10.5. To run, go into the PA3 directory, and enter the following commands.
 
 
 ```bash
