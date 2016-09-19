@@ -31,6 +31,8 @@ class Object
     bool planetRotMoving;
     bool planetRotForward;
     
+    //Pointer to Moons
+    Object *moons
     
 };
 
