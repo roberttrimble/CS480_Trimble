@@ -68,6 +68,9 @@ Object::Object()
   planetOrbitForward = true;
   planetRotMoving = true;
   planetRotForward = true;
+  
+  //Create the moon
+  
 
   glGenBuffers(1, &VB);
   glBindBuffer(GL_ARRAY_BUFFER, VB);
@@ -248,51 +251,6 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
     model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
   }
-  
-  
-  /*if (planetOrbitMoving == false)
-  {
-    orbitAngle += 0;
-    rotAngle += dt * M_PI/1000;
-    model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-            * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
-  } 
-  //If the planet is orbiting
-  else if (planetOrbitMoving == true)
-  {
-    //If the planet is orbiting forward
-    if (planetOrbitForward == true)
-    {
-      orbitAngle += dt * M_PI/1000;
-      rotAngle += dt * M_PI/1000;
-    }
-    //If the planet is orbiting is reverse
-    else
-    {
-      orbitAngle -= dt * M_PI/1000;
-      rotAngle += dt * M_PI/500;
-    }
-      model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-            * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
-  }*/
-  
-  /*if (keyboardInput == 'a')
-  {
-    angle += dt * M_PI/1000;
-  }
-  if (keyboardInput == 's')
-  {
-    angle += dt * M_PI/ 100;
-  }
-  
-  //Multiply the model's rotation by the translation
-  //this causes the "orbit"
-  model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-  //Then multiply by another rotation
-  //this causes the spin while in "orbit"
-          * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
-  */     
-  
   
   
 }
