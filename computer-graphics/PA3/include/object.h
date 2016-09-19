@@ -29,10 +29,10 @@ class Object
     float rotAngle;
     
     //Bools added for PA2 for keyboard interactions
-    bool planetOrbitMoving;
-    bool planetOrbitForward;
-    bool planetRotMoving;
-    bool planetRotForward;
+    bool orbitMoving;
+    bool orbitForward;
+    bool rotMoving;
+    bool rotForward;
     
     
     
