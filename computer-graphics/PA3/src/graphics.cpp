@@ -46,7 +46,7 @@ bool Graphics::Initialize(int width, int height)
 
   // Create the planet and moon
   m_cube = new Object();
-  m_cube2 = new Object();
+  m_cube.moons = new Object();
 
   // Set up the shaders
   m_shader = new Shader();
@@ -113,7 +113,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   // Update the object
   m_cube->Update(dt, keyboardInput, newInput);
   glm::mat4 model = m_cube->GetModel();
-  m_cube2->UpdateMoon(dt, model);
+  m_cube.moons->UpdateMoon(dt, model);
 }
 
 void Graphics::Render()
