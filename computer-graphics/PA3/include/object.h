@@ -10,7 +10,7 @@ class Object
     Object();
     ~Object();
     void Update(unsigned int dt, char keyboardInput, bool newInput);
-    void UpdateMoon(unsigned int dt, glm::mat4 model);
+    void UpdateMoon(unsigned int dt, glm::mat4 model, keyboardInput, newInput);
     void Render();
 
     glm::mat4 GetModel();
