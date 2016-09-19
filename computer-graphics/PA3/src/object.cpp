@@ -257,9 +257,9 @@ void Object::UpdateMoon(unsigned int dt, glm::mat4 planetModel)
 {
   orbitAngle += dt * M_PI/1000;
   rotAngle += dt * M_PI/1000;
-  //model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-    //      * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
-  model = planetModel * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0));
+  model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+          * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0)));
+  //model = planetModel * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0));
 }
 
 glm::mat4 Object::GetModel()
