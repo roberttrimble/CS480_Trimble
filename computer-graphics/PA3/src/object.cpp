@@ -253,7 +253,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   
 }
 
-void Object::UpdateMoon(unsigned int dt, glm::mat4 planetModel)
+void Object::UpdateMoon(unsigned int dt, glm::mat4 planetModel, char keyboardInput, bool newInput)
 {
   orbitAngle += dt * M_PI/1000;
   rotAngle += dt * M_PI/1000;
