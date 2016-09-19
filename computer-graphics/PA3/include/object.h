@@ -14,6 +14,9 @@ class Object
     void Render();
 
     glm::mat4 GetModel();
+    
+    //Pointer to Moons
+    Object *moons;
 
   private:
     glm::mat4 model;
@@ -31,8 +34,7 @@ class Object
     bool planetRotMoving;
     bool planetRotForward;
     
-    //Pointer to Moons
-    Object *moons;
+    
     
 };
 
