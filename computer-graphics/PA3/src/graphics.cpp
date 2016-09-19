@@ -113,7 +113,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   // Update the object
   m_cube->Update(dt, keyboardInput, newInput);
   glm::mat4 model = m_cube->GetModel();
-  m_cube.moons->UpdateMoon(dt, model);
+  m_cube->moons->UpdateMoon(dt, model);
 }
 
 void Graphics::Render()
@@ -132,8 +132,8 @@ void Graphics::Render()
   // Render the object
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
   m_cube->Render();
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube.moons->GetModel()));
-  m_cube.moons->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->moons->GetModel()));
+  m_cube->moons->Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();
