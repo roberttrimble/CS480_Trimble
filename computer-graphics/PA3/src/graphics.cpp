@@ -46,7 +46,7 @@ bool Graphics::Initialize(int width, int height)
 
   // Create the planet and moon
   m_cube = new Object();
-  m_cube.moons = new Object();
+  m_cube->moons = new Object();
 
   // Set up the shaders
   m_shader = new Shader();
