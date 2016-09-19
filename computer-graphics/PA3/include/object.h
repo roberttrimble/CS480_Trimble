@@ -31,7 +31,7 @@ class Object
     bool planetRotForward;
     
     //Moon for PA3
-    Object moon;
+    Object *moon;
 };
 
 #endif /* OBJECT_H */
