@@ -64,10 +64,10 @@ Object::Object()
   rotAngle = 0.0f;
   
   //Set the orbit and rotation bools for the planet
-  planetOrbitMoving = true;
-  planetOrbitForward = true;
-  planetRotMoving = true;
-  planetRotForward = true;
+  orbitMoving = true;
+  orbitForward = true;
+  rotMoving = true;
+  rotForward = true;
   
 
   glGenBuffers(1, &VB);
@@ -97,55 +97,55 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
       //Start or Stop planet orbit
       /////////////////////////////
       case 'a':
-        if (planetOrbitMoving == true)
-          planetOrbitMoving = false;
-        else if (planetOrbitMoving == false)
-          planetOrbitMoving = true;
+        if (orbitMoving == true)
+          orbitMoving = false;
+        else if (orbitMoving == false)
+          orbitMoving = true;
         break;
       
       //Reverse planet orbit
       ///////////////////////
       case 's':
-        if (planetOrbitForward == true)
-          planetOrbitForward = false;
-        else if (planetOrbitForward == false)
-          planetOrbitForward = true;
+        if (orbitForward == true)
+          orbitForward = false;
+        else if (orbitForward == false)
+          orbitForward = true;
         break;
         
       //Start or stop planet rotation
       ///////////////////////
       case 'k':
-        if (planetRotMoving == true)
-          planetRotMoving = false;
-        else if (planetRotMoving == false)
-          planetRotMoving = true;
+        if (rotMoving == true)
+          rotMoving = false;
+        else if (rotMoving == false)
+          rotMoving = true;
         break;
         
       //Reverse planet rotation
       ///////////////////////
       case 'l':
-        if (planetRotForward == true)
-          planetRotForward = false;
-        else if (planetRotForward == false)
-          planetRotForward = true;
+        if (rotForward == true)
+          rotForward = false;
+        else if (rotForward == false)
+          rotForward = true;
         break;
         
       //Stop everything, and reset to defualt
       //////////////////////////////////////
       case 'b': // b for left mouse button
-        if (planetOrbitMoving == true || planetOrbitForward == true ||planetRotMoving == true || planetRotForward == true)
+        if (orbitMoving == true || orbitForward == true || rotMoving == true || rotForward == true)
         {
-          planetOrbitMoving = false;
-          planetOrbitForward = false;
-          planetRotMoving = false;
-          planetRotForward = false;
+          orbitMoving = false;
+          orbitForward = false;
+          rotMoving = false;
+          rotForward = false;
         }
-        else if (planetOrbitMoving == false && planetOrbitForward == false && planetRotMoving == false && planetRotForward == false)
+        else if (orbitMoving == false && orbitForward == false && rotMoving == false && rotForward == false)
         {
-          planetOrbitMoving = true;
-          planetOrbitForward = true;
-          planetRotMoving = true;
-          planetRotForward = true;
+          orbitMoving = true;
+          orbitForward = true;
+          rotMoving = true;
+          rotForward = true;
         }
        
       default:
@@ -160,10 +160,10 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   ////////////////////////////////////////
   //If the planet is orbiting and rotating
   ////////////////////////////////////////
-  if (planetOrbitMoving == true && planetRotMoving == true)
+  if (orbitMoving == true && rotMoving == true)
   {
     //If orbit and rotation are normal
-    if (planetOrbitForward == true && planetRotForward == true)
+    if (orbitForward == true && rotForward == true)
     {
       orbitAngle += dt * M_PI/1000;
       rotAngle += dt * M_PI/1000;
@@ -171,7 +171,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
     //If orbit is reversed but rotation is normal
-    else if (planetOrbitForward == false && planetRotForward == true)
+    else if (orbitForward == false && rotForward == true)
     {
       orbitAngle -= dt * M_PI/1000;
       rotAngle += dt * M_PI/500; // *2 to offset speed
@@ -179,7 +179,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
     //If orbit is normal but rotation is reversed
-    else if (planetOrbitForward == true && planetRotForward == false)
+    else if (orbitForward == true && rotForward == false)
     {
       orbitAngle += dt * M_PI/1000;
       rotAngle -= dt * M_PI/1500; 
@@ -187,7 +187,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
     //If orbit is reversed but rotation is reveresed
-    else if (planetOrbitForward == false && planetRotForward == false)
+    else if (orbitForward == false && rotForward == false)
     {
       orbitAngle -= dt * M_PI/1000;
       rotAngle -= dt * M_PI/1500;
@@ -198,10 +198,10 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   /////////////////////////////////////////////
   //If the planet is orbiting but not rotating
   /////////////////////////////////////////////
-  else if (planetOrbitMoving == true && planetRotMoving == false)
+  else if (orbitMoving == true && rotMoving == false)
   {
     //If orbit is normal and roate stopped
-    if (planetOrbitForward == true)
+    if (orbitForward == true)
     {
       orbitAngle += dt * M_PI/1000;
       rotAngle += 0;
@@ -209,7 +209,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
     //If orbit is reversed and roate is stopped
-    else if (planetOrbitForward == false)
+    else if (orbitForward == false)
     {
       orbitAngle -= dt * M_PI/1000;
       rotAngle += 0;
@@ -220,10 +220,10 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   ////////////////////////////////////////////
   //If the planet is not orbiting but rotating
   ////////////////////////////////////////////
-  else if (planetOrbitMoving == false && planetRotMoving == true)
+  else if (orbitMoving == false && rotMoving == true)
   {
     //If orbit is stopped and roate is normal
-    if (planetRotForward == true)
+    if (rotForward == true)
     {
       orbitAngle += 0;
       rotAngle += dt * M_PI/1000;
@@ -231,7 +231,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
               * glm::rotate(glm::mat4(1.0f), (rotAngle), glm::vec3(0.0, 12.0, 0.0));
     }
     //If orbit is stopped and roate is reversed
-    else if (planetRotForward == false)
+    else if (rotForward == false)
     {
       orbitAngle += 0;
       rotAngle -= dt * M_PI/1000;
@@ -242,7 +242,7 @@ void Object::Update(unsigned int dt, char keyboardInput, bool newInput)
   ////////////////////////////////////////////
   //If the planet is not orbiting or rotating
   ////////////////////////////////////////////
-  else if (planetOrbitMoving == false && planetRotMoving == false)
+  else if (orbitMoving == false && rotMoving == false)
   {
     orbitAngle += 0;
     rotAngle += 0;
