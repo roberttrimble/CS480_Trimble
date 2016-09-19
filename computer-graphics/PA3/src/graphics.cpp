@@ -113,7 +113,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   // Update the object
   planet->Update(dt, keyboardInput, newInput);
   glm::mat4 planetModel = planet->GetModel();
-  planet->moons->UpdateMoon(dt, model, keyboardInput, newInput);
+  planet->moons->UpdateMoon(dt, planetModel, keyboardInput, newInput);
 }
 
 void Graphics::Render()
