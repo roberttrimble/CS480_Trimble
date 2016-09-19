@@ -29,7 +29,6 @@ class Graphics
     GLint m_modelMatrix;
 
     Object *m_cube;
-    Object *m_cube2;
 };
 
 #endif /* GRAPHICS_H */
