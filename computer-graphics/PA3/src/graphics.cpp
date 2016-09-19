@@ -44,8 +44,9 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Create the object
+  // Create the planet and moon
   m_cube = new Object();
+  m_cube2 = new Object();
 
   // Set up the shaders
   m_shader = new Shader();
@@ -111,6 +112,8 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
   // Update the object
   m_cube->Update(dt, keyboardInput, newInput);
+  glm::mat4 model = m_cube->get_Model();
+  m_cube2->UpdateMoon(dt, model);
 }
 
 void Graphics::Render()
@@ -129,6 +132,7 @@ void Graphics::Render()
   // Render the object
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
   m_cube->Render();
+  m_cube2->Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();
