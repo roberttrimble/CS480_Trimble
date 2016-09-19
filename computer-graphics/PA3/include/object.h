@@ -29,6 +29,9 @@ class Object
     bool planetOrbitForward;
     bool planetRotMoving;
     bool planetRotForward;
+    
+    //Moon for PA3
+    Object moon;
 };
 
 #endif /* OBJECT_H */
