@@ -112,7 +112,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
   // Update the object
   m_cube->Update(dt, keyboardInput, newInput);
-  glm::mat4 model = m_cube->get_Model();
+  glm::mat4 model = m_cube->getModel();
   m_cube2->UpdateMoon(dt, model);
 }
 
