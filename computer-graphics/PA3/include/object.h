@@ -32,7 +32,7 @@ class Object
     bool planetRotForward;
     
     //Pointer to Moons
-    Object *moons
+    Object *moons;
     
 };
 
