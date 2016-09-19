@@ -91,6 +91,8 @@ void Engine::Keyboard()
       case SDLK_ESCAPE:
         m_running = false;
         break;
+      //Keys for the planet
+      /////////////////////
       //start or stops orbit
       case SDLK_a:
         keyboardInput = 'a';
@@ -111,6 +113,29 @@ void Engine::Keyboard()
         keyboardInput = 'l';
         newInput = true;
         break;
+      //Keys for the moon
+      /////////////////////
+      //start or stops orbit
+      case SDLK_LEFT:
+        keyboardInput = '<';
+        newInput = true;
+        break;
+      //reverses orbit
+      case SDLK_RIGHT:
+        keyboardInput = '>';
+        newInput = true;
+        break;
+      //start or stops rotation
+      case SDLK_UP:
+        keyboardInput = '^';
+        newInput = true;
+        break;
+      //reverses rotation
+      case SDLK_DOWN:
+        keyboardInput = 'V';
+        newInput = true;
+        break;
+        
       default:
         break;
     }
