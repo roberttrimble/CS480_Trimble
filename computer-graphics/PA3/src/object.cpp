@@ -69,8 +69,6 @@ Object::Object()
   planetRotMoving = true;
   planetRotForward = true;
   
-  //Create the moon
-  moon = new Object();
 
   glGenBuffers(1, &VB);
   glBindBuffer(GL_ARRAY_BUFFER, VB);
