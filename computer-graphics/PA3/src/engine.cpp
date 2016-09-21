@@ -1,6 +1,6 @@
 
 #include "engine.h"
-#include <GL/glut.h>
+#include <GL/glew.h>
 
 Engine::Engine(string name, int width, int height)
 {
