@@ -1,6 +1,5 @@
 
 #include "engine.h"
-#include <GL/glew.h>
 
 Engine::Engine(string name, int width, int height)
 {
@@ -56,13 +55,6 @@ void Engine::Run()
   m_running = true;
   keyboardInput = '+';
   newInput = false;
-
-  glRasterPos2f(0,0);
-  string s = "Robert";
-  for(int i = 0; i < 6; i++)
-  {
-    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,s[i]);
-  }
 
   while(m_running)
   {
