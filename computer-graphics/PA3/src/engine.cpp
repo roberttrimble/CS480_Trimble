@@ -58,7 +58,7 @@ void Engine::Run()
 
   glRasterPos2f(0,0);
   string s = "Robert";
-  for(int i = 0; i < (int)strlen(s); i++)
+  for(int i = 0; i < 6; i++)
   {
     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,s[i]);
   }
