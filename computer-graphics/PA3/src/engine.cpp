@@ -56,6 +56,13 @@ void Engine::Run()
   keyboardInput = '+';
   newInput = false;
 
+  glRasterPos2f(0,0);
+  string s = "Robert";
+  for(int i = 0; i < (int)strlen(s); i++)
+  {
+    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,s[i]);
+  }
+
   while(m_running)
   {
     // Update the DT
