@@ -132,7 +132,7 @@ void Engine::Keyboard()
         break;
       //reverses rotation
       case SDLK_DOWN:
-        keyboardInput = 'V';
+        keyboardInput = 'v';
         newInput = true;
         break;
         
