@@ -1,6 +1,6 @@
 # Blender v2.77 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib PA4box.mtl
+mtllib PA4Box.mtl
 o Cube
 v 1.000000 -1.000000 -3.094563
 v 1.000000 -1.000000 3.094563
