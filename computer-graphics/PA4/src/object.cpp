@@ -68,15 +68,17 @@ Object::Object()
     if(strcmp(lineHeader, "v") == 0)
     {
       glm::vec3 position;
-      glm::vec3 color;
+      glm::vec3 colors;
       
       fscanf(file, "%f %f %f\n", &position.x, &position.y, &position.z);
-      color.x = 1.0f;
-      color.y = 0.0f;
-      color.z = 0.0f;
+      colors.x = 1.0f;
+      colors.y = 0.0f;
+      colors.z = 0.0f;
       
-      Vertex *tempVertex = new Vertex(position, color);
-      Vertices.push_back(&tempVertex);
+      Vertex tempVertex;
+      tempVertex.vertex = position;
+      tempVertex.color = colors;
+      Vertices.push_back(tempVertex);
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
