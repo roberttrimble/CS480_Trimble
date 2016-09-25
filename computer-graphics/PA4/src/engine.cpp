@@ -29,7 +29,7 @@ bool Engine::Initialize(string fileInput)
 {
   // Start a window
   m_window = new Window();
-  if(!m_window->Initialize(m_WINDOW_NAME, &m_WINDOW_WIDTH, &m_WINDOW_HEIGHT))
+  if(!m_window->Initialize(m_WINDOW_NAME, &m_WINDOW_WIDTH, &m_WINDOW_HEIGHT, fileName))
   {
     printf("The window failed to initialize.\n");
     return false;
