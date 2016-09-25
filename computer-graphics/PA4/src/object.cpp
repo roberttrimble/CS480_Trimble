@@ -55,8 +55,8 @@ Object::Object(std::string fileInput)
     5, 1, 8
   };
   */
-  
-  FILE * file = fopen(fileInput, "r");
+  char* fileName = fileInput;
+  FILE * file = fopen(fileName, "r");
   while(1)
   {
     char lineHeader[128];
