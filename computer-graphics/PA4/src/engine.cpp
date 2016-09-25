@@ -9,7 +9,7 @@ Engine::Engine(string name, int width, int height)
   m_FULLSCREEN = false;
 }
 
-Engine::Engine(string name)
+Engine::Engine()
 {
   m_WINDOW_NAME = name;
   m_WINDOW_HEIGHT = 0;
@@ -25,7 +25,7 @@ Engine::~Engine()
   m_graphics = NULL;
 }
 
-bool Engine::Initialize()
+bool Engine::Initialize(string fileInput)
 {
   // Start a window
   m_window = new Window();
