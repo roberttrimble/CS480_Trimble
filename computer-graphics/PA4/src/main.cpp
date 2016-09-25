@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   string fileInput = argv[1];
   
   // Start an engine and run it then cleanup after
-  Engine *engine = new Engine("Tutorial Window Name", 800, 600);
+  Engine *engine = new Engine("Assignment 4", 800, 600);
   if(!engine->Initialize(fileInput))
   {
     printf("The engine failed to start.\n");
