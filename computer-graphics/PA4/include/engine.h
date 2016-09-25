@@ -10,11 +10,11 @@
 class Engine
 {
   public:
-    Engine(string name, int width, int height);
+    Engine(string name, int width, int height, string fileInput);
     Engine(string name);
     ~Engine();
     bool Initialize();
-    void Run(string fileInput);
+    void Run();
     void Keyboard();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
