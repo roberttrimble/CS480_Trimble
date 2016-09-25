@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   }
   else
   {
-    fileInput = "../" + argv;
+    fileInput = argv;
   }
   
   // Start an engine and run it then cleanup after
