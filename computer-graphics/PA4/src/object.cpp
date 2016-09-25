@@ -77,11 +77,12 @@ Object::Object()
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
+      int temp1, temp2, temp3;
       int junk1, junk2, junk3;
-      fscanf(file, "%d//%d %d//%d &d//&d\n", tempX, junk1, tempY, junk2, tempZ, junk3);
-      Indices.push_back(tempX);
-      Indices.push_back(tempY);
-      Indices.push_back(tempZ);
+      fscanf(file, "%d//%d %d//%d &d//&d\n", temp1, junk1, temp2, junk2, temp3, junk3);
+      Indices.push_back(temp1);
+      Indices.push_back(temp2);
+      Indices.push_back(temp3);
     }
   }
 
