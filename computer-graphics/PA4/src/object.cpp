@@ -68,25 +68,25 @@ Object::Object()
     if(strcmp(lineHeader, "v") == 0)
     {
       glm::vec3 position;
-      glm::vec3 colors;
+      glm::vec3 color;
       
       fscanf(file, "%f %f %f\n", &position.x, &position.y, &position.z);
-      colors.x = 1.0f;
-      colors.y = 0.0f;
-      colors.z = 0.0f;
+      color.x = 1.0f;
+      color.y = 0.0f;
+      color.z = 0.0f;
       
-      Vertex *tempVertex = new Vertex(position, colors);
+      Vertex *tempVertex = new Vertex(position, color);
       
       Vertices.push_back(*tempVertex);
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      int temp1, temp2, temp3;
-      int junk1, junk2, junk3;
+      int *temp1, *temp2, *temp3;
+      int *junk1, *junk2, *junk3;
       fscanf(file, "%d//%d %d//%d &d//&d\n", temp1, junk1, temp2, junk2, temp3, junk3);
-      Indices.push_back(temp1);
-      Indices.push_back(temp2);
-      Indices.push_back(temp3);
+      Indices.push_back(*temp1);
+      Indices.push_back(*temp2);
+      Indices.push_back(*temp3);
     }
   }
 
