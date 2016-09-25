@@ -83,7 +83,7 @@ Object::Object()
     {
       unsigned int face[3];
       unsigned int junk[3];
-      fscanf(file, "%d//%d %d//%d &d//&d\n", &face[0], &junk[0], &face[1], &junk[1], &face[2], &junk[2]);
+      fscanf(file, "%i//%i %i//%i &i//&i\n", &face[0], &junk[0], &face[1], &junk[1], &face[2], &junk[2]);
       Indices.push_back(face[0]);
       Indices.push_back(face[1]);
       Indices.push_back(face[2]);
@@ -117,7 +117,8 @@ void Object::Update(unsigned int dt)
 {
   angle += dt * M_PI/1000;
  
-  model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)); 
+  model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+  model = glm::sclae(model, glm::vec3(2.0, 2.0, 2.0);
 }
 
 glm::mat4 Object::GetModel()
