@@ -67,12 +67,12 @@ Object::Object()
     
     if(strcmp(lineHeader, "v") == 0)
     {
-      Vertex tempVertex;
+      Vertex *tempVertex = new Vertex;
       
-      fscanf(file, "%f %f %f\n", tempVertex.vertex[0], tempVertex.vertex[1], tempVertex.vertex[2]);
-      tempVertex.color[0] = 1.0f;
-      tempVertex.color[1] = 0.0f;
-      tempVertex.color[2] = 0.0f;
+      fscanf(file, "%f %f %f\n", &tempVertex.x, &tempVertex.y, &tempVertex.z);
+      tempVertex.x = 1.0f;
+      tempVertex.y = 0.0f;
+      tempVertex.z = 0.0f;
       Vertices.push_back(tempVertex);
     }
     else if (strcmp(lineHeader, "f") == 0)
