@@ -9,7 +9,7 @@ Engine::Engine(string name, int width, int height)
   m_FULLSCREEN = false;
 }
 
-Engine::Engine()
+Engine::Engine(string name)
 {
   m_WINDOW_NAME = name;
   m_WINDOW_HEIGHT = 0;
@@ -29,7 +29,7 @@ bool Engine::Initialize(string fileInput)
 {
   // Start a window
   m_window = new Window();
-  if(!m_window->Initialize(m_WINDOW_NAME, &m_WINDOW_WIDTH, &m_WINDOW_HEIGHT, fileName))
+  if(!m_window->Initialize(m_WINDOW_NAME, &m_WINDOW_WIDTH, &m_WINDOW_HEIGHT))
   {
     printf("The window failed to initialize.\n");
     return false;
@@ -37,7 +37,7 @@ bool Engine::Initialize(string fileInput)
 
   // Start the graphics
   m_graphics = new Graphics();
-  if(!m_graphics->Initialize(m_WINDOW_WIDTH, m_WINDOW_HEIGHT))
+  if(!m_graphics->Initialize(m_WINDOW_WIDTH, m_WINDOW_HEIGHT, fileInput))
   {
     printf("The graphics failed to initialize.\n");
     return false;
