@@ -14,7 +14,7 @@ class Engine
     Engine(string name);
     ~Engine();
     bool Initialize();
-    void Run();
+    void Run(string fileInput);
     void Keyboard();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
