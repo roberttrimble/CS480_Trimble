@@ -55,7 +55,8 @@ Object::Object(std::string fileInput)
     5, 1, 8
   };
   */
-  char* fileName = fileInput.c_str();
+  char* fileName;
+  fileName = fileInput.c_str();
   FILE * file = fopen(fileName, "r");
   while(1)
   {
