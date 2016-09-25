@@ -1,7 +1,7 @@
 #include "object.h"
 #include <stdio.h>
 
-Object::Object()
+Object::Object(string fileName)
 {  
   /*
     # Blender File for a Cube
@@ -56,7 +56,7 @@ Object::Object()
   };
   */
   
-  FILE * file = fopen("../PA4ColorBox.obj", "r");
+  FILE * file = fopen(fileName, "r");
   while(1)
   {
     char lineHeader[128];
