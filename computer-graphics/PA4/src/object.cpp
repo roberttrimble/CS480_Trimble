@@ -1,7 +1,7 @@
 #include "object.h"
 #include <stdio.h>
 
-Object::Object(string fileName)
+Object::Object(std::string fileInput)
 {  
   /*
     # Blender File for a Cube
@@ -56,7 +56,7 @@ Object::Object(string fileName)
   };
   */
   
-  FILE * file = fopen(fileName, "r");
+  FILE * file = fopen(fileInput, "r");
   while(1)
   {
     char lineHeader[128];
