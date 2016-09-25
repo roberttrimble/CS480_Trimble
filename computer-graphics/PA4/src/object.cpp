@@ -81,12 +81,12 @@ Object::Object()
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      int *temp1, *temp2, *temp3;
-      int *junk1, *junk2, *junk3;
-      fscanf(file, "%d//%d %d//%d &d//&d\n", temp1, junk1, temp2, junk2, temp3, junk3);
-      Indices.push_back(*temp1);
-      Indices.push_back(*temp2);
-      Indices.push_back(*temp3);
+      unsigned int face[3];
+      unsigned int junk[3];
+      fscanf(file, "%d//%d %d//%d &d//&d\n", face[0], junk[0], face[1], junk[1], face[2], junk[2]);
+      Indices.push_back(face[0]);
+      Indices.push_back(face[1]);
+      Indices.push_back(face[2]);
     }
   }
 
