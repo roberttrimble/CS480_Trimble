@@ -8,7 +8,7 @@
 class Object
 {
   public:
-    Object(string fileName);
+    Object(std::string fileName);
     ~Object();
     void Update(unsigned int dt);
     void Render();
