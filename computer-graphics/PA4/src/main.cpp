@@ -12,7 +12,8 @@ int main(int argc, char **argv)
     printf("Incorrect file input.\nTry ./Assignment4 <filename>");
     return 0;
   }
-    string fileInput(argv);
+  string fileInput;
+  strcpy(fileInput, argv[1]);
   
   // Start an engine and run it then cleanup after
   Engine *engine = new Engine("Tutorial Window Name", 800, 600);
