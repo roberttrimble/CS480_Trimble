@@ -75,7 +75,7 @@ Object::Object()
       color.y = 0.0f;
       color.z = 0.0f;
       
-      Vertex tempVertex = new Vertex(position, color);
+      Vertex *tempVertex = new Vertex(position, color);
       Vertices.push_back(tempVertex);
     }
     else if (strcmp(lineHeader, "f") == 0)
