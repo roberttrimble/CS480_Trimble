@@ -27,7 +27,7 @@ Object::Object()
     f 3 2 7
     f 3 7 4
     f 5 1 8
-    */
+    
 
   Vertices = {
     {{1.0f, -1.0f, -1.0f}, {0.0f, 0.0f, 0.0f}},
@@ -54,8 +54,34 @@ Object::Object()
     3, 7, 4,
     5, 1, 8
   };
+  */
   
   FILE * file = fopen("../PA4ColorBox.obj", "r");
+  while(1)
+  {
+    char lineHeader[128];
+    float tempX = 0;
+    float tempY = 0;
+    float tempZ = 0;
+    
+    int res = fscanf(file, "%s", lineHeader);
+    if(res == EOF)
+      break;
+    
+    if(strcmp(lineHeader, "v") == 0)
+    {
+      fscanf(file, "%f %f %f\n", tempX, tempY, tempZ);
+      Vertices.push_back({tempX, tempY, tempZ} , {1.0f, 0.0f, 0.0f});
+    }
+    else if (strcmp(lineHeader, "f") == 0)
+    {
+      int junk1, junk2, junk3;
+      fscanf(file, "%d//%d %d//%d &d//&d\n", tempX, junk1, tempY, junk2, tempZ, junk3);
+      Indices.push_back(tempX);
+      Indices.push_back(tempY);
+      Indices.push_back(tempZ);
+    }
+  }
 
   // The index works at a 0th index
   for(unsigned int i = 0; i < Indices.size(); i++)
