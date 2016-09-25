@@ -83,7 +83,7 @@ Object::Object()
     {
       unsigned int face[3];
       unsigned int junk[3];
-      fscanf(file, "%i//%i %i//%i &i//&i\n", &face[0], &junk[0], &face[1], &junk[1], &face[2], &junk[2]);
+      fscanf(file, "%i//%i %i//%i %i//%i\n", &face[0], &junk[0], &face[1], &junk[1], &face[2], &junk[2]);
       Indices.push_back(face[0]);
       Indices.push_back(face[1]);
       Indices.push_back(face[2]);
