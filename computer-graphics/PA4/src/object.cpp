@@ -72,25 +72,19 @@ Object::Object()
       
       fscanf(file, "%f %f %f\n", &position.x, &position.y, &position.z);
       
-      if (Vertices.size()%4 == 0)
-      {
-        color.x = 0.0f;
-        color.y = 0.0f;
-        color.z = 0.0f;
-      }
-      else if (Vertices.size()%4 == 1)
+      if (Vertices.size()%3 == 0)
       {
         color.x = 1.0f;
         color.y = 0.0f;
         color.z = 0.0f;
       }
-      else if (Vertices.size()%4 == 2)
+      else if (Vertices.size()%3 == 1)
       {
-        color.x = 0.0f;
+        color.x = 1.0f;
         color.y = 1.0f;
-        color.z = 0.0f;
+        color.z = 1.0f;
       }
-      else if (Vertices.size()%4 == 3)
+      else if (Vertices.size()%3 == 2)
       {
         color.x = 0.0f;
         color.y = 0.0f;
