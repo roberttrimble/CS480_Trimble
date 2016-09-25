@@ -7,7 +7,7 @@
 class Object
 {
   public:
-    Object();
+    Object(string fileName);
     ~Object();
     void Update(unsigned int dt);
     void Render();
