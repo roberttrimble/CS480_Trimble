@@ -55,7 +55,7 @@ Object::Object()
     5, 1, 8
   };
   
-  FILE * file = fopen("../PA4ColorBox.obj");
+  FILE * file = fopen("../PA4ColorBox.obj", "r");
 
   // The index works at a 0th index
   for(unsigned int i = 0; i < Indices.size(); i++)
