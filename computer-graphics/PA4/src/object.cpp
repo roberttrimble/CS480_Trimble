@@ -71,9 +71,32 @@ Object::Object()
       glm::vec3 color;
       
       fscanf(file, "%f %f %f\n", &position.x, &position.y, &position.z);
-      color.x = 1.0f;
-      color.y = 0.0f;
-      color.z = 0.0f;
+      
+      if (Vertices.size%4 == 0)
+      {
+        color.x = 0.0f;
+        color.y = 0.0f;
+        color.z = 0.0f;
+      }
+      else if (Vertices.size%4 == 1)
+      {
+        color.x = 1.0f;
+        color.y = 0.0f;
+        color.z = 0.0f;
+      }
+      else if (Vertices.size%4 == 2)
+      {
+        color.x = 0.0f;
+        color.y = 1.0f;
+        color.z = 0.0f;
+      }
+      else if (Vertices.size%4 == 3)
+      {
+        color.x = 0.0f;
+        color.y = 0.0f;
+        color.z = 1.0f;
+      }
+      
       
       Vertex *tempVertex = new Vertex(position, color);
       
