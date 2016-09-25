@@ -1,5 +1,5 @@
 #include "object.h"
-#include <fstream>
+#include <stdio>
 
 Object::Object()
 {  
@@ -27,7 +27,7 @@ Object::Object()
     f 3 2 7
     f 3 7 4
     f 5 1 8
-  
+    */
 
   Vertices = {
     {{1.0f, -1.0f, -1.0f}, {0.0f, 0.0f, 0.0f}},
@@ -54,7 +54,8 @@ Object::Object()
     3, 7, 4,
     5, 1, 8
   };
-  */
+  
+  FILE * file = fopen("../PA4ColorBox.obj");
 
   // The index works at a 0th index
   for(unsigned int i = 0; i < Indices.size(); i++)
