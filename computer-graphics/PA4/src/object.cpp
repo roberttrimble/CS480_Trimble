@@ -118,7 +118,7 @@ void Object::Update(unsigned int dt)
   angle += dt * M_PI/1000;
  
   model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
-  model = glm::sclae(model, glm::vec3(2.0, 2.0, 2.0);
+  model = glm::scale(model, glm::vec3(2.0, 2.0, 2.0);
 }
 
 glm::mat4 Object::GetModel()
