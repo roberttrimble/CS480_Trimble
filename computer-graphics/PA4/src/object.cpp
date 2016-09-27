@@ -46,7 +46,7 @@ Object::Object(std::string fileInput)
       unsigned int junk[6];
       fscanf(file, "%c%c%c", &format[0], &format[1], &format[2]);
       face[0] = (int)format[0];
-      if (format[3] == '/')
+      if (format[2] == '/')
       {
         fscanf(file, "%i//%i %i//%i\n", &face[1], &junk[1], &face[2], &junk[2]);
         Indices.push_back(face[0]);
