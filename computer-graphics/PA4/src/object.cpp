@@ -43,7 +43,7 @@ Object::Object(std::string fileInput)
     {
       char format1, format2;
       unsigned int face[9];
-      fscanf(file, "%i%c%c", &face[0], &format1, &format2);
+      fscanf(file, "%i%c%c ", &face[0], &format1, &format2);
       if (format1 == '/' && format2 == '/')
       {
         fscanf(file, "%i//%i %i//%i\n", &face[1], &face[9], &face[2], &face[8]);
