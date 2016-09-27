@@ -41,7 +41,7 @@ Object::Object(std::string fileInput)
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      if (lineHeader[4] == "/")
+      if (strcmp(lineHeader[4], "/") == 0)
       {
         unsigned int face[3];
         unsigned int junk[3];
@@ -50,7 +50,7 @@ Object::Object(std::string fileInput)
         Indices.push_back(face[1]);
         Indices.push_back(face[2]);
       }
-      else if (lineHeader[3] == "/")
+      else if (strcmp(lineHeader[3], "/") == 0)
       {
         unsigned int face[3];
         unsigned int junk[6];
