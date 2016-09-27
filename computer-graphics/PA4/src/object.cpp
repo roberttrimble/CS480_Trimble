@@ -42,7 +42,7 @@ Object::Object(std::string fileInput)
     else if (strcmp(lineHeader, "f") == 0)
     {
       char format1, format2;
-      unsigned in face[9];
+      unsigned int face[9];
       fscanf(file, "%i%c%c", &face[0], &format1, &format2);
       if (format2 == '/')
       {
