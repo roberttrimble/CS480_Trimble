@@ -29,8 +29,8 @@ Object::Object(std::string fileInput)
       }
       else if (Vertices.size()%2 == 1)
       {
-        color.x = 0.0f;
-        color.y = 0.0f;
+        color.x = 1.0f;
+        color.y = 1.0f;
         color.z = 1.0f;
       }
       
@@ -41,7 +41,7 @@ Object::Object(std::string fileInput)
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      if (lineheader[4] == "/")
+      if (lineHeader[4] == "/")
       {
         unsigned int face[3];
         unsigned int junk[3];
@@ -50,11 +50,11 @@ Object::Object(std::string fileInput)
         Indices.push_back(face[1]);
         Indices.push_back(face[2]);
       }
-      else if (lineheader[3] == "/")
+      else if (lineHeader[3] == "/")
       {
         unsigned int face[3];
         unsigned int junk[6];
-        fscanf(file, "%i/%i/%i %i/%i/%i %i/%i/%i\n", &face[0], &junk[0], &junk[1], &face[1], &junk[2], &junk[3] &face[2], &junk[4], &junk[5]);
+        fscanf(file, "%i/%i/%i %i/%i/%i %i/%i/%i\n", &face[0], &junk[0], &junk[1], &face[1], &junk[2], &junk[3], &face[2], &junk[4], &junk[5]);
         Indices.push_back(face[0]);
         Indices.push_back(face[1]);
         Indices.push_back(face[2]);
@@ -63,7 +63,7 @@ Object::Object(std::string fileInput)
       {
         unsigned int face[3];
         unsigned int junk[6];
-        fscanf(file, "%i %i %i %i %i %i %i %i %i\n", &face[0], &junk[0], &junk[1], &face[1], &junk[2], &junk[3] &face[2], &junk[4], &junk[5]);
+        fscanf(file, "%i %i %i %i %i %i %i %i %i\n", &face[0], &junk[0], &junk[1], &face[1], &junk[2], &junk[3], &face[2], &junk[4], &junk[5]);
         Indices.push_back(face[0]);
         Indices.push_back(face[1]);
         Indices.push_back(face[2]);
