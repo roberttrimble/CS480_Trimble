@@ -41,7 +41,7 @@ Object::Object(std::string fileInput)
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      string format;
+      std::string format;
       unsigned int face[3];
       unsigned int junk[6];
       fscanf(file, "%s", &format);
