@@ -41,7 +41,7 @@ Object::Object(std::string fileInput)
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      if (strcmp(lineHeader + 3, "/") == 0){
+      if (strcmp(&lineHeader[4], "/") == 0){
       unsigned int face[3];
       unsigned int junk[3];
       fscanf(file, "%i//%i %i//%i %i//%i\n", &face[0], &junk[0], &face[1], &junk[1], &face[2], &junk[2]);
@@ -50,7 +50,7 @@ Object::Object(std::string fileInput)
       Indices.push_back(face[2]);
       }
       
-      unsigned int face[9];
+      /*unsigned int face[9];
       unsigned int junk[3];
       int matches = fscanf(file, "%i %i %i %i %i %i %i %i %i\n", &face[0], &face[1], &face[2], &face[3], &face[4], &face[5], &face[6], &face[7], &face[8]);
       if (matches == 6)
@@ -58,7 +58,7 @@ Object::Object(std::string fileInput)
       Indices.push_back(face[0]);
       Indices.push_back(face[2]);
       Indices.push_back(face[4]);
-      }
+      }*/
     }
   }
 
