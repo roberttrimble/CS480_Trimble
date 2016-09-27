@@ -41,7 +41,7 @@ Object::Object(std::string fileInput)
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      if (strcmp(&lineHeader[4], "/") == 0){
+      if (strcmp(lineHeader + 3, "/") == 0){
       unsigned int face[3];
       unsigned int junk[3];
       fscanf(file, "%i//%i %i//%i %i//%i\n", &face[0], &junk[0], &face[1], &junk[1], &face[2], &junk[2]);
