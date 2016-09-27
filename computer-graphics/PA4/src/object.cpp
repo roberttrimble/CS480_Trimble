@@ -44,7 +44,7 @@ Object::Object(std::string fileInput)
       char format[3];
       unsigned int face[3];
       unsigned int junk[6];
-      fscanf(file, "%3", &format);
+      fscanf(file, "%s", &format);
       face[0] = (int)format[0];
       if (format[2] == '/')
       {
