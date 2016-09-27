@@ -41,19 +41,17 @@ Object::Object(std::string fileInput)
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      std::string format;
+      char format[3];
       unsigned int face[3];
       unsigned int junk[6];
-      fscanf(file, "%s", &format);
+      fscanf(file, "%c%c%c", &format[0], &format[1], &format[2]);
       face[0] = (int)format[0];
-      if (format.size() == 3) {
-      if (format[2] == '/')
+      if (format[3] == '/')
       {
         fscanf(file, "%i//%i %i//%i\n", &face[1], &junk[1], &face[2], &junk[2]);
         Indices.push_back(face[0]);
         Indices.push_back(face[1]);
         Indices.push_back(face[2]);
-      }
       }
       
       /*
