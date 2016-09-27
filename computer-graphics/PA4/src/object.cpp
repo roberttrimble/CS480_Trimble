@@ -41,7 +41,7 @@ Object::Object(std::string fileInput)
     }
     else if (strcmp(lineHeader, "f") == 0)
     {
-      printf(lineHeader[4]);
+      printf(&lineHeader[4]);
       /*
       unsigned int face[3];
       unsigned int junk[3];
