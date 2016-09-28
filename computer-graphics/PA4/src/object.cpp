@@ -61,18 +61,6 @@ Object::Object(std::string fileInput)
       Indices.push_back(face[0]);
       Indices.push_back(face[1]);
       Indices.push_back(face[2]);
-      
-      
-      /*
-      unsigned int face[9];
-      unsigned int junk[3];
-      int matches = fscanf(file, "%*[^0123456789]%i%*[^0123456789]%i%*[^0123456789]%i%*[^0123456789]%i%*[^0123456789]%i%*[^0123456789]%i%*[^0123456789]%i%*[^0123456789]%i%*[^0123456789]%i\n", &face[0], &face[1], &face[2], &face[3], &face[4], &face[5], &face[6], &face[7], &face[8]);
-      if (matches == 6)
-      {
-      Indices.push_back(face[0]);
-      Indices.push_back(face[2]);
-      Indices.push_back(face[4]);
-      }*/
     }
   }
 
