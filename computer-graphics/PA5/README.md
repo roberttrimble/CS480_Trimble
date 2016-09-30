@@ -7,7 +7,7 @@ The project also added a vertex and fragment shader text file. Currently, the na
 
 
 ## Building and Running
-To build this project, simply go into the computer-graphics/PA1 directory, and enter the following command lines.
+To build this project, simply go into the computer-graphics/PA5 directory, and enter the following command lines.
 
 ```bash
 mkdir build
