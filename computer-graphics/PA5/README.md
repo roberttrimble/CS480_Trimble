@@ -1,4 +1,4 @@
-# PA1: Input Interactions
+# PA5: Assimp Model Loading
 
 The given spinning cube has been modified to orbit around a central point, while also spinning itself. This is done by multipyling the translate and rotate function.
 
@@ -14,5 +14,5 @@ mkdir build
 cd build
 cmake ..
 make
-./Tutorial
+./Assignment5
 ```
