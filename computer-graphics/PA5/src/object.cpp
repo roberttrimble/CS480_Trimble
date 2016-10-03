@@ -1,63 +1,58 @@
 #include "object.h"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <assimp/color4.h>
 
 Object::Object()
-{  
-  /*
-    # Blender File for a Cube
-    o Cube
-    v 1.000000 -1.000000 -1.000000
-    v 1.000000 -1.000000 1.000000
-    v -1.000000 -1.000000 1.000000
-    v -1.000000 -1.000000 -1.000000
-    v 1.000000 1.000000 -0.999999
-    v 0.999999 1.000000 1.000001
-    v -1.000000 1.000000 1.000000
-    v -1.000000 1.000000 -1.000000
-    s off
-    f 2 3 4
-    f 8 7 6
-    f 1 5 6
-    f 2 6 7
-    f 7 8 4
-    f 1 4 8
-    f 1 2 4
-    f 5 8 6
-    f 2 1 6
-    f 3 2 7
-    f 3 7 4
-    f 5 1 8
-  */
+{ 
+  // file name 
+  const char * fileName = "../models/pinballtable.obj";
 
-  Vertices = {
-    {{1.0f, -1.0f, -1.0f}, {0.0f, 0.0f, 0.0f}},
-    {{1.0f, -1.0f, 1.0f}, {1.0f, 0.0f, 0.0f}},
-    {{-1.0f, -1.0f, 1.0f}, {0.0f, 1.0f, 0.0f}},
-    {{-1.0f, -1.0f, -1.0f}, {0.0f, 0.0f, 1.0f}},
-    {{1.0f, 1.0f, -1.0f}, {1.0f, 1.0f, 0.0f}},
-    {{1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}},
-    {{-1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}},
-    {{-1.0f, 1.0f, -1.0f}, {1.0f, 1.0f, 1.0f}}
-  };
+  // variables
+  Assimp::Importer importer;
 
-  Indices = {
-    2, 3, 4,
-    8, 7, 6,
-    1, 5, 6,
-    2, 6, 7,
-    7, 8, 4,
-    1, 4, 8,
-    1, 2, 4,
-    5, 8, 6,
-    2, 1, 6,
-    3, 2, 7,
-    3, 7, 4,
-    5, 1, 8
-  };
+  // create and initalalize a scene that contains all of the file data
+  const aiScene *myScene = importer.ReadFile(fileName,aiProcess_Triangulate);
 
-  // The index works at a 0th index
-  for(unsigned int i = 0; i < Indices.size(); i++)
+  // create a pointer to the first mesh (only one)
+  aiMesh *ai_mesh = myScene->mMeshes[0];  
+
+  // get vertices if number of vertices > 0
+  if (ai_mesh->mNumVertices > 0)
   {
-    Indices[i] = Indices[i] - 1;
+    // loop through vertices
+    for (int i = 0; i < ai_mesh->mNumVertices; i++)
+    {
+      // creat a 3D vector to hold vertices at ith position
+      aiVector3D ai = ai_mesh->mVertices[i];
+      // create a vec3 to hold the coordiates stored in ai
+      glm::vec3 vec = glm::vec3(ai.x, ai.y, ai.z);
+      // initialaize a color
+      glm::vec3 color = {1.0f, 1.0f, 1.0f};
+      // initialize a temporary Vertex with vertex coordinates and color
+      Vertex *tempVertex = new Vertex(vec, color);
+      // push back tempVertex onto Vertices
+      Vertices.push_back(*tempVertex);
+    }
+  }
+
+  // get mesh indexes
+  // loop through faces
+  for (int j = 0; j < ai_mesh->mNumFaces; j++){
+    // create a face to store the jth face
+    aiFace* face = &ai_mesh->mFaces[j];
+    // if objects are not triangulated
+    if (face->mNumIndices != 3)
+    {   
+      // let user know        
+      std::cout << "Object not trianuglated\n";
+      continue;
+    }
+    // push back face indices onto Indices
+    Indices.push_back(face->mIndices[0]);
+    Indices.push_back(face->mIndices[1]);
+    Indices.push_back(face->mIndices[2]);
   }
 
   angle = 0.0f;
@@ -80,12 +75,7 @@ Object::~Object()
 void Object::Update(unsigned int dt)
 {
   angle += dt * M_PI/1000;
- 
   model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
-          
-  
-  
-  
 }
 
 glm::mat4 Object::GetModel()
@@ -109,4 +99,3 @@ void Object::Render()
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
 }
-
