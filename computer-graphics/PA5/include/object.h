@@ -7,7 +7,7 @@
 class Object
 {
   public:
-    Object();
+    Object(std::string fileInput);
     ~Object();
     void Update(unsigned int dt);
     void Render();
