@@ -2,8 +2,8 @@
 
 Robert Trimble  
 Andrew Munoz  
-Zach Copper  
-The following prject builds off of code from PA1. This time though, the object is loaded using Assimp. By using the Assimp importer, a given object file is loaded, and the appropraite verticies and faces are pulled. We also continued to us the previous two vectors, Verticies and Indicies, so that our render function did not need to be change.  
+Zach Cooper  
+The following prject builds off of code from PA1. This time though, the object is loaded using Assimp. By using the Assimp importer, a given object file is extracted, and the appropraite verticies and faces are pulled. We also continued to us the previous two vectors, Verticies and Indicies, so that our render function did not need to be change.  
 
 
 ## Building and Running
