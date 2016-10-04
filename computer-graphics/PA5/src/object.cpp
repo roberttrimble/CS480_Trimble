@@ -8,7 +8,7 @@ Object::Object(std::string fileInput)
 { 
   // file name 
   const char * fileName; 
-  fileName = fileInput;
+  fileName = fileInput.c_str();
 
   // variables
   Assimp::Importer importer;
