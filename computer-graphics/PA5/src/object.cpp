@@ -4,10 +4,11 @@
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
 
-Object::Object()
+Object::Object(string fileInput)
 { 
   // file name 
-  const char * fileName = "../models/pinballtable.obj";
+  const char * fileName 
+  fileName = fileInput;
 
   // variables
   Assimp::Importer importer;
