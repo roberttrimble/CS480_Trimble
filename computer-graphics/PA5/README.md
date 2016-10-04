@@ -1,18 +1,20 @@
 # PA5: Assimp Model Loading
 
-The given spinning cube has been modified to orbit around a central point, while also spinning itself. This is done by multipyling the translate and rotate function.
-
-
-This is to test changes. 
+Robert Trimble  
+Andrew Munoz  
+Zach Copper  
+The following prject builds off of code from PA1. This time though, the object is loaded using Assimp. By using the Assimp importer, a given object file is loaded, and the appropraite verticies and faces are pulled. We also continued to us the previous two vectors, Verticies and Indicies, so that our render function did not need to be change.  
 
 
 ## Building and Running
-To build this project, simply go into the computer-graphics/PA5 directory, and enter the following command lines.
+The following project was tested on both Mac and NoMachine in the ECC lab. To build this project, simply go into the computer-graphics/PA5 directory, and enter the following command lines.
 
 ```bash
 mkdir build
 cd build
 cmake ..
 make
-./Assignment5
+./Assignment5 <filepath>
 ```
+  
+We provided an object file in our repository. It is located in the models directory. To test that file, one needs to simply enter "./Assignment5 ../models/pinballtable.obj"
