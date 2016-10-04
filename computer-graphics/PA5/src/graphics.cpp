@@ -10,7 +10,7 @@ Graphics::~Graphics()
 
 }
 
-bool Graphics::Initialize(int width, int height)
+bool Graphics::Initialize(int width, int height, string fileInput)
 {
   // Used for the linux OS
   #if !defined(__APPLE__) && !defined(MACOSX)
@@ -45,7 +45,7 @@ bool Graphics::Initialize(int width, int height)
   }
 
   // Create the object
-  m_cube = new Object();
+  m_cube = new Object(fileInput);
 
   // Set up the shaders
   m_shader = new Shader();
