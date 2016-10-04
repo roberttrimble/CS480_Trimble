@@ -4,10 +4,10 @@
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
 
-Object::Object(string fileInput)
+Object::Object(std::string fileInput)
 { 
   // file name 
-  const char * fileName 
+  const char * fileName; 
   fileName = fileInput;
 
   // variables
