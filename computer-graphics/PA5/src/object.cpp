@@ -3,6 +3,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
+#include <Magick++.h>
 
 Object::Object(std::string fileInput)
 { 
