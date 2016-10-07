@@ -3,6 +3,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
+#include <Magick++.h>
 
 Object::Object(std::string fileInput)
 { 
@@ -16,46 +17,49 @@ Object::Object(std::string fileInput)
   // create and initalalize a scene that contains all of the file data
   const aiScene *myScene = importer.ReadFile(fileName,aiProcess_Triangulate);
 
-  // create a pointer to the first mesh (only one)
-  aiMesh *ai_mesh = myScene->mMeshes[0];  
+  // loop through all meshes in a given scene
+  for(unsigned int currentMesh = 0; currentMesh < myScene->mNumMeshes; currentMesh++){
 
-  // get vertices if number of vertices > 0
-  if (ai_mesh->mNumVertices > 0)
-  {
-    // loop through vertices
-    for (int i = 0; i < ai_mesh->mNumVertices; i++)
+    // create a pointer to the first mesh (only one)
+    aiMesh *ai_mesh = myScene->mMeshes[currentMesh];  
+  
+    // get vertices if number of vertices > 0
+    if (ai_mesh->mNumVertices > 0)
     {
-      // creat a 3D vector to hold vertices at ith position
-      aiVector3D ai = ai_mesh->mVertices[i];
-      // create a vec3 to hold the coordiates stored in ai
-      glm::vec3 vec = glm::vec3(ai.x, ai.y, ai.z);
-      // initialaize a color
-      glm::vec3 color = {1.0f, 1.0f, 1.0f};
-      // initialize a temporary Vertex with vertex coordinates and color
-      Vertex *tempVertex = new Vertex(vec, color);
-      // push back tempVertex onto Vertices
-      Vertices.push_back(*tempVertex);
+      // loop through vertices
+      for (int i = 0; i < ai_mesh->mNumVertices; i++)
+      {
+        // creat a 3D vector to hold vertices at ith position
+        aiVector3D ai = ai_mesh->mVertices[i];
+        // create a vec3 to hold the coordiates stored in ai
+        glm::vec3 vec = glm::vec3(ai.x, ai.y, ai.z);
+        // initialaize a color
+        glm::vec3 color = {1.0f, 1.0f, 1.0f};
+        // initialize a temporary Vertex with vertex coordinates and color
+        Vertex *tempVertex = new Vertex(vec, color);
+        // push back tempVertex onto Vertices
+        Vertices.push_back(*tempVertex);
+      }
+    }
+
+    // get mesh indexes
+    // loop through faces
+    for (int j = 0; j < ai_mesh->mNumFaces; j++){
+      // create a face to store the jth face
+      aiFace* face = &ai_mesh->mFaces[j];
+      // if objects are not triangulated
+      if (face->mNumIndices != 3)
+      {   
+        // let user know        
+        std::cout << "Object not trianuglated\n";
+        continue;
+      }
+      // push back face indices onto Indices
+      Indices.push_back(face->mIndices[0]);
+      Indices.push_back(face->mIndices[1]);
+      Indices.push_back(face->mIndices[2]);
     }
   }
-
-  // get mesh indexes
-  // loop through faces
-  for (int j = 0; j < ai_mesh->mNumFaces; j++){
-    // create a face to store the jth face
-    aiFace* face = &ai_mesh->mFaces[j];
-    // if objects are not triangulated
-    if (face->mNumIndices != 3)
-    {   
-      // let user know        
-      std::cout << "Object not trianuglated\n";
-      continue;
-    }
-    // push back face indices onto Indices
-    Indices.push_back(face->mIndices[0]);
-    Indices.push_back(face->mIndices[1]);
-    Indices.push_back(face->mIndices[2]);
-  }
-
   angle = 0.0f;
 
   glGenBuffers(1, &VB);
