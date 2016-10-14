@@ -1,4 +1,4 @@
-# PA5: Assimp Model Loading
+# PA6: Assimp Texture Loading
 
 Robert Trimble  
 Andrew Munoz  
@@ -14,7 +14,7 @@ mkdir build
 cd build
 cmake ..
 make
-./Assignment5 <filepath>
+./Assignment6 <filepath>
 ```
   
-We provided an object file in our repository. It is located in the models directory. To test that file, one needs to simply enter "./Assignment5 ../models/pinballtable.obj"
+We provided an object file in our repository. It is located in the models directory. To test that file, one needs to simply enter "./Assignment6 ../models/pinballtable.obj"
