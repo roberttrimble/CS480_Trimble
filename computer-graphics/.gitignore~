@@ -2,11 +2,12 @@
 *.slo
 *.lo
 *.o
-*.obj
+*.cpp~
 
 # Precompiled Headers
 *.gch
 *.pch
+*.h~
 
 # Compiled Dynamic libraries
 *.so
@@ -26,4 +27,8 @@
 *.exe
 *.out
 *.app
+*.txt~
+*.mtl~
+*.md~
+*makefile~
 build/

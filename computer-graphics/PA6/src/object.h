@@ -7,7 +7,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
-#include <GraphicsMagick++.h>
+#include <Magick++.h>
 
 class Texture
 {
