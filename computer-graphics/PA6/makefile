@@ -8,7 +8,7 @@ LIBS= -lglut -lGLEW -lGL -lassimp -lSDL2 `Magick++-config --cppflags --cxxflags 
 # Mac
 else
 	CC=clang++
-  LIBS=  -framework OpenGL -framework GLUT -framework Cocoa -lGLEW -stdlib=libc++
+  LIBS=  -framework OpenGL -framework GLUT -framework Cocoa -lGLEW -stdlib=libc++ `Magick++-config --cppflags --cxxflags --ldflags --libs`
 endif
 
 # Paths, use this to set Include directories, or library directories; uncomment in all: if used
