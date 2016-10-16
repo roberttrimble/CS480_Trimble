@@ -1,6 +1,4 @@
 #include "object.h"
-//using namespace Magick;
-
 
 Object::Object(std::string fileInput)
 { 
@@ -14,10 +12,12 @@ Object::Object(std::string fileInput)
   // create and initalalize a scene that contains all of the file data
   const aiScene *myScene = importer.ReadFile(fileName,aiProcess_Triangulate);
 
-  for(unsigned int currentMesh = 0; currentMesh < myScene->mNumMeshes; currentMesh++){
+  // loop through all meshes in a given scene
+  for(unsigned int currentMesh = 0; currentMesh < myScene->mNumMeshes; currentMesh++)
+	{
 
 		// create a pointer to the first mesh (only one)
-		aiMesh *ai_mesh = myScene->mMeshes[0];  
+		aiMesh *ai_mesh = myScene->mMeshes[currentMesh];  
 
 		// get vertices if number of vertices > 0
 		if (ai_mesh->mNumVertices > 0)
@@ -30,8 +30,8 @@ Object::Object(std::string fileInput)
 		    // create a vec3 to hold the coordiates stored in ai
 		    glm::vec3 vec = glm::vec3(ai.x, ai.y, ai.z);
 
-        aiVector3D texture = ai_mesh->mTextureCoords[0][i];
-        glm::vec2 tex = glm::vec2(texture.x, texture.y);
+		    aiVector3D texture = ai_mesh->mTextureCoords[0][i];
+		    glm::vec2 tex = glm::vec2(texture.x, texture.y);
 
 		    // initialize a temporary Vertex with vertex coordinates and color
 		    Vertex *tempVertex = new Vertex(vec, tex);
@@ -57,43 +57,22 @@ Object::Object(std::string fileInput)
 		  Indices.push_back(face->mIndices[1]);
 		  Indices.push_back(face->mIndices[2]);
 		}
+		
 	}
-;
-Magick::InitializeMagick(NULL);
-m_Textures.resize(myScene->mNumMaterials);
-for (unsigned int i = 0 ; i < myScene->mNumMaterials ; i++) {
-  const aiMaterial* pMaterial = myScene->mMaterials[i];
+		glGenBuffers(1, &VB);
+		glBindBuffer(GL_ARRAY_BUFFER, VB);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
 
-        m_Textures[i] = NULL;
-        if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
-            aiString Path;
+		glGenBuffers(1, &IB);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
 
-            if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &Path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
-std::cout << Path.data << std::endl;
-                std::string FullPath = Path.data;
-                m_Textures[i] = new Texture(GL_TEXTURE_2D, FullPath.c_str());
+		/*// Create a Vertex Buffer object to store this vertex info on the GPU
+    glGenBuffers(1, &TB);
+    glBindBuffer(GL_ARRAY_BUFFER, TB);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);*/
 
-                if (!m_Textures[i]->Load()) {
-                    printf("Error loading texture '%s'\n", FullPath.c_str());
-                    delete m_Textures[i];
-                    m_Textures[i] = NULL;
-                }
-            }
-        }
-      if (!m_Textures[i]) {
-          m_Textures[i] = new Texture(GL_TEXTURE_2D, "../models/checker.jpg");
-       }
-    }
-
-  angle = 0.0f;
-
-  glGenBuffers(1, &VB);
-  glBindBuffer(GL_ARRAY_BUFFER, VB);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
-
-  glGenBuffers(1, &IB);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
+		angle = 0.0f;
 }
 
 Object::~Object()
@@ -129,3 +108,4 @@ void Object::Render()
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
 }
+

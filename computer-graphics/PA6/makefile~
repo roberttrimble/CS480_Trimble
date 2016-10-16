@@ -20,27 +20,43 @@ CXXFLAGS=-g -Wall -std=c++0x
 
 all: ../build/Assignment6
 
-../build/Assignment6: ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o
-	$(CC) $(CXXFLAGS) ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o -o ../build/Assignment6 $(LIBS)
+../build/Assignment6: ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o texture.o
+	$(CC) $(CXXFLAGS) ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o texture.o -o ../build/Assignment6 $(LIBS)
 
-camera.o: ../src/camera.cpp ../src/include/camera.h
-	$(CC) $(CXXFLAGS) -c ../src/camera.cpp ../src/include/camera.h $(LIBS)
+camera.o: ../src/camera.cpp ../src/camera.h
+	$(CC) $(CXXFLAGS) -c ../src/camera.cpp ../src/camera.h $(LIBS)
 
-engine.o: ../src/engine.cpp ../src/include/engine.h
-	$(CC) $(CXXFLAGS) -c ../src/engine.cpp ../src/include/engine.h $(LIBS)
+engine.o: ../src/engine.cpp ../src/engine.h
+	$(CC) $(CXXFLAGS) -c ../src/engine.cpp ../src/engine.h $(LIBS)
 
-graphics.o: ../src/graphics.cpp ../src/include/graphics.h
-	$(CC) $(CXXFLAGS) -c ../src/graphics.cpp ../src/include/graphics.h $(LIBS)
+graphics.o: ../src/graphics.cpp ../src/graphics.h
+	$(CC) $(CXXFLAGS) -c ../src/graphics.cpp ../src/graphics.h $(LIBS)
 
-object.o: ../src/object.cpp ../src/include/object.h
-	$(CC) $(CXXFLAGS) -c ../src/object.cpp ../src/include/object.h $(LIBS)
+object.o: ../src/object.cpp ../src/object.h
+	$(CC) $(CXXFLAGS) -c ../src/object.cpp ../src/object.h $(LIBS)
 
-shader.o: ../src/shader.cpp ../src/include/shader.h
-	$(CC) $(CXXFLAGS) -c ../src/shader.cpp ../src/include/shader.h $(LIBS)
+shader.o: ../src/shader.cpp ../src/shader.h
+	$(CC) $(CXXFLAGS) -c ../src/shader.cpp ../src/shader.h $(LIBS)
 
-window.o: ../src/window.cpp ../src/include/window.h
-	$(CC) $(CXXFLAGS) -c ../src/window.cpp ../src/include/window.h $(LIBS)
+window.o: ../src/window.cpp ../src/window.h
+	$(CC) $(CXXFLAGS) -c ../src/window.cpp ../src/window.h $(LIBS)
+
+texture.o: ../src/texture.cpp ../src/texture.h
+	$(CC) $(CXXFLAGS) -c ../src/texture.cpp ../src/texture.h $(LIBS)
 
 clean:
 	-@if rm *.o Assignment6 2>/dev/null || true; then echo "Main Removed"; else echo "No Main"; fi
+
+
+
+
+
+
+
+
+
+
+
+
+
 

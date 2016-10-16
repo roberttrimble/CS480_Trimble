@@ -20,8 +20,8 @@ CXXFLAGS=-g -Wall -std=c++0x
 
 all: ../build/Assignment6
 
-../build/Assignment6: ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o
-	$(CC) $(CXXFLAGS) ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o -o ../build/Assignment6 $(LIBS)
+../build/Assignment6: ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o texture.o
+	$(CC) $(CXXFLAGS) ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o texture.o -o ../build/Assignment6 $(LIBS)
 
 camera.o: ../src/camera.cpp ../src/camera.h
 	$(CC) $(CXXFLAGS) -c ../src/camera.cpp ../src/camera.h $(LIBS)
@@ -41,6 +41,8 @@ shader.o: ../src/shader.cpp ../src/shader.h
 window.o: ../src/window.cpp ../src/window.h
 	$(CC) $(CXXFLAGS) -c ../src/window.cpp ../src/window.h $(LIBS)
 
+texture.o: ../src/texture.cpp ../src/texture.h
+	$(CC) $(CXXFLAGS) -c ../src/texture.cpp ../src/texture.h $(LIBS)
+
 clean:
 	-@if rm *.o Assignment6 2>/dev/null || true; then echo "Main Removed"; else echo "No Main"; fi
-
