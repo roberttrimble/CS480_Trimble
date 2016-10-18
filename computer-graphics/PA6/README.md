@@ -28,7 +28,7 @@ make
 ./Assignment6 <filepath>
 ```
 
-#Notes:
+##Notes:
 
 Our file name that is used by the image constructor (Magick++ library) is altered in the obj's .mtl files to be "../models/<fileName.jpg>" 
 instead of just <filename.jpg>. To load the textures successfully, our .mtl files must be used. 
