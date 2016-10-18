@@ -1,6 +1,0 @@
-import javax.swing.SwingConstants;
-
-
-public class Testclass implements SwingConstants {
-
-}
