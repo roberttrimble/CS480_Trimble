@@ -8,7 +8,6 @@
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
 #include <Magick++.h>
-#include "texture.h"
 
 class Object 
 {
@@ -26,11 +25,8 @@ class Object
     std::vector<unsigned int> Indices;
     GLuint VB;
     GLuint IB;
-		GLuint TB;
 
     float angle;
-
-		std::vector<Texture*> m_Textures;
 };
 
 #endif /* OBJECT_H */
