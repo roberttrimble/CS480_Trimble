@@ -72,27 +72,19 @@ Object::Object(std::string fileInput, std::string textureFile)
 		}
 		
 	}
-		// bind vertex buffers
-		glGenBuffers(1, &VB);
-		glBindBuffer(GL_ARRAY_BUFFER, VB);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
-
-		// bind indice buffer
-		glGenBuffers(1, &IB);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
 
 		// bind texture buffer		
     glGenTextures(1, &m_textureObj);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_textureObj);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_pImage->columns(), m_pImage->rows(), -0.5, GL_RGBA, GL_UNSIGNED_BYTE, m_blob.data());
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_textureObj);
 
-		angle = 0.0f;
+    rotationAngle = 0.0f;
+		orbitAngle = 0.0f;
 }
 
 Object::~Object()
@@ -107,9 +99,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		// sun
 		case 0:
 			// update angle
-			angle += dt * M_PI/1000;
+			rotationAngle += dt * M_PI/10000;
+			orbitAngle += dt * M_PI/10000;
 			// rotate model
-			model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 3.0));
+			model = glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 5.0));
 			// scale for capsule model
 			model = glm::scale(model, glm::vec3(2, 2, 2));
 		break;
@@ -117,34 +110,109 @@ void Object::Update(unsigned int dt, int planetNum)
 		// mercury
 		case 1:
 			// update angle
-			angle += dt * M_PI/500;
+			rotationAngle += dt * M_PI/100;
+			orbitAngle += dt * M_PI/100;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
-              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(2.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale for capsule model
-			model = glm::scale(model, glm::vec3(.5, .5, .5));
+			model = glm::scale(model, glm::vec3(.18, .18, .18));
 		break;
 
 		// venus
 		case 2:
 			// update angle
-			angle += dt * M_PI/750;
+			rotationAngle += dt * M_PI/200;
+			orbitAngle += dt * M_PI/200;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(6.0, 0.0, 0.0)))
-              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale for capsule model
-			model = glm::scale(model, glm::vec3(.5, .5, .5));
+			model = glm::scale(model, glm::vec3(.25, .25, .25));
 		break;
 
 		// earth
 		case 3:
 			// update angle
-			angle += dt * M_PI/1000;
+			rotationAngle += dt * M_PI/300;
+			orbitAngle += dt * M_PI/300;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(8.0, 0.0, 0.0)))
-              * glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 12.0, 0.0));
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale for capsule model
+			model = glm::scale(model, glm::vec3(.25, .25, .25));
+		break;
+
+		// mars
+		case 4:
+			// update angle
+			rotationAngle += dt * M_PI/400;
+			orbitAngle += dt * M_PI/400;
+			// rotate model
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(5.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale for capsule model
+			model = glm::scale(model, glm::vec3(.2, .2, .2));
+		break;
+
+		// jupiter
+		case 5:
+			// update angle
+			rotationAngle += dt * M_PI/500;
+			orbitAngle += dt * M_PI/500;
+			// rotate model
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(6.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale for capsule model
+			model = glm::scale(model, glm::vec3(1, 1, 1));
+		break;
+
+		// saturn and its ring
+		case 6:
+			// update angle
+			rotationAngle += dt * M_PI/600;
+			orbitAngle += dt * M_PI/600;
+			// rotate model
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(7.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale for capsule model
+			model = glm::scale(model, glm::vec3(.9, .9, .9));
+		break;
+
+		// uranus
+		case 7:
+			// update angle
+			rotationAngle += dt * M_PI/700;
+			orbitAngle += dt * M_PI/700;
+			// rotate model
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(8.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale for capsule model
 			model = glm::scale(model, glm::vec3(.5, .5, .5));
+		break;
+
+		// neptune
+		case 8:
+			// update angle
+			rotationAngle += dt * M_PI/800;
+			orbitAngle += dt * M_PI/800;
+			// rotate model
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(9.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale for capsule model
+			model = glm::scale(model, glm::vec3(.5, .5, .5));
+		break;
+
+		// pluto
+		case 9:
+			// update angle
+			rotationAngle += dt * M_PI/900;
+			orbitAngle += dt * M_PI/900;
+			// rotate model
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(9.0, 0.0, 0.0)))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale for capsule model
+			model = glm::scale(model, glm::vec3(.15, .15, .15));
 		break;
 	}
 }
@@ -156,8 +224,20 @@ glm::mat4 Object::GetModel()
 
 void Object::Render()
 {
-//glActiveTexture(GL_TEXTURE0);
-//glBindTexture(GL_TEXTURE_2D, m_textureObj);
+
+	// bind vertex buffers
+	glGenBuffers(1, &VB);
+	glBindBuffer(GL_ARRAY_BUFFER, VB);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
+
+	// bind indice buffer
+	glGenBuffers(1, &IB);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
+
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, m_textureObj);
+
   glEnableVertexAttribArray(0);
   glEnableVertexAttribArray(1);
 
@@ -170,5 +250,6 @@ void Object::Render()
 
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
+
 }
 

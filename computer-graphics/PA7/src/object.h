@@ -18,6 +18,10 @@ class Object
     void Render();
 
     glm::mat4 GetModel();
+		
+		// public texture variables
+ 		Magick::Image* m_pImage;
+  	Magick::Blob m_blob;
 
   private:
     glm::mat4 model;
@@ -27,9 +31,10 @@ class Object
     GLuint IB;
 
 		// texture variables
-  	GLuint m_textureObj;
+  	GLuint m_textureObj = 0;
 
-    float angle;
+    float rotationAngle;
+		float orbitAngle;
 };
 
 #endif /* OBJECT_H */

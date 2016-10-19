@@ -49,6 +49,13 @@ bool Graphics::Initialize(int width, int height, string fileInput)
   mercury = new Object(fileInput, "../models/mercury.jpg");
   venus = new Object(fileInput, "../models/venus.jpg");
 	earth = new Object(fileInput, "../models/earth.jpg");
+	mars = new Object(fileInput, "../models/mars.jpg");
+	jupiter = new Object(fileInput, "../models/jupiter.jpg");
+	saturn = new Object(fileInput, "../models/saturn.png");
+	//saturnsring = new Object("../models/ring.obj", "../models/saturnsring.jpg");
+	uranus = new Object(fileInput, "../models/uranus.jpg");
+	neptune = new Object(fileInput, "../models/neptune.jpg");
+	pluto = new Object(fileInput, "../models/pluto.png");
 
   // Set up the shaders
   m_shader = new Shader();
@@ -117,6 +124,13 @@ void Graphics::Update(unsigned int dt)
   mercury->Update(dt, 1);
   venus->Update(dt, 2);
   earth->Update(dt, 3);
+	mars->Update(dt, 4);
+	jupiter->Update(dt, 5);
+	saturn->Update(dt, 6);
+	//saturnsring->Update(dt,6);
+	uranus->Update(dt, 7);
+	neptune->Update(dt, 8);
+	pluto->Update(dt, 9);
 }
 
 void Graphics::Render()
@@ -141,6 +155,20 @@ void Graphics::Render()
   venus->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(earth->GetModel()));
   earth->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(mars->GetModel()));
+  mars->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(jupiter->GetModel()));
+  jupiter->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturn->GetModel()));
+  saturn->Render();
+	//glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturnsring->GetModel()));
+  //saturnsring->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(uranus->GetModel()));
+  uranus->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(neptune->GetModel()));
+  neptune->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(pluto->GetModel()));
+  pluto->Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();

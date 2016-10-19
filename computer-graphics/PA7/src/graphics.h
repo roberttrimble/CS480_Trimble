@@ -32,6 +32,13 @@ class Graphics
 		Object *mercury;
 		Object *venus;
 		Object *earth;
+		Object *mars;
+		Object *jupiter;
+		Object *saturn;
+		//Object *saturnsring;
+		Object *uranus;
+		Object *neptune;
+		Object *pluto;
 
 };
 
