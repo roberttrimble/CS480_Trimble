@@ -17,8 +17,8 @@ fragment shader.
 
 
 ## Building and Running
-The following project was tested on both Mac and NoMachine in the ECC lab. To build this project, 
-simply go into the computer-graphics/PA5 directory, and enter the following command lines.
+The following project was tested NoMachine in the ECC lab and on our personal computers. To build this project, 
+simply go into the computer-graphics/PA6 directory, and enter the following command lines.
 
 ```bash
 mkdir build
@@ -31,4 +31,4 @@ make
 ##Notes:
 
 Our file name that is used by the image constructor (Magick++ library) is altered in the obj's .mtl files to be "../models/<fileName.jpg>" 
-instead of just <filename.jpg>. To load the textures successfully, our .mtl files must be used. 
+instead of just <filename.jpg>. To load the textures successfully, our .mtl files, that we have provided, must be used. Even more specifically, we ran the line "./Assignment6 ../models/capsule.obj".
