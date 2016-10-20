@@ -10,7 +10,7 @@ Graphics::~Graphics()
 
 }
 
-bool Graphics::Initialize(int width, int height, string fileInput)
+bool Graphics::Initialize(int width, int height)
 {
   // Used for the linux OS
   #if !defined(__APPLE__) && !defined(MACOSX)
@@ -44,18 +44,40 @@ bool Graphics::Initialize(int width, int height, string fileInput)
     return false;
   }
 
-  // Create the planet object
-  sun = new Object(fileInput, "../models/sun.jpg");
-  mercury = new Object(fileInput, "../models/mercury.jpg");
-  venus = new Object(fileInput, "../models/venus.jpg");
-	earth = new Object(fileInput, "../models/earth.jpg");
-	mars = new Object(fileInput, "../models/mars.jpg");
-	jupiter = new Object(fileInput, "../models/jupiter.jpg");
-	saturn = new Object(fileInput, "../models/saturn.png");
-	saturnsring = new Object("../models/saturnRing.obj", "../models/saturnsring.jpg");
-	uranus = new Object(fileInput, "../models/uranus.jpg");
-	neptune = new Object(fileInput, "../models/neptune.jpg");
-	pluto = new Object(fileInput, "../models/pluto.png");
+	// OBJ files
+	string planetOBJ = "../models/planet.obj";
+	string ringOBJ = "../models/saturnRing.obj";
+	string ringJPG = "../models/saturnsring.jpg";
+	string moonJPG = "../models/moon.jpg";
+
+  // Create the planet objects
+	///////////////////////////
+  sun = new Object(planetOBJ, "../models/sun.jpg");
+
+  mercury = new Object(planetOBJ, "../models/mercury.jpg");
+
+  venus = new Object(planetOBJ, "../models/venus.jpg");
+
+	earth = new Object(planetOBJ, "../models/earth.jpg");
+	earth->moon = new Object(planetOBJ, moonJPG);
+
+	mars = new Object(planetOBJ, "../models/mars.jpg");
+	mars->moon = new Object(planetOBJ, moonJPG);
+
+	jupiter = new Object(planetOBJ, "../models/jupiter.jpg");
+	jupiter->moon = new Object(planetOBJ, moonJPG);
+
+	saturn = new Object(planetOBJ, "../models/saturn.png");
+	saturnsring = new Object(ringOBJ, ringJPG);
+	saturn->moon = new Object(planetOBJ, moonJPG);
+
+	uranus = new Object(planetOBJ, "../models/uranus.jpg");
+	uranus->moon = new Object(planetOBJ, moonJPG);
+
+	neptune = new Object(planetOBJ, "../models/neptune.jpg");
+	neptune->moon = new Object(planetOBJ, moonJPG);
+
+	pluto = new Object(planetOBJ, "../models/pluto.png");
 
   // Set up the shaders
   m_shader = new Shader();
@@ -119,17 +141,31 @@ bool Graphics::Initialize(int width, int height, string fileInput)
 
 void Graphics::Update(unsigned int dt)
 {
+	glm::mat4 planetModel;
+
   // Update the object
   sun->Update(dt, 0);
   mercury->Update(dt, 1);
   venus->Update(dt, 2);
   earth->Update(dt, 3);
+		planetModel = earth->GetModel();
+		earth->moon->UpdateMoon(planetModel, dt, 3);
 	mars->Update(dt, 4);
+		planetModel = mars->GetModel();
+		mars->moon->UpdateMoon(planetModel, dt, 4);
 	jupiter->Update(dt, 5);
+		planetModel = jupiter->GetModel();
+		jupiter->moon->UpdateMoon(planetModel, dt, 5);
 	saturn->Update(dt, 6);
-	saturnsring->Update(dt,6);
+		planetModel = saturn->GetModel();
+		saturn->moon->UpdateMoon(planetModel, dt, 6);
+		saturnsring->Update(dt,6);
 	uranus->Update(dt, 7);
+		planetModel = uranus->GetModel();
+		uranus->moon->UpdateMoon(planetModel, dt, 7);
 	neptune->Update(dt, 8);
+		planetModel = neptune->GetModel();
+		neptune->moon->UpdateMoon(planetModel, dt, 8);
 	pluto->Update(dt, 9);
 }
 
@@ -146,27 +182,49 @@ void Graphics::Render()
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView())); 
 
-  // Render the planet object
+  // Render the planet and moon objects
+	/////////////////////////////////////////
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(sun->GetModel()));
   sun->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(mercury->GetModel()));
   mercury->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(venus->GetModel()));
   venus->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(earth->GetModel()));
   earth->Render();
+ 	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(earth->moon->GetModel()));
+  earth->moon->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(mars->GetModel()));
   mars->Render();
+	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(earth->moon->GetModel()));
+  earth->moon->Render(); 
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(jupiter->GetModel()));
   jupiter->Render();
+	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(jupiter->moon->GetModel()));
+  jupiter->moon->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturn->GetModel()));
   saturn->Render();
+	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturn->moon->GetModel()));
+  saturn->moon->Render();
 	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturnsring->GetModel()));
   saturnsring->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(uranus->GetModel()));
   uranus->Render();
+	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(uranus->moon->GetModel()));
+  uranus->moon->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(neptune->GetModel()));
   neptune->Render();
+	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(neptune->moon->GetModel()));
+  neptune->moon->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(pluto->GetModel()));
   pluto->Render();
 

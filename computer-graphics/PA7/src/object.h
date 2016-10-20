@@ -15,6 +15,7 @@ class Object
 		Object(std::string fileInput, std::string textureFile);
     ~Object();
     void Update(unsigned int dt, int planetNum);
+		void UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum);
     void Render();
 
     glm::mat4 GetModel();
@@ -22,6 +23,9 @@ class Object
 		// public texture variables
  		Magick::Image* m_pImage;
   	Magick::Blob m_blob;
+
+		// moon point to another object
+		Object *moon;
 
   private:
     glm::mat4 model;

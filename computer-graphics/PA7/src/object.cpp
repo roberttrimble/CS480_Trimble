@@ -168,7 +168,7 @@ void Object::Update(unsigned int dt, int planetNum)
 		case 5:
 			// update angle
 			rotationAngle += dt * M_PI/500;
-			orbitAngle += dt * M_PI/500;
+			orbitAngle += dt* M_PI/500;
 			// rotate model
 			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(6.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
@@ -226,6 +226,99 @@ void Object::Update(unsigned int dt, int planetNum)
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.15, .15, .15));
+		break;
+	}
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+// UPDATE MOON(s)
+/////////////////////////////////////////////////////////////////////////////
+void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
+{
+	//**NOTE**  
+	// -sun mercury venus and pluto do not have moons
+	// -All others but earch have multiple
+	//	but is not yet modified for that
+	// -Scaling the moon is relative to the planets size
+
+	switch (planetNum){
+		// earth moon
+		////////////////
+		case 3:
+			// update angle
+			rotationAngle += dt * M_PI/300;
+			orbitAngle += dt * M_PI/300;
+			// rotate model
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale model
+			model = glm::scale(model, glm::vec3(1, 1, 1));
+		break;
+
+		// mars moon
+		/////////////////
+		case 4:
+			// update angle
+			rotationAngle += dt * M_PI/400;
+			orbitAngle += dt * M_PI/400;
+			// rotate model
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale model
+			model = glm::scale(model, glm::vec3(1, 1, 1));
+		break;
+
+		// jupiter moon
+		//////////////////
+		case 5:
+			// update angle
+			rotationAngle += dt * M_PI/500;
+			orbitAngle += dt * M_PI/500;
+			// rotate model
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale model
+			model = glm::scale(model, glm::vec3(1, 1, 1));
+		break;
+
+		// saturn moon
+		////////////////////////
+		case 6:
+			// update angle
+			rotationAngle += dt * M_PI/600;
+			orbitAngle += dt * M_PI/600;
+			// rotate model
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale model
+			model = glm::scale(model, glm::vec3(1, 1, 1));
+		break;
+
+		// uranus moon
+		////////////////////
+		case 7:
+			// update angle
+			rotationAngle += dt * M_PI/700;
+			orbitAngle += dt * M_PI/700;
+			// rotate model
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale model
+			model = glm::scale(model, glm::vec3(1, 1, 1));
+		break;
+
+		// neptune moon
+		//////////////////
+		case 8:
+			// update angle
+			rotationAngle += dt * M_PI/800;
+			orbitAngle += dt * M_PI/800;
+			// rotate model
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			// scale model
+			model = glm::scale(model, glm::vec3(1, 1, 1));
 		break;
 	}
 }

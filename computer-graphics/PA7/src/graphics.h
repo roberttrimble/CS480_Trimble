@@ -14,7 +14,7 @@ class Graphics
   public:
     Graphics();
     ~Graphics();
-    bool Initialize(int width, int height, std::string fileInput);
+    bool Initialize(int width, int height);
     void Update(unsigned int dt);
     void Render();
 
