@@ -52,7 +52,7 @@ bool Graphics::Initialize(int width, int height, string fileInput)
 	mars = new Object(fileInput, "../models/mars.jpg");
 	jupiter = new Object(fileInput, "../models/jupiter.jpg");
 	saturn = new Object(fileInput, "../models/saturn.png");
-	//saturnsring = new Object("../models/ring.obj", "../models/saturnsring.jpg");
+	saturnsring = new Object("../models/saturnRing.obj", "../models/saturnsring.jpg");
 	uranus = new Object(fileInput, "../models/uranus.jpg");
 	neptune = new Object(fileInput, "../models/neptune.jpg");
 	pluto = new Object(fileInput, "../models/pluto.png");
@@ -127,7 +127,7 @@ void Graphics::Update(unsigned int dt)
 	mars->Update(dt, 4);
 	jupiter->Update(dt, 5);
 	saturn->Update(dt, 6);
-	//saturnsring->Update(dt,6);
+	saturnsring->Update(dt,6);
 	uranus->Update(dt, 7);
 	neptune->Update(dt, 8);
 	pluto->Update(dt, 9);
@@ -161,8 +161,8 @@ void Graphics::Render()
   jupiter->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturn->GetModel()));
   saturn->Render();
-	//glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturnsring->GetModel()));
-  //saturnsring->Render();
+	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(saturnsring->GetModel()));
+  saturnsring->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(uranus->GetModel()));
   uranus->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(neptune->GetModel()));

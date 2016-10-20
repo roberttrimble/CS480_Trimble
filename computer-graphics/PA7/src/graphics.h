@@ -35,7 +35,7 @@ class Graphics
 		Object *mars;
 		Object *jupiter;
 		Object *saturn;
-		//Object *saturnsring;
+		Object *saturnsring;
 		Object *uranus;
 		Object *neptune;
 		Object *pluto;
