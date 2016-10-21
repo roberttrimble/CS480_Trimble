@@ -79,6 +79,8 @@ bool Graphics::Initialize(int width, int height)
 
 	pluto = new Object(planetOBJ, "../models/pluto.png");
 
+  stars = new Object(planetOBJ, "../models/stars.png");
+
   // Set up the shaders
   m_shader = new Shader();
   if(!m_shader->Initialize())
@@ -167,6 +169,7 @@ void Graphics::Update(unsigned int dt)
 		planetModel = neptune->GetModel();
 		neptune->moon->UpdateMoon(planetModel, dt, 8);
 	pluto->Update(dt, 9);
+	stars->Update(dt, 10);
 }
 
 void Graphics::Render()
@@ -200,8 +203,8 @@ void Graphics::Render()
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(mars->GetModel()));
   mars->Render();
-	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(earth->moon->GetModel()));
-  earth->moon->Render(); 
+	glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(mars->moon->GetModel()));
+  mars->moon->Render(); 
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(jupiter->GetModel()));
   jupiter->Render();
@@ -227,6 +230,9 @@ void Graphics::Render()
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(pluto->GetModel()));
   pluto->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(stars->GetModel()));
+  stars->Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();

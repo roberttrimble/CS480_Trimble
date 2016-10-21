@@ -39,6 +39,7 @@ class Graphics
 		Object *uranus;
 		Object *neptune;
 		Object *pluto;
+		Object *stars;
 
 };
 

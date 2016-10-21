@@ -103,10 +103,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		//////////////
 		case 0:
 			// update angle
-			rotationAngle += dt * M_PI/10000;
-			orbitAngle += dt * M_PI/10000;
+			rotationAngle += dt * M_PI/20000;
+			orbitAngle += dt * M_PI/20000;
 			// rotate model
-			model = glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 5.0));
+			model = glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 5.0));
 			// scale sun
 			model = glm::scale(model, glm::vec3(2, 2, 2));
 		break;
@@ -115,10 +115,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		////////////////
 		case 1:
 			// update angle
-			rotationAngle += dt * M_PI/100;
-			orbitAngle += dt * M_PI/100;
+			rotationAngle += dt * M_PI/800;
+			orbitAngle += dt * M_PI/800;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(2.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(6.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.18, .18, .18));
@@ -128,10 +128,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		////////////////
 		case 2:
 			// update angle
-			rotationAngle += dt * M_PI/200;
-			orbitAngle += dt * M_PI/200;
+			rotationAngle += dt * M_PI/1600;
+			orbitAngle += dt * M_PI/1600;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(8.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.25, .25, .25));
@@ -141,10 +141,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		////////////////
 		case 3:
 			// update angle
-			rotationAngle += dt * M_PI/300;
-			orbitAngle += dt * M_PI/300;
+			rotationAngle += dt * M_PI/1600;
+			orbitAngle += dt * M_PI/1600;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(10.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.25, .25, .25));
@@ -154,10 +154,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		/////////////////
 		case 4:
 			// update angle
-			rotationAngle += dt * M_PI/400;
-			orbitAngle += dt * M_PI/400;
+			rotationAngle += dt * M_PI/3200;
+			orbitAngle += dt * M_PI/3200;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(5.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(12.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.2, .2, .2));
@@ -167,10 +167,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		//////////////////
 		case 5:
 			// update angle
-			rotationAngle += dt * M_PI/500;
-			orbitAngle += dt* M_PI/500;
+			rotationAngle += dt * M_PI/2000;
+			orbitAngle += dt* M_PI/2000;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(6.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(16.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(1, 1, 1));
@@ -180,23 +180,23 @@ void Object::Update(unsigned int dt, int planetNum)
 		////////////////////////
 		case 6:
 			// update angle
-			rotationAngle += dt * M_PI/600;
-			orbitAngle += dt * M_PI/600;
+			rotationAngle += dt * M_PI/2400;
+			orbitAngle += dt * M_PI/2400;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(7.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(24.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
-			model = glm::scale(model, glm::vec3(.9, .9, .9));
+			model = glm::scale(model, glm::vec3(.7, .7, .7));
 		break;
 
 		// uranus
 		////////////////////
 		case 7:
 			// update angle
-			rotationAngle += dt * M_PI/700;
-			orbitAngle += dt * M_PI/700;
+			rotationAngle += dt * M_PI/2800;
+			orbitAngle += dt * M_PI/2800;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(8.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(33.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.5, .5, .5));
@@ -206,10 +206,10 @@ void Object::Update(unsigned int dt, int planetNum)
 		//////////////////
 		case 8:
 			// update angle
-			rotationAngle += dt * M_PI/800;
-			orbitAngle += dt * M_PI/800;
+			rotationAngle += dt * M_PI/3000;
+			orbitAngle += dt * M_PI/3000;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(9.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(39.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.5, .5, .5));
@@ -219,13 +219,22 @@ void Object::Update(unsigned int dt, int planetNum)
 		////////////////
 		case 9:
 			// update angle
-			rotationAngle += dt * M_PI/900;
-			orbitAngle += dt * M_PI/900;
+			rotationAngle += dt * M_PI/3600;
+			orbitAngle += dt * M_PI/3600;
 			// rotate model
-			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(9.0, 0.0, 0.0)))
+			model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(45.0, 0.0, 0.0)))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
 			model = glm::scale(model, glm::vec3(.15, .15, .15));
+		break;
+
+		// stars
+		////////////////
+		case 10:
+			// return model
+ 			 model = glm::mat4(1.0f);
+			// scale model
+			model = glm::scale(model, glm::vec3(30, 30, 30));
 		break;
 	}
 }
@@ -247,78 +256,78 @@ void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
 		////////////////
 		case 3:
 			// update angle
-			rotationAngle += dt * M_PI/300;
-			orbitAngle += dt * M_PI/300;
+			rotationAngle += dt * M_PI/2400;
+			orbitAngle += dt * M_PI/2400;
 			// rotate model
-			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, 2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
-			model = glm::scale(model, glm::vec3(1, 1, 1));
+			model = glm::scale(model, glm::vec3(.5, .5, .5));
 		break;
 
 		// mars moon
 		/////////////////
 		case 4:
 			// update angle
-			rotationAngle += dt * M_PI/400;
-			orbitAngle += dt * M_PI/400;
+			rotationAngle += dt * M_PI/3200;
+			orbitAngle += dt * M_PI/3200;
 			// rotate model
-			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, 2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
-			model = glm::scale(model, glm::vec3(1, 1, 1));
+			model = glm::scale(model, glm::vec3(.5, .5, .5));
 		break;
 
 		// jupiter moon
 		//////////////////
 		case 5:
 			// update angle
-			rotationAngle += dt * M_PI/500;
-			orbitAngle += dt * M_PI/500;
+			rotationAngle += dt * M_PI/4000;
+			orbitAngle += dt * M_PI/4000;
 			// rotate model
-			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, 2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
-			model = glm::scale(model, glm::vec3(1, 1, 1));
+			model = glm::scale(model, glm::vec3(.5, .5, .5));
 		break;
 
 		// saturn moon
 		////////////////////////
 		case 6:
 			// update angle
-			rotationAngle += dt * M_PI/600;
-			orbitAngle += dt * M_PI/600;
+			rotationAngle += dt * M_PI/4800;
+			orbitAngle += dt * M_PI/4800;
 			// rotate model
-			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
-              * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3.0, 2.0, 0.0)))
+          * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0)));
 			// scale model
-			model = glm::scale(model, glm::vec3(1, 1, 1));
+			model = glm::scale(model, glm::vec3(.5, .5, .5));
 		break;
 
 		// uranus moon
 		////////////////////
 		case 7:
 			// update angle
-			rotationAngle += dt * M_PI/700;
-			orbitAngle += dt * M_PI/700;
+			rotationAngle += dt * M_PI/5600;
+			orbitAngle += dt * M_PI/5600;
 			// rotate model
-			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, 2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
-			model = glm::scale(model, glm::vec3(1, 1, 1));
+			model = glm::scale(model, glm::vec3(.5, .5, .5));
 		break;
 
 		// neptune moon
 		//////////////////
 		case 8:
 			// update angle
-			rotationAngle += dt * M_PI/800;
-			orbitAngle += dt * M_PI/800;
+			rotationAngle += dt * M_PI/6400;
+			orbitAngle += dt * M_PI/6400;
 			// rotate model
-			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(1.0, 0.0, 0.0))))
+			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, 2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
 			// scale model
-			model = glm::scale(model, glm::vec3(1, 1, 1));
+			model = glm::scale(model, glm::vec3(.5, .5, .5));
 		break;
 	}
 }
