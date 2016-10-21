@@ -141,8 +141,25 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt)
+void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
+	if(newInput)
+		{
+			if(keyboardInput == '1')
+				m_camera->UpdateCamera(0.0f ,8.0f ,-16.0f);
+			if(keyboardInput == '2')
+				m_camera->UpdateCamera(0.0f ,8.0f ,-32.0f);
+			if(keyboardInput == '3')
+				m_camera->UpdateCamera(0.0f ,8.0f ,-48.0f);
+			if(keyboardInput == '4')
+				m_camera->UpdateCamera(0.0f ,0.0f ,-32.0f);
+			if(keyboardInput == '5')
+				m_camera->UpdateCamera(0.0f ,32.0f ,0.0f);
+			if(keyboardInput == '6')
+				m_camera->UpdateCamera(0.0f ,0.0f ,-48.0f);
+		}
+
+
 	glm::mat4 planetModel;
 
   // Update the object

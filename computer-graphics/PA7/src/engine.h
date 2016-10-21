@@ -18,6 +18,9 @@ class Engine
     void Keyboard();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
+    
+    char keyboardInput;
+    bool newInput;
   
   private:
     // Window related variables

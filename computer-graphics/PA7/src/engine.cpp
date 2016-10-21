@@ -53,6 +53,8 @@ bool Engine::Initialize()
 void Engine::Run()
 {
   m_running = true;
+	keyboardInput = '\0';
+	newInput = false;
 
   while(m_running)
   {
@@ -66,8 +68,10 @@ void Engine::Run()
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT);
+    m_graphics->Update(m_DT, keyboardInput, newInput);
+    newInput = false;
     m_graphics->Render();
+		
 
     // Swap to the Window
     m_window->Swap();
@@ -83,10 +87,37 @@ void Engine::Keyboard()
   else if (m_event.type == SDL_KEYDOWN)
   {
     // handle key down events here
-    if (m_event.key.keysym.sym == SDLK_ESCAPE)
+    switch (m_event.key.keysym.sym)
     {
-      m_running = false;
-    }
+      case SDLK_ESCAPE:
+        m_running = false;
+        break;
+
+      case SDLK_1:
+        keyboardInput = '1';
+				newInput = true;
+        break;
+      case SDLK_2:
+        keyboardInput = '2';
+				newInput = true;
+        break;
+       case SDLK_3:
+        keyboardInput = '3';
+				newInput = true;
+        break;
+        case SDLK_4:
+        keyboardInput = '4';
+				newInput = true;
+        break;
+        case SDLK_5:
+        keyboardInput = '5';
+				newInput = true;
+        break;
+        case SDLK_6:
+        keyboardInput = '6';
+				newInput = true;
+        break;
+  	}
   }
 }
 

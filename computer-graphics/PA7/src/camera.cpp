@@ -27,6 +27,13 @@ bool Camera::Initialize(int w, int h)
   return true;
 }
 
+
+void Camera::UpdateCamera(float x, float y, float z)
+{
+	view = glm::lookAt( glm::vec3(x, y, z), //Eye Position
+                      glm::vec3(0.0, 0.0, 0.0), //Focus point
+                      glm::vec3(0.0, 1.0, 0.0)); //Positive Y is up
+}
 glm::mat4 Camera::GetProjection()
 {
   return projection;

@@ -234,7 +234,7 @@ void Object::Update(unsigned int dt, int planetNum)
 			// return model
  			 model = glm::mat4(1.0f);
 			// scale model
-			model = glm::scale(model, glm::vec3(30, 30, 30));
+			model = glm::scale(model, glm::vec3(28, 28, 28));
 		break;
 	}
 }
