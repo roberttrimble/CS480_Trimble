@@ -21,6 +21,7 @@ class Engine
     
     char keyboardInput;
     bool newInput;
+    bool initialized;
   
   private:
     // Window related variables

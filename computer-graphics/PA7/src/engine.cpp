@@ -54,7 +54,7 @@ void Engine::Run()
 {
   m_running = true;
 	keyboardInput = '\0';
-	newInput = false;
+	initialized = false;
 
   while(m_running)
   {
@@ -68,9 +68,9 @@ void Engine::Run()
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT, keyboardInput, newInput);
-    newInput = false;
+    m_graphics->Update(m_DT, keyboardInput, initialized);
     m_graphics->Render();
+    initialized = true;
 		
 
     // Swap to the Window
@@ -92,30 +92,65 @@ void Engine::Keyboard()
       case SDLK_ESCAPE:
         m_running = false;
         break;
-
+			//follow mercurey
       case SDLK_1:
         keyboardInput = '1';
-				newInput = true;
         break;
+      //follow venus
       case SDLK_2:
         keyboardInput = '2';
-				newInput = true;
         break;
-       case SDLK_3:
+      //follow earth
+      case SDLK_3:
         keyboardInput = '3';
-				newInput = true;
         break;
-        case SDLK_4:
+      //follow mars
+      case SDLK_4:
         keyboardInput = '4';
-				newInput = true;
         break;
-        case SDLK_5:
+      //follow jupiter
+      case SDLK_5:
         keyboardInput = '5';
-				newInput = true;
         break;
-        case SDLK_6:
+      //follow saturn
+      case SDLK_6:
         keyboardInput = '6';
-				newInput = true;
+        break;
+      //follow uranus
+      case SDLK_7:
+        keyboardInput = '7';
+        break;
+      //follow neptune
+      case SDLK_8:
+        keyboardInput = '8';
+        break;
+      //follow pluto
+      case SDLK_9:
+        keyboardInput = '9';
+        break;
+      //close zoom
+      case SDLK_q:
+        keyboardInput = 'q';
+        break;
+      //mid zoom
+      case SDLK_w:
+        keyboardInput = 'w';
+        break;
+      //far zoom
+      case SDLK_e:
+        keyboardInput = 'e';
+        break;
+      //side view
+      case SDLK_r:
+        keyboardInput = 'r';
+        break;
+      //close topdown view
+      case SDLK_t:
+        keyboardInput = 't';
+        break;
+      //far topdown view
+      case SDLK_y:
+        keyboardInput = 'y';
         break;
   	}
   }

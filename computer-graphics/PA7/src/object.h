@@ -14,7 +14,7 @@ class Object
   public: 
 		Object(std::string fileInput, std::string textureFile);
     ~Object();
-    void Update(unsigned int dt, int planetNum);
+    void Update(unsigned int dt, int planetNum, bool initialized);
 		void UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum);
     void Render();
 

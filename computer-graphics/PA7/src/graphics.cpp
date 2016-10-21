@@ -62,20 +62,20 @@ bool Graphics::Initialize(int width, int height)
 	earth->moon = new Object(planetOBJ, moonJPG);
 
 	mars = new Object(planetOBJ, "../models/mars.jpg");
-	mars->moon = new Object(planetOBJ, moonJPG);
+	mars->moon = new Object(planetOBJ, "../models/phobos.jpg");
 
 	jupiter = new Object(planetOBJ, "../models/jupiter.jpg");
-	jupiter->moon = new Object(planetOBJ, moonJPG);
+	jupiter->moon = new Object(planetOBJ, "../models/castillo.jpg");
 
 	saturn = new Object(planetOBJ, "../models/saturn.png");
 	saturnsring = new Object(ringOBJ, ringJPG);
-	saturn->moon = new Object(planetOBJ, moonJPG);
+	saturn->moon = new Object(planetOBJ, "../models/titan.jpg");
 
 	uranus = new Object(planetOBJ, "../models/uranus.jpg");
-	uranus->moon = new Object(planetOBJ, moonJPG);
+	uranus->moon = new Object(planetOBJ, "../models/dione.jpg");
 
 	neptune = new Object(planetOBJ, "../models/neptune.jpg");
-	neptune->moon = new Object(planetOBJ, moonJPG);
+	neptune->moon = new Object(planetOBJ, "../models/triton.jpg");;
 
 	pluto = new Object(planetOBJ, "../models/pluto.png");
 
@@ -141,52 +141,112 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
+void Graphics::Update(unsigned int dt, char keyboardInput, bool initialized)
 {
-	if(newInput)
-		{
-			if(keyboardInput == '1')
-				m_camera->UpdateCamera(0.0f ,8.0f ,-16.0f);
-			if(keyboardInput == '2')
-				m_camera->UpdateCamera(0.0f ,8.0f ,-32.0f);
-			if(keyboardInput == '3')
-				m_camera->UpdateCamera(0.0f ,8.0f ,-48.0f);
-			if(keyboardInput == '4')
-				m_camera->UpdateCamera(0.0f ,0.0f ,-32.0f);
-			if(keyboardInput == '5')
-				m_camera->UpdateCamera(0.0f ,32.0f ,0.0f);
-			if(keyboardInput == '6')
-				m_camera->UpdateCamera(0.0f ,0.0f ,-48.0f);
+		// Camera keyboard inputs
+		//////////////////////////////////////////////////////////
+	
+		// Follow mercury
+		if(keyboardInput == '1'){
+			glm::mat4 tempModel = mercury->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
 		}
+		// Follow venus
+		else if(keyboardInput == '2'){
+			glm::mat4 tempModel = venus->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Follow earth
+		else if(keyboardInput == '3'){
+			glm::mat4 tempModel = earth->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Follow mars
+		else if(keyboardInput == '4'){
+			glm::mat4 tempModel = mars->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Follow jupiter
+		else if(keyboardInput == '5'){
+			glm::mat4 tempModel = jupiter->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Follow saturn
+		else if(keyboardInput == '6'){
+			glm::mat4 tempModel = saturn->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Follow uranus
+		else if(keyboardInput == '7'){
+			glm::mat4 tempModel = uranus->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Follow neptune
+		else if(keyboardInput == '8'){
+			glm::mat4 tempModel = neptune->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Follow pluto
+		else if(keyboardInput == '9'){
+			glm::mat4 tempModel = pluto->GetModel();
+			glm::vec3 tempVec(tempModel[3]);
+			m_camera->UpdateCamera(0.0f ,8.0f , 0.0f, tempVec.x, tempVec.y, tempVec.z, 0.0f, 1.0f, 0.0f);
+		}
+		// Close zoom
+		else if(keyboardInput == 'q')
+			m_camera->UpdateCamera(0.0f ,8.0f ,-16.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+		// Mid zoom
+		else if(keyboardInput == 'w')
+			m_camera->UpdateCamera(0.0f ,8.0f ,-32.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+		// Far zoom
+		else if(keyboardInput == 'e')
+			m_camera->UpdateCamera(0.0f ,8.0f ,-48.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+		// Side view
+		else if(keyboardInput == 'r')
+			m_camera->UpdateCamera(0.0f ,0.0f ,-32.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+		// Close topdown view
+		else if(keyboardInput == 't')
+			m_camera->UpdateCamera(0.0f ,24.0f ,0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+		// Far topdown view
+		else if(keyboardInput == 'y')
+			m_camera->UpdateCamera(0.0f ,48.0f ,0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 
 
 	glm::mat4 planetModel;
 
   // Update the object
-  sun->Update(dt, 0);
-  mercury->Update(dt, 1);
-  venus->Update(dt, 2);
-  earth->Update(dt, 3);
-		planetModel = earth->GetModel();
-		earth->moon->UpdateMoon(planetModel, dt, 3);
-	mars->Update(dt, 4);
-		planetModel = mars->GetModel();
-		mars->moon->UpdateMoon(planetModel, dt, 4);
-	jupiter->Update(dt, 5);
-		planetModel = jupiter->GetModel();
-		jupiter->moon->UpdateMoon(planetModel, dt, 5);
-	saturn->Update(dt, 6);
-		planetModel = saturn->GetModel();
-		saturn->moon->UpdateMoon(planetModel, dt, 6);
-		saturnsring->Update(dt,6);
-	uranus->Update(dt, 7);
-		planetModel = uranus->GetModel();
-		uranus->moon->UpdateMoon(planetModel, dt, 7);
-	neptune->Update(dt, 8);
-		planetModel = neptune->GetModel();
-		neptune->moon->UpdateMoon(planetModel, dt, 8);
-	pluto->Update(dt, 9);
-	stars->Update(dt, 10);
+  sun->Update(dt, 0, initialized);
+  mercury->Update(dt, 1, initialized);
+  venus->Update(dt, 2, initialized);
+  earth->Update(dt, 3, initialized);
+			planetModel = earth->GetModel();
+			earth->moon->UpdateMoon(planetModel, dt, 3);
+	mars->Update(dt, 4, initialized);
+			planetModel = mars->GetModel();
+			mars->moon->UpdateMoon(planetModel, dt, 4);
+	jupiter->Update(dt, 5, initialized);
+			planetModel = jupiter->GetModel();
+			jupiter->moon->UpdateMoon(planetModel, dt, 5);
+	saturn->Update(dt, 6, initialized);
+			planetModel = saturn->GetModel();
+			saturn->moon->UpdateMoon(planetModel, dt, 6);
+			saturnsring->Update(dt,6, initialized);
+	uranus->Update(dt, 7, initialized);
+			planetModel = uranus->GetModel();
+			uranus->moon->UpdateMoon(planetModel, dt, 7);
+	neptune->Update(dt, 8, initialized);
+			planetModel = neptune->GetModel();
+			neptune->moon->UpdateMoon(planetModel, dt, 8);
+	pluto->Update(dt, 9, initialized);
+	stars->Update(dt, 10, initialized);
 }
 
 void Graphics::Render()
