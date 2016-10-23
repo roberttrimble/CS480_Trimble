@@ -268,7 +268,7 @@ void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
 		case 3:
 			// update angle
 			rotationAngle += dt * M_PI/4800;
-			orbitAngle += dt * M_PI/1200;
+			orbitAngle -= dt * M_PI/750;
 			// rotate model
 			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, 2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
@@ -281,7 +281,7 @@ void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
 		case 4:
 			// update angle
 			rotationAngle += dt * M_PI/6400;
-			orbitAngle += dt * M_PI/1600;
+			orbitAngle -= dt * M_PI/1500;
 			// rotate model
 			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, 2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
@@ -294,7 +294,7 @@ void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
 		case 5:
 			// update angle
 			rotationAngle += dt * M_PI/8000;
-			orbitAngle += dt * M_PI/2000;
+			orbitAngle -= dt * M_PI/900;
 			// rotate model
 			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, -2.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
@@ -307,7 +307,7 @@ void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
 		case 6:
 			// update angle
 			rotationAngle += dt * M_PI/9600;
-			orbitAngle += dt * M_PI/2400;
+			orbitAngle -= dt * M_PI/1000;
 			// rotate model
 			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3.0, 2.0, 0.0)))
           * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0)));
@@ -320,7 +320,7 @@ void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
 		case 7:
 			// update angle
 			rotationAngle += dt * M_PI/11200;
-			orbitAngle += dt * M_PI/2800;
+			orbitAngle -= dt * M_PI/2400;
 			// rotate model
 			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(4, 1.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
@@ -333,7 +333,7 @@ void Object::UpdateMoon(glm::mat4 planetModel, unsigned int dt, int planetNum)
 		case 8:
 			// update angle
 			rotationAngle += dt * M_PI/12800;
-			orbitAngle += dt * M_PI/3200;
+			orbitAngle += dt * M_PI/1350;
 			// rotate model
 			model = planetModel * ((glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 12.0, 0.0)) * glm::translate(glm::mat4(1.0f), glm::vec3(3, -1.0, 0.0))))
               * glm::rotate(glm::mat4(1.0f), (rotationAngle), glm::vec3(0.0, 12.0, 0.0));
