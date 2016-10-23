@@ -36,4 +36,4 @@ w: zoom midway
 e: zoom out  
 r: side view  
 t: close topdown view  
-y: far topdown view  
+y: far topdown view   
