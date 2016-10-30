@@ -50,7 +50,7 @@ bool Graphics::Initialize(int width, int height)
 	string ringJPG = "../models/saturnsring.jpg";
 	string moonJPG = "../models/moon.jpg";
 
-  // Create the planet objects
+  // Create the planet & moon objects
 	///////////////////////////
   sun = new Object(planetOBJ, "../models/sun.jpg");
 
