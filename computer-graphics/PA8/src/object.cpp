@@ -1,6 +1,6 @@
 #include "object.h"
 
-Object::Object(std::string fileInput)
+Object::Object(std::string fileInput, btTriangleMesh *objMesh)
 { 
   // file name 
   const char * fileName; 
@@ -9,9 +9,6 @@ Object::Object(std::string fileInput)
   // variables
   Assimp::Importer importer;
   std::string m_fileName;
-  GLuint m_textureObj;
-  Magick::Image* m_pImage;
-  Magick::Blob m_blob;
 	aiString Path;
 
 	// create and initalalize a scene that contains all of the file data
@@ -58,10 +55,10 @@ Object::Object(std::string fileInput)
 		  Vertices.push_back(*tempVertex);
 		}
 
-
 		// get mesh indexes
 		// loop through faces
-		for (unsigned int j = 0; j < ai_mesh->mNumFaces; j++){
+		for (unsigned int j = 0; j < ai_mesh->mNumFaces; j++)
+		{
 		  // create a face to store the jth face
 		  aiFace* face = &ai_mesh->mFaces[j];
 		  // if objects are not triangulated
@@ -77,16 +74,23 @@ Object::Object(std::string fileInput)
 		  Indices.push_back(face->mIndices[2]);
 		}
 		
+		
+		// Get faces for bullet
+		btVector3 triArray[3];
+		for (unsigned int k = 0; k < ai_mesh->mNumFaces; k++)
+		{
+			aiFace* face = &ai_mesh->mFaces[k];
+			
+			for (unsigned int l = 0; l < 3; l++)
+			{
+				aiVector3D position = ai_mesh->mVertices[face->mIndices[l]];
+				triArray[l] = btVector3(position.x, position.y, position.z);
+			}
+			
+			objMesh->addTriangle(triArray[0], triArray[1], triArray[2]);
+		}
+		
 	}
-		// bind vertex buffers
-		glGenBuffers(1, &VB);
-		glBindBuffer(GL_ARRAY_BUFFER, VB);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
-
-		// bind indice buffer
-		glGenBuffers(1, &IB);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
 
 		// bind texture buffer		
     glGenTextures(1, &m_textureObj);
@@ -99,6 +103,9 @@ Object::Object(std::string fileInput)
     glBindTexture(GL_TEXTURE_2D, m_textureObj);
 
 		angle = 0.0f;
+		
+		m_pImage = NULL;
+		delete m_pImage;
 }
 
 Object::~Object()
@@ -109,13 +116,12 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, int modelNum)
 {
-	// update angle
-  angle += dt * M_PI/1000;
 	model = glm::mat4(1.0f);
 	
   if (modelNum == 0)
   {
-  	model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+  	model = glm::rotate(glm::mat4(1.0f), 1.58f, glm::vec3(0.0, 12.0, 0.0));
+  	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
   }
   else if (modelNum == 1)
   {
@@ -131,6 +137,19 @@ glm::mat4 Object::GetModel()
 
 void Object::Render()
 {
+	// bind vertex buffers
+	glGenBuffers(1, &VB);
+	glBindBuffer(GL_ARRAY_BUFFER, VB);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
+
+	// bind indice buffer
+	glGenBuffers(1, &IB);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
+
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, m_textureObj);
+
   glEnableVertexAttribArray(0);
   glEnableVertexAttribArray(1);
 

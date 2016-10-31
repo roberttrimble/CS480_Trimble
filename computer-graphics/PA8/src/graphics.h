@@ -18,7 +18,13 @@ class Graphics
     bool Initialize(int width, int height);
     void Update(unsigned int dt);
     void Render();
-
+    
+    btTriangleMesh *triMesh;
+    btCollisionShape *tableMesh;
+		btCollisionShape *ballMesh;
+		btCollisionShape *cubeMesh;
+		btCollisionShape *cylinderMesh;
+		
   private:
     std::string ErrorString(GLenum error);
 
@@ -29,15 +35,27 @@ class Graphics
     GLint m_viewMatrix;
     GLint m_modelMatrix;
 
+		
+
     Object *table;
     Object *ball;
+    Object *cube;
+    Object *cylinder;
     
     //Bullet
-    btDiscreteDynamicsWorld *dynamicsWorld;
-    btRigidBody *rigidBodySphere;
-		btRigidBody *rigidBodyCube;
-		btRigidBody *rigidBodyCylinder;
-		btRigidBody *rigidBodyTable;
+    
+    btDefaultMotionState *tableMotionState;
+    btDefaultMotionState *ballMotionState;
+    btDefaultMotionState *cubeMotionState;
+    btDefaultMotionState *cylinderMotionState;
+    
+    btRigidBody *tableRigidBody;
+    btRigidBody *ballRigidBody;
+		btRigidBody *cubeRigidBody;
+		btRigidBody *cylinderRigidBody;
+		
+		
+		btDiscreteDynamicsWorld *dynamicsWorld;
     btBroadphaseInterface* broadphase;
     btDefaultCollisionConfiguration* collisionConfiguration;
     btCollisionDispatcher* dispatcher;

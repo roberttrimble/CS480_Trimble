@@ -7,10 +7,13 @@ Graphics::Graphics()
 
 Graphics::~Graphics()
 {
-	
-	delete rigidBodySphere;
-	delete rigidBodyCube;
-	delete rigidBodyCylinder;
+	delete triMesh;
+	delete tableMesh;
+	delete ballMesh;
+	delete tableRigidBody;
+	delete ballRigidBody;
+	delete cubeRigidBody;
+	delete cylinderRigidBody;
 	delete solver;
 	delete dispatcher;
 	delete collisionConfiguration;
@@ -46,8 +49,8 @@ bool Graphics::Initialize(int width, int height)
   
   // For Bullet
   /////////////////////////////////////////////
-  	//create brodphase
-		broadphase = new btDbvtBroadphase();
+    //create brodphase
+    broadphase = new btDbvtBroadphase();
 
     //create collision configuration
     collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -63,11 +66,73 @@ bool Graphics::Initialize(int width, int height)
 
     //set the gravity
     dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
-  
+	//////////////////////////////////////////////////////////////////////////////////////
   // Create the objects
-  table = new Object("../models/PinballTable3.obj");
+  ///////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////
   
-  ball = new Object("../models/Sphere1.obj");
+  //Create Table
+  triMesh = new btTriangleMesh();
+  table = new Object("../models/PinballTable3.obj", triMesh);
+  tableMesh = new btBvhTriangleMeshShape(triMesh, true);
+  delete triMesh;
+  
+  tableMotionState = NULL;
+  tableMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
+  
+  btRigidBody::btRigidBodyConstructionInfo tableRigidBodyCI(0, tableMotionState, tableMesh, btVector3(0, 0, 0));
+   btRigidBody* tableRigidBody = new btRigidBody(tableRigidBodyCI);
+    
+   dynamicsWorld->addRigidBody(tableRigidBody); 
+  
+  
+  
+  
+  //Create Ball
+  triMesh = new btTriangleMesh();
+  ball = new Object("../models/Sphere1.obj", triMesh);
+  ballMesh = new btBvhTriangleMeshShape(triMesh, true);
+  delete triMesh;
+  
+  ballMotionState = NULL;
+  ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 1, 0)));
+  
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI(1, ballMotionState, ballMesh, btVector3(0, 0, 0));
+   btRigidBody* ballRigidBody = new btRigidBody(ballRigidBodyCI);
+    
+   dynamicsWorld->addRigidBody(ballRigidBody);
+  
+  
+  
+  //Create Cube
+  triMesh = new btTriangleMesh();
+  cube = new Object("../models/Cube1.obj", triMesh);
+  cubeMesh = new btBvhTriangleMeshShape(triMesh, true);
+  delete triMesh;
+  
+  cubeMotionState = NULL;
+  cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 1, 0)));
+  
+  btRigidBody::btRigidBodyConstructionInfo cubeRigidBodyCI(0, cubeMotionState, cubeMesh, btVector3(0, 0, 0));
+   btRigidBody* cubeRigidBody = new btRigidBody(cubeRigidBodyCI);
+    
+   dynamicsWorld->addRigidBody(cubeRigidBody);
+  
+  
+  
+  //Create Cylinder
+  triMesh = new btTriangleMesh();
+  cylinder = new Object("../models/Cylinder1.obj", triMesh);
+  cylinderMesh = new btBvhTriangleMeshShape(triMesh, true);
+	delete triMesh;
+	
+	cylinderMotionState = NULL;
+  cylinderMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(1, 10, 1)));
+  
+  btRigidBody::btRigidBodyConstructionInfo cylinderRigidBodyCI(1, cylinderMotionState, cylinderMesh, btVector3(0, 0, 0));
+   btRigidBody* cylinderRigidBody = new btRigidBody(cylinderRigidBodyCI);
+    
+   dynamicsWorld->addRigidBody(cylinderRigidBody);
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -145,6 +210,32 @@ void Graphics::Update(unsigned int dt)
   // Update the object
   table->Update(dt, 0);
   ball->Update(dt, 1);
+  cube->Update(dt, 1);
+  cylinder->Update(dt, 1);
+  
+  /*dynamicsWorld->stepSimulation(dt, 10);
+  
+  btTransform trans;
+  btScalar m[16];
+  
+  tableRigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  table->model = glm::make_mat4(m);
+  
+  ballRigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  ball->model = glm::make_mat4(m);
+  
+  cubeRigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  cube->model = glm::make_mat4(m);
+  
+  cylinderRigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  cylinder->model = glm::make_mat4(m);
+  
+	//glutPostRedisplay();*/
+  
 }
 
 void Graphics::Render()
@@ -165,6 +256,10 @@ void Graphics::Render()
   table->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball->GetModel()));
   ball->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cube->GetModel()));
+  cube->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder->GetModel()));
+  cylinder->Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();
