@@ -32,6 +32,10 @@ class Engine
     unsigned int m_DT;
     long long m_currentTimeMillis;
     bool m_running;
+
+    //for keyboard detection PA2
+    char keyboardInput;
+    bool newInput;
 };
 
 #endif // ENGINE_H

@@ -66,8 +66,9 @@ void Engine::Run()
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT);
+    m_graphics->Update(m_DT, keyboardInput, newInput);
     m_graphics->Render();
+    newInput= false;
 
     // Swap to the Window
     m_window->Swap();
@@ -82,10 +83,32 @@ void Engine::Keyboard()
   }
   else if (m_event.type == SDL_KEYDOWN)
   {
-    // handle key down events here
-    if (m_event.key.keysym.sym == SDLK_ESCAPE)
+    // handle key down events heree
+    switch (m_event.key.keysym.sym)
     {
-      m_running = false;
+      case SDLK_ESCAPE:
+        m_running = false;
+        break;
+      //start or stops orbit
+      case SDLK_LEFT:
+        keyboardInput = '<';
+        newInput = true;
+        break;
+      //reverses orbit
+      case SDLK_RIGHT:
+        keyboardInput = '>';
+        newInput = true;
+        break;
+      //start or stops rotation
+      case SDLK_UP:
+        keyboardInput = '^';
+        newInput = true;
+        break;
+      //reverses rotation
+      case SDLK_DOWN:
+        keyboardInput = 'v';
+        newInput = true;
+        break;
     }
   }
 }

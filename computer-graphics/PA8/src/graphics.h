@@ -16,9 +16,10 @@ class Graphics
     Graphics();
     ~Graphics();
     bool Initialize(int width, int height);
-    void Update(unsigned int dt);
+    void Update(unsigned int dt, char keyboardInput, bool newInput);
     void Render();
-    
+
+    // Bullet    
     btTriangleMesh *triMesh1;
     btTriangleMesh *triMesh2;
     btTriangleMesh *triMesh3;
@@ -27,6 +28,11 @@ class Graphics
 		btCollisionShape *ballMesh;
 		btCollisionShape *cubeMesh;
 		btCollisionShape *cylinderMesh;
+		btCollisionShape *leftWall;
+		btCollisionShape *rightWall;
+		btCollisionShape *backWall;
+		btCollisionShape *frontWall;
+		btCollisionShape *topWall;
 		
   private:
     std::string ErrorString(GLenum error);
@@ -51,12 +57,23 @@ class Graphics
     btDefaultMotionState *ballMotionState;
     btDefaultMotionState *cubeMotionState;
     btDefaultMotionState *cylinderMotionState;
+
+    btDefaultMotionState *leftWallMotionState;
+    btDefaultMotionState *rightWallMotionState;
+    btDefaultMotionState *backWallMotionState;
+    btDefaultMotionState *frontWallMotionState;
+    //btDefaultMotionState *topWallMotionState;
     
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
 		btRigidBody *cubeRigidBody;
 		btRigidBody *cylinderRigidBody;
-		
+
+		btRigidBody *leftWallRigidBody;
+		btRigidBody *rightWallRigidBody;
+		btRigidBody *backWallRigidBody;
+		btRigidBody *frontWallRigidBody;
+		//btRigidBody *topWallRigidBody;		
 		
 		btDiscreteDynamicsWorld *dynamicsWorld;
     btBroadphaseInterface* broadphase;
