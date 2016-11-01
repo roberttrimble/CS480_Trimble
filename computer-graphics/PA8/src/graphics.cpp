@@ -6,7 +6,7 @@ Graphics::Graphics()
 }
 
 Graphics::~Graphics()
-{
+{/*
 	delete triMesh;
 	delete tableMesh;
 	delete ballMesh;
@@ -18,7 +18,7 @@ Graphics::~Graphics()
 	delete dispatcher;
 	delete collisionConfiguration;
 	delete broadphase;
-	delete dynamicsWorld;
+	delete dynamicsWorld;*/
 }
 
 bool Graphics::Initialize(int width, int height)
@@ -59,7 +59,7 @@ bool Graphics::Initialize(int width, int height)
     dispatcher = new btCollisionDispatcher(collisionConfiguration);
 
     //create a solver
-    solver = new btSequentialImpulseConstraintSolver;
+    solver = new btSequentialImpulseConstraintSolver();
 
     //create the physics world
     dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
@@ -74,16 +74,20 @@ bool Graphics::Initialize(int width, int height)
   //Create Table
   triMesh = new btTriangleMesh();
   table = new Object("../models/PinballTable3.obj", triMesh);
-  tableMesh = new btBvhTriangleMeshShape(triMesh, true);
+  tableMesh = new btStaticPlaneShape(btVector3(1, 1, 1), 1);
   delete triMesh;
   
   tableMotionState = NULL;
   tableMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
   
   btRigidBody::btRigidBodyConstructionInfo tableRigidBodyCI(0, tableMotionState, tableMesh, btVector3(0, 0, 0));
-   btRigidBody* tableRigidBody = new btRigidBody(tableRigidBodyCI);
+  tableRigidBody = new btRigidBody(tableRigidBodyCI);
+
+  tableRigidBody->setCollisionFlags(tableRigidBody->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT);
+  tableRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
    dynamicsWorld->addRigidBody(tableRigidBody); 
+   //dynamicsWorld->addCollisionObject(tableRigidBody);
   
   
   
@@ -98,9 +102,13 @@ bool Graphics::Initialize(int width, int height)
   ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 1, 0)));
   
   btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI(1, ballMotionState, ballMesh, btVector3(0, 0, 0));
-   btRigidBody* ballRigidBody = new btRigidBody(ballRigidBodyCI);
+  ballRigidBody = new btRigidBody(ballRigidBodyCI);
+
+//  ballRigidBody->setCollisionFlags(ballRigidBody->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT);
+  ballRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
    dynamicsWorld->addRigidBody(ballRigidBody);
+   //dynamicsWorld->addCollisionObject(ballRigidBody);
   
   
   
@@ -111,12 +119,16 @@ bool Graphics::Initialize(int width, int height)
   delete triMesh;
   
   cubeMotionState = NULL;
-  cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 1, 0)));
+  cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(10, 1, 0)));
   
-  btRigidBody::btRigidBodyConstructionInfo cubeRigidBodyCI(0, cubeMotionState, cubeMesh, btVector3(0, 0, 0));
-   btRigidBody* cubeRigidBody = new btRigidBody(cubeRigidBodyCI);
+  btRigidBody::btRigidBodyConstructionInfo cubeRigidBodyCI(1, cubeMotionState, cubeMesh, btVector3(0, 0, 0));
+  cubeRigidBody = new btRigidBody(cubeRigidBodyCI);
+
+  cubeRigidBody->setCollisionFlags(cubeRigidBody->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT);
+  cubeRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(cubeRigidBody);
+  dynamicsWorld->addRigidBody(cubeRigidBody);
+  //dynamicsWorld->addCollisionObject(cubeRigidBody);
   
   
   
@@ -129,10 +141,14 @@ bool Graphics::Initialize(int width, int height)
 	cylinderMotionState = NULL;
   cylinderMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(1, 10, 1)));
   
-  btRigidBody::btRigidBodyConstructionInfo cylinderRigidBodyCI(1, cylinderMotionState, cylinderMesh, btVector3(0, 0, 0));
-   btRigidBody* cylinderRigidBody = new btRigidBody(cylinderRigidBodyCI);
+  btRigidBody::btRigidBodyConstructionInfo cylinderRigidBodyCI(0, cylinderMotionState, cylinderMesh, btVector3(0, 0, 0));
+  cylinderRigidBody = new btRigidBody(cylinderRigidBodyCI);
+
+  cylinderRigidBody->setCollisionFlags(cylinderRigidBody->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT);
+  cylinderRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
    dynamicsWorld->addRigidBody(cylinderRigidBody);
+   //dynamicsWorld->addCollisionObject(cylinderRigidBody);
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -207,17 +223,13 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt)
 {
-  // Update the object
-  table->Update(dt, 0);
-  ball->Update(dt, 1);
-  cube->Update(dt, 1);
-  cylinder->Update(dt, 1);
-  
-  /*dynamicsWorld->stepSimulation(dt, 10);
+std::cout << dt << std::endl;
+
+  dynamicsWorld->stepSimulation(.5, 10);
   
   btTransform trans;
   btScalar m[16];
-  
+
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   table->model = glm::make_mat4(m);
@@ -233,8 +245,8 @@ void Graphics::Update(unsigned int dt)
   cylinderRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   cylinder->model = glm::make_mat4(m);
+
   
-	//glutPostRedisplay();*/
   
 }
 

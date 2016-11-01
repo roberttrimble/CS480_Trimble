@@ -114,22 +114,6 @@ Object::~Object()
   Indices.clear();
 }
 
-void Object::Update(unsigned int dt, int modelNum)
-{
-	model = glm::mat4(1.0f);
-	
-  if (modelNum == 0)
-  {
-  	model = glm::rotate(glm::mat4(1.0f), 1.58f, glm::vec3(0.0, 12.0, 0.0));
-  	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-  }
-  else if (modelNum == 1)
-  {
-  	model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
-  }
-	
-}
-
 glm::mat4 Object::GetModel()
 {
   return model;

@@ -15,7 +15,6 @@ class Object
   public: 
     Object(std::string fileInput, btTriangleMesh *objMesh);
     ~Object();
-    void Update(unsigned int dt, int modelNum);
     void Render();
 
 		glm::mat4 model;
