@@ -6,26 +6,62 @@ Graphics::Graphics()
 }
 
 Graphics::~Graphics()
-{/*
-	delete triMesh;
-	delete tableMesh;
-	delete ballMesh;
-	delete tableRigidBody;
-	delete ballRigidBody;
-	delete cubeRigidBody;
-	delete cylinderRigidBody;
-	delete solver;
-	delete dispatcher;
-	delete collisionConfiguration;
-	delete broadphase;
-	delete dynamicsWorld;*/
+{
+
+  //////////// clean up and end program
+  // delete the pointers
+  dynamicsWorld->removeRigidBody(tableRigidBody);
+  delete tableRigidBody->getMotionState();
+  delete tableRigidBody;
+       
+  dynamicsWorld->removeRigidBody(ballRigidBody);
+  delete ballRigidBody->getMotionState();
+  delete ballRigidBody;
+       
+  dynamicsWorld->removeRigidBody(cubeRigidBody);
+  delete cubeRigidBody->getMotionState();
+  delete cubeRigidBody;
+        
+  dynamicsWorld->removeRigidBody(cylinderRigidBody);
+  delete cylinderRigidBody->getMotionState();
+  delete cylinderRigidBody;
+       
+  dynamicsWorld->removeRigidBody(leftWallRigidBody);
+  delete leftWallRigidBody->getMotionState();
+  delete leftWallRigidBody;
+
+  dynamicsWorld->removeRigidBody(rightWallRigidBody);
+  delete rightWallRigidBody->getMotionState();
+  delete rightWallRigidBody;
+      
+  dynamicsWorld->removeRigidBody(backWallRigidBody);
+  delete backWallRigidBody->getMotionState();
+  delete backWallRigidBody;
+        
+  dynamicsWorld->removeRigidBody(frontWallRigidBody);
+  delete frontWallRigidBody->getMotionState();
+  delete frontWallRigidBody;
+
+  delete tableMesh;
+  delete leftWall;
+  delete rightWall;
+  delete backWall;
+  delete frontWall;
+  delete ballMesh;
+  delete cubeMesh;
+  delete cylinderMesh;
+  delete dynamicsWorld;
+  delete solver;
+  delete collisionConfiguration;
+  delete dispatcher;
+  delete broadphase;
 }
 
 bool Graphics::Initialize(int width, int height)
 {
   // Used for the linux OS
   #if !defined(__APPLE__) && !defined(MACOSX)
-    // cout << glewGetString(GLEW_VERSION) << endl;
+
     glewExperimental = GL_TRUE;
 
     auto status = glewInit();
@@ -49,27 +85,29 @@ bool Graphics::Initialize(int width, int height)
   
   // For Bullet
   /////////////////////////////////////////////
-    //create brodphase
-    broadphase = new btDbvtBroadphase();
+  //create brodphase
+  broadphase = new btDbvtBroadphase();
 
-    //create collision configuration
-    collisionConfiguration = new btDefaultCollisionConfiguration();
+  //create collision configuration
+  collisionConfiguration = new btDefaultCollisionConfiguration();
 
-    //create a dispatcher
-    dispatcher = new btCollisionDispatcher(collisionConfiguration);
+  //create a dispatcher
+  dispatcher = new btCollisionDispatcher(collisionConfiguration);
 
-    //create a solver
-    solver = new btSequentialImpulseConstraintSolver();
+  //create a solver
+  solver = new btSequentialImpulseConstraintSolver();
 
-    //create the physics world
-    dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+  //create the physics world
+  dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 
-    //set the gravity
-    dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
-	//////////////////////////////////////////////////////////////////////////////////////
-  // Create the objects
-  ///////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////
+  //set the gravity
+  dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Create the objects
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
   
   //Create Table
   triMesh1 = new btTriangleMesh();
@@ -84,13 +122,13 @@ bool Graphics::Initialize(int width, int height)
 
   tableRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(tableRigidBody); 
+  dynamicsWorld->addRigidBody(tableRigidBody); 
 
 
-///////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
 
-
+  //Create left wall
   leftWall = new btStaticPlaneShape(btVector3(-1, 0, 0), 1);
   leftWallMotionState = NULL;
   leftWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(7.8, 0, 0)));
@@ -100,10 +138,12 @@ bool Graphics::Initialize(int width, int height)
 
   leftWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(leftWallRigidBody); 
-/////////////////////////////////////////////////////////////////
+  dynamicsWorld->addRigidBody(leftWallRigidBody); 
+
+/////////////////////////////////////////////////////////////////////////////
 
 
+  //Create right wall
   rightWall = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
   rightWallMotionState = NULL;
   rightWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-7, 0, 0)));
@@ -113,24 +153,26 @@ bool Graphics::Initialize(int width, int height)
 
   rightWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(rightWallRigidBody); 
+  dynamicsWorld->addRigidBody(rightWallRigidBody); 
 
-///////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
 
+  //Create back wall
   backWall = new btStaticPlaneShape(btVector3(0, 0, -1), 1);
   backWallMotionState = NULL;
   backWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 15)));
   
   btRigidBody::btRigidBodyConstructionInfo backWallRigidBodyCI(0, backWallMotionState, backWall, btVector3(0, 0, 0));
- backWallRigidBody = new btRigidBody(backWallRigidBodyCI);
+  backWallRigidBody = new btRigidBody(backWallRigidBodyCI);
 
   backWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(backWallRigidBody); 
+  dynamicsWorld->addRigidBody(backWallRigidBody); 
 
-//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
+  //Create front wall
   frontWall = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
   frontWallMotionState = NULL;
   frontWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -8.8)));
@@ -140,9 +182,9 @@ bool Graphics::Initialize(int width, int height)
 
   frontWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(frontWallRigidBody);
+  dynamicsWorld->addRigidBody(frontWallRigidBody);
   
-//////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
   
   //Create Ball
   triMesh2 = new btTriangleMesh();
@@ -152,15 +194,21 @@ bool Graphics::Initialize(int width, int height)
   ballMotionState = NULL;
   ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 10, 0)));
   
-  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI(1, ballMotionState, ballMesh, btVector3(0, 0, 0));
+  // the sphere must have a mass
+  btScalar mass = 1;
+
+  //we need the inertia of the sphere and we need to calculate it
+  btVector3 sphereInertia(0, 0, 0);
+  ballMesh->calculateLocalInertia(mass, sphereInertia);
+
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI(1, ballMotionState, ballMesh, sphereInertia);
   ballRigidBody = new btRigidBody(ballRigidBodyCI);
 
   ballRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(ballRigidBody);
+  dynamicsWorld->addRigidBody(ballRigidBody);
 
-  
-  
+/////////////////////////////////////////////////////////////////////////////
   
   //Create Cube
   triMesh3 = new btTriangleMesh();
@@ -170,15 +218,21 @@ bool Graphics::Initialize(int width, int height)
   cubeMotionState = NULL;
   cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 10, 0)));
   
-  btRigidBody::btRigidBodyConstructionInfo cubeRigidBodyCI(1, cubeMotionState, cubeMesh, btVector3(0, 0, 0));
+  // the cube must have a mass
+  mass = 1;
+
+  //we need the inertia of the sphere and we need to calculate it
+  btVector3 cubeInertia(0, 0, 0);
+  cubeMesh->calculateLocalInertia(mass, cubeInertia);
+
+  btRigidBody::btRigidBodyConstructionInfo cubeRigidBodyCI(1, cubeMotionState, cubeMesh, cubeInertia);
   cubeRigidBody = new btRigidBody(cubeRigidBodyCI);
 
   cubeRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(cubeRigidBody);
 
-  
-  
+/////////////////////////////////////////////////////////////////////////////
   
   //Create Cylinder
   triMesh4 = new btTriangleMesh();
@@ -193,12 +247,10 @@ bool Graphics::Initialize(int width, int height)
 
   cylinderRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-   dynamicsWorld->addRigidBody(cylinderRigidBody);
-
-
+  dynamicsWorld->addRigidBody(cylinderRigidBody);
 
 ////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
+
   // Init Camera
   m_camera = new Camera();
   if(!m_camera->Initialize(width, height))
@@ -270,7 +322,7 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
 
- float force = 5.0;
+ float force = 10.0;
 
  if (newInput == true)
   {
@@ -301,6 +353,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       break;
     }
   }
+
   dynamicsWorld->stepSimulation(dt, 10);
   
   btTransform trans;
@@ -309,9 +362,9 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   table->model = glm::make_mat4(m);
-table->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, 7.0))
-                           * glm::scale(table->model, glm::vec3(2.0, 2.0, 2.0))
-                           * glm::rotate(glm::mat4(1.0f), (float)(M_PI/2), glm::vec3(0.0, 12.0, 0.0));
+  table->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, 7.0))
+                              * glm::scale(table->model, glm::vec3(2.0, 2.0, 2.0))
+                              * glm::rotate(glm::mat4(1.0f), (float)(M_PI/2), glm::vec3(0.0, 12.0, 0.0));
   
   ballRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
