@@ -19,7 +19,10 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
     
-    btTriangleMesh *triMesh;
+    btTriangleMesh *triMesh1;
+    btTriangleMesh *triMesh2;
+    btTriangleMesh *triMesh3;
+    btTriangleMesh *triMesh4;
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
 		btCollisionShape *cubeMesh;
