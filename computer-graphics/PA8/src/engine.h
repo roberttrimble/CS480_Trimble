@@ -36,6 +36,8 @@ class Engine
     //for keyboard detection PA2
     char keyboardInput;
     bool newInput;
+    int mouseXlocation;
+    int mouseYlocation;
 };
 
 #endif // ENGINE_H

@@ -319,7 +319,7 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
+void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mouseXlocation, int mouseYlocation)
 {
 
  float force = 10.0;
@@ -351,8 +351,28 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       case 'v':
         cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,-force));
       break;
+      case 'b':
+      	glm::vec3 modelLocation(cube->model[3]);
+      	int cubeXlocation = modelLocation.x;
+      	int cubeYlocation = modelLocation.z;
+      	
+      	std::cout << mouseXlocation << " " << mouseYlocation << std::endl;
+        std::cout << cubeXlocation << " " << cubeYlocation << std::endl;
+        std::cout << mouseXlocation-cubeXlocation << " " << mouseYlocation-cubeYlocation << std::endl<< std::endl<< std::endl;
+        
+        float xDirection = mouseXlocation-cubeXlocation;
+        float yDirection = mouseYlocation-cubeYlocation;
+        
+      	
+        cubeRigidBody->applyCentralImpulse(btVector3(((float)mouseXlocation-(float)cubeXlocation),0.0,((float)mouseYlocation-(float)cubeYlocation)));
+        
+        
+        
+      break;
+    	}
     }
-  }
+    
+ 
 
   dynamicsWorld->stepSimulation(dt, 10);
   
