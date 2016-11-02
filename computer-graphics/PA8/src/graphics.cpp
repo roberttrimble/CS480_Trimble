@@ -355,15 +355,12 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       	glm::vec3 modelLocation(cube->model[3]);
       	int cubeXlocation = modelLocation.x;
       	int cubeYlocation = modelLocation.z;
-      	
-      	std::cout << mouseXlocation << " " << mouseYlocation << std::endl;
-        std::cout << cubeXlocation << " " << cubeYlocation << std::endl;
-        std::cout << mouseXlocation-cubeXlocation << " " << mouseYlocation-cubeYlocation << std::endl<< std::endl<< std::endl;
+       
         
         float xDirection = mouseXlocation-cubeXlocation;
         float yDirection = mouseYlocation-cubeYlocation;
         
-      	
+      	cubeRigidBody->applyCentralImpulse(btVector3(force, 0.0, force));
         cubeRigidBody->applyCentralImpulse(btVector3(((float)mouseXlocation-(float)cubeXlocation),0.0,((float)mouseYlocation-(float)cubeYlocation)));
         
         
@@ -393,6 +390,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   cubeRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   cube->model = glm::make_mat4(m);
+  cube->model[3].y = 1.0f;
   
   cylinderRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
