@@ -49,8 +49,21 @@ Object::Object(std::string fileInput, btTriangleMesh *objMesh)
 		  aiVector3D texture = ai_mesh->mTextureCoords[0][i];
 			//create a vec2 to hold the texture coordiates stored in texture
 		  glm::vec2 tex = glm::vec2(texture.x, texture.y);
-		  // initialize a temporary Vertex with vertex coordinates and color
-		  Vertex *tempVertex = new Vertex(vec, tex);
+
+      // normals
+      glm::vec3 norm;
+      // if vertex has normals set them to vec3 norm 
+      if (ai_mesh->HasNormals()){
+        aiVector3D normal = ai_mesh->mNormals[i];
+        norm = glm::vec3(normal.x, normal.y, normal.z);
+      }
+      // else set normals to 0
+      else {
+        norm = glm::vec3(0.0, 0.0, 0.0);
+      } 
+        
+		  // initialize a temporary Vertex with vertex, texture and normal coordinates.
+		  Vertex *tempVertex = new Vertex(vec, tex, norm);
 		  // push back tempVertex onto Vertices
 		  Vertices.push_back(*tempVertex);
 		}

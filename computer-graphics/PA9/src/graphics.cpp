@@ -207,7 +207,7 @@ bool Graphics::Initialize(int width, int height)
 
   //Create Ball
   triMesh2 = new btTriangleMesh();
-  ball = new Object("../models/Sphere1.obj", triMesh2);
+  ball = new Object("../models/sphere_normals.obj", triMesh2);
   ballMesh = new btSphereShape(1);
   
   ballMotionState = NULL;
@@ -231,7 +231,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Cube
   triMesh3 = new btTriangleMesh();
-  cube = new Object("../models/Cube1.obj", triMesh3);
+  cube = new Object("../models/cube_normals.obj", triMesh3);
   cubeMesh = new btBoxShape(btVector3(1.0, 1.0, 1.0));
   
   cubeMotionState = NULL;
@@ -255,7 +255,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Cylinder
   triMesh4 = new btTriangleMesh();
-  cylinder = new Object("../models/Cylinder1.obj", triMesh4);
+  cylinder = new Object("../models/cylinder_normals.obj", triMesh4);
   cylinderMesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinderMotionState = NULL;

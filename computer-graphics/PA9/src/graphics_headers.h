@@ -26,8 +26,9 @@ struct Vertex
 {
   glm::vec3 vertex;
   glm::vec2 TexCoords;
+  glm::vec3 uv;
 
-  Vertex(glm::vec3 v, glm::vec2 t): vertex(v), TexCoords(t) {}
+  Vertex(glm::vec3 v, glm::vec2 t, glm::vec3 u): vertex(v), TexCoords(t), uv(u) {}
 };
 
 #endif /* GRAPHICS_HEADERS_H */
