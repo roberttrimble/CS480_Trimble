@@ -232,7 +232,7 @@ bool Graphics::Initialize(int width, int height)
   //Create Cube
   triMesh3 = new btTriangleMesh();
   cube = new Object("../models/cube_normals.obj", triMesh3);
-  cubeMesh = new btBoxShape(btVector3(1.0, 1.0, 1.0));
+  cubeMesh = new btBoxShape(btVector3(.5, .5, .5));
   
   cubeMotionState = NULL;
   cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 10, -2)));
