@@ -41,7 +41,7 @@ bool Shader::AddShader(GLenum ShaderType, int type)
   if(ShaderType == GL_VERTEX_SHADER && type == 0)
   {
     //Read in vertex shader file into a string
-    std::ifstream file("../shaders/vertex_shader.txt");
+    std::ifstream file("../shaders/vertex_shaderL.txt");
     std::string fileString((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     //set the string to s
     s = fileString;

@@ -1,13 +1,12 @@
 #version 330
 
 // vertex shader
-layout (location = 0) in vec4 v_position; 
-layout (location = 1) in vec2 TexCoords; 
-layout (location = 2) in vec3 vNormal;
+in vec4 vPosition; 
+in vec2 TexCoords; 
+in vec3 vNormal;
 
 out vec2 TexCoords_;
-
-//out vec4 color;  //vertex shade
+out vec4 color;  //vertex shade
 
 // light and material properties
 uniform vec4 AmbientProduct, DiffuseProduct, SpecularProduct;
@@ -22,14 +21,14 @@ uniform float Shininess;
 void main()
 {
     // Transform vertex  position into eye coordinates
-    vec3 pos = ((viewMatix*modelMatrix) * vPosition).xyz;
+    vec3 pos = ((viewMatrix * modelMatrix) * vPosition).xyz;
 	
     vec3 L = normalize( LightPosition.xyz - pos );
     vec3 E = normalize( -pos );
     vec3 H = normalize( L + E );
 
     // Transform vertex normal into eye coordinates
-    vec3 N = normalize( (viewMatix*modelMatrix)*vec4(vNormal, 0.0) ).xyz;
+    vec3 N = normalize( (viewMatrix*modelMatrix)*vec4(vNormal, 0.0) ).xyz;
 
     // Compute terms in the illumination equation
     vec4 ambient = AmbientProduct;
@@ -39,7 +38,7 @@ void main()
     float Ks = pow( max(dot(N, H), 0.0), Shininess );
     vec4  specular = Ks * SpecularProduct;
     if( dot(L, N) < 0.0 )  specular = vec4(0.0, 0.0, 0.0, 1.0); 
-    gl_Position = (projectionMatrix * viewMatix * modelMatrix) * vPosition;
+    gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * vPosition;
 
     TexCoords_ = TexCoords;
     color = ambient + diffuse + specular;
