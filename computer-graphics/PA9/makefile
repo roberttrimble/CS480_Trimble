@@ -18,10 +18,10 @@ endif
 #Compiler Flags
 CXXFLAGS=-g -Wall -std=c++0x
 
-all: ../build/Assignment8
+all: ../build/Assignment9
 
-../build/Assignment8: ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o
-	$(CC) $(CXXFLAGS) ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o -o ../build/Assignment8 $(LIBS)
+../build/Assignment9: ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o
+	$(CC) $(CXXFLAGS) ../src/main.cpp camera.o engine.o graphics.o object.o shader.o window.o -o ../build/Assignment9 $(LIBS)
 
 camera.o: ../src/camera.cpp ../src/camera.h
 	$(CC) $(CXXFLAGS) -c ../src/camera.cpp ../src/camera.h $(LIBS)
@@ -42,4 +42,4 @@ window.o: ../src/window.cpp ../src/window.h
 	$(CC) $(CXXFLAGS) -c ../src/window.cpp ../src/window.h $(LIBS)
 
 clean:
-	-@if rm *.o Assignment8 2>/dev/null || true; then echo "Main Removed"; else echo "No Main"; fi
+	-@if rm *.o Assignment9 2>/dev/null || true; then echo "Main Removed"; else echo "No Main"; fi

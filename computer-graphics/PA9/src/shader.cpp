@@ -34,11 +34,11 @@ bool Shader::Initialize()
 }
 
 // Use this method to add shaders to the program. When finished - call finalize()
-bool Shader::AddShader(GLenum ShaderType)
+bool Shader::AddShader(GLenum ShaderType, int type)
 {
   std::string s;
 
-  if(ShaderType == GL_VERTEX_SHADER)
+  if(ShaderType == GL_VERTEX_SHADER && type == 0)
   {
     //Read in vertex shader file into a string
     std::ifstream file("../shaders/vertex_shader.txt");
@@ -46,6 +46,15 @@ bool Shader::AddShader(GLenum ShaderType)
     //set the string to s
     s = fileString;
     
+  }
+  else if(ShaderType == GL_VERTEX_SHADER && type == 1)
+  {
+    //Read in fragment shader file into a string
+    std::ifstream file("../fshader.txt");
+    std::string fileString((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    //set the string to s
+    s = fileString;
+  
   }
   else if(ShaderType == GL_FRAGMENT_SHADER)
   {

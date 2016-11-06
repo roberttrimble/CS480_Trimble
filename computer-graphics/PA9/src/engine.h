@@ -38,6 +38,8 @@ class Engine
     bool newInput;
     int mouseXlocation;
     int mouseYlocation;
+    
+    int state;
 };
 
 #endif // ENGINE_H

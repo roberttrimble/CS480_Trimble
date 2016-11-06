@@ -34,11 +34,13 @@ class Graphics
 		btCollisionShape *frontWall;
 		btCollisionShape *topWall;
 		
+		Shader *m_shader;
+		
   private:
     std::string ErrorString(GLenum error);
 
     Camera *m_camera;
-    Shader *m_shader;
+    //Shader *m_shader;
 
     GLint m_projectionMatrix;
     GLint m_viewMatrix;

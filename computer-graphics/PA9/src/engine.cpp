@@ -53,6 +53,8 @@ bool Engine::Initialize()
 void Engine::Run()
 {
   m_running = true;
+  
+  state = 0;
 
   while(m_running)
   {
@@ -89,15 +91,43 @@ void Engine::Keyboard()
       case SDLK_ESCAPE:
         m_running = false;
         break;
+      case SDLK_SPACE:
+        if(state == 0)
+        {
+		      m_graphics->m_shader->Initialize();
+		     
+		      m_graphics->m_shader->AddShader(GL_VERTEX_SHADER, 1);
+		      m_graphics->m_shader->AddShader(GL_FRAGMENT_SHADER, 1);
+		      
+		      m_graphics->m_shader->Finalize();
+		      m_graphics->m_shader->Enable();
+        
+        state = 1;
+        }
+        else if(state == 1)
+        {
+		      m_graphics->m_shader->Initialize();
+		     
+		      m_graphics->m_shader->AddShader(GL_VERTEX_SHADER, 0);
+		      m_graphics->m_shader->AddShader(GL_FRAGMENT_SHADER, 0);
+		      
+		      m_graphics->m_shader->Finalize();
+		      m_graphics->m_shader->Enable();
+		      
+		      state = 0;
+        }
+        break;
       //start or stops orbit
       case SDLK_LEFT:
         keyboardInput = '<';
         newInput = true;
+        
         break;
       //reverses orbit
       case SDLK_RIGHT:
         keyboardInput = '>';
         newInput = true;
+        
         break;
       //start or stops rotation
       case SDLK_UP:
