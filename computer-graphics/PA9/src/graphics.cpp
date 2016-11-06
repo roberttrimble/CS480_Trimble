@@ -105,7 +105,7 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 
   //set the gravity
-  dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
+  dynamicsWorld->setGravity(btVector3(0, -9.81, -.25));
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ bool Graphics::Initialize(int width, int height)
   //Create Table
   triMesh1 = new btTriangleMesh();
   table = new Object("../models/PinballTable3.obj", triMesh1);
-  tableMesh = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
+  tableMesh = new btStaticPlaneShape(btVector3(0, 1, 0), 0); //btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
   tableMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 1, 0)));
@@ -235,7 +235,7 @@ bool Graphics::Initialize(int width, int height)
   cubeMesh = new btBoxShape(btVector3(1.0, 1.0, 1.0));
   
   cubeMotionState = NULL;
-  cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 10, 0)));
+  cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 10, -2)));
   
   // the cube must have a mass
   mass = 1;
