@@ -1,13 +1,11 @@
-#version 330
-// fragment shader
+varying vec2 texcoord;
+varying vec4 colorV;  
 
 
-  varying vec4 color; 
-in vec2 TexCoords_;
-uniform sampler2D gSampler;
+uniform sampler2D sampler; 
 
-void main() 
-{ 
-    gl_FragColor = texture2D(gSampler, TexCoords_.xy);
-    gl_FragColor =  gl_FragColor * color;
+void main(void)
+{
+  vec4 outcolor = texture2D(sampler, texcoord.xy);
+  gl_FragColor = colorV * outcolor;
 }

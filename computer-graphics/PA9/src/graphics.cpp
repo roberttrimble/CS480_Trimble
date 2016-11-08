@@ -386,8 +386,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       	//cubeRigidBody->applyCentralImpulse(btVector3(force, 0.0, force));
         cubeRigidBody->applyCentralImpulse(btVector3(xDirection,0.0,yDirection));
         
-        
-        
       break;
     	}
     }
@@ -423,8 +421,12 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   ballRigidBody->clearForces();
 }
 
-void Graphics::Render()
+void Graphics::Render(char keyboardInput, bool newInput)
 {
+
+  // variables
+
+
   //clear the screen
   glClearColor(0.0, 0.0, 0.2, 1.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -432,24 +434,85 @@ void Graphics::Render()
   // Start the correct program
   m_shader->Enable();
 
-glUniform4f(m_shader->GetUniformLocation("LightPosition"), 4,20,0,0);
-glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
-glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), 1,1,1,1);
-glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1,1,1,1);
-glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
 
   // Send in the projection and view to the shader
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView())); 
 
-  // Render the object
+
+
+
+ if (newInput == true)
+  {
+    switch (keyboardInput)
+    {
+      case 'q':
+        tableAmbientx -= .05;
+        tableAmbienty -= .05;
+        tableAmbientz -= .05;
+      break;
+
+      case 'w':
+        tableAmbientx += .05;
+        tableAmbienty += .05;
+        tableAmbientz += .05;
+      break;
+
+      case 'a':
+        cylSpecularx -= .05;
+        cylSpeculary -= .05;
+        cylSpecularz -= .05;
+        cylDiffusex -= .05;
+        cylDiffusey -= .05;
+        cylDiffusez -= .05;
+      break;
+
+      case 's':
+        cylSpecularx += .05;
+        cylSpeculary += .05;
+        cylSpecularz += .05;
+        cylDiffusex += .05;
+        cylDiffusey += .05;
+        cylDiffusez += .05;
+
+      break;
+    	}
+  }
+
+  // Render the object 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(table->GetModel()));
+  glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
+  glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), tableAmbientx, tableAmbienty, tableAmbientz,1);
+  glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), 1,1,1,1);
+  glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1,1,1,1);
+  glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
   table->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball->GetModel()));
+  glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
+  glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
+  glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), 1, 1, 1,1);
+  glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1, 1, 1,1);
+  glUniform1f(m_shader->GetUniformLocation("Shininess"), .0005);
+
+  glUniform1f(m_shader->GetUniformLocation("ball"), 1.0);
   ball->Render();
+  glUniform1f(m_shader->GetUniformLocation("ball"), 0.0);
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cube->GetModel()));
+  glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
+  glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .25,.25,.25,1);
+  glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), .25,.25,.25,1);
+  glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1,1,1,1);
+  glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
   cube->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder->GetModel()));
+  glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
+  glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
+  glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), cylDiffusex, cylDiffusez, cylDiffusez, 1);
+  glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), cylSpecularx, cylSpeculary, cylSpecularz,1);
+  glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
   cylinder->Render();
 
   // Get any errors from OpenGL

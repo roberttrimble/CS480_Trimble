@@ -17,7 +17,7 @@ class Graphics
     ~Graphics();
     bool Initialize(int width, int height);
     void Update(unsigned int dt, char keyboardInput, bool newInput, int mouseXlocation, int mouseYlocation);
-    void Render();
+    void Render(char keyboardInput, bool newInput);
 
     // Bullet    
     btTriangleMesh *triMesh1;
@@ -35,6 +35,9 @@ class Graphics
 		btCollisionShape *topWall;
 		
 		Shader *m_shader;
+    float tableAmbientx = .2, tableAmbienty = .2, tableAmbientz = .2; 
+    float cylSpecularx = .05, cylSpeculary = .05, cylSpecularz = .05;
+    float cylDiffusex = .05, cylDiffusey = .05, cylDiffusez = .05;
 		
   private:
     std::string ErrorString(GLenum error);

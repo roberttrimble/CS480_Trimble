@@ -69,8 +69,9 @@ void Engine::Run()
 
     // Update and render the graphics
     m_graphics->Update(m_DT, keyboardInput, newInput, mouseXlocation, mouseYlocation);
-    m_graphics->Render();
-    newInput= false;
+
+    m_graphics->Render(keyboardInput, newInput);
+    newInput = false;
 
     // Swap to the Window
     m_window->Swap();
@@ -129,16 +130,43 @@ void Engine::Keyboard()
         newInput = true;
         
         break;
+
       //start or stops rotation
       case SDLK_UP:
         keyboardInput = '^';
         newInput = true;
         break;
-      //reverses rotation
+
+      //start or stops rotation
       case SDLK_DOWN:
         keyboardInput = 'v';
         newInput = true;
         break;
+
+      //reverses rotation
+      case SDLK_q:
+        keyboardInput = 'q';
+        newInput = true;
+        break;
+
+      //reverses rotation
+      case SDLK_w:
+        keyboardInput = 'w';
+        newInput = true;
+        break;
+
+      //reverses rotation
+      case SDLK_a:
+        keyboardInput = 'a';
+        newInput = true;
+        break;
+
+      //reverses rotation
+      case SDLK_s:
+        keyboardInput = 's';
+        newInput = true;
+        break;
+
      }
     }
     else if (m_event.type == SDL_MOUSEBUTTONDOWN)
