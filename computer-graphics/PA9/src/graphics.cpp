@@ -300,12 +300,16 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+
+
   // Connect the program
   if(!m_shader->Finalize())
   {
     printf("Program to Finalize\n");
     return false;
   }
+
+
 
   // Locate the projection matrix in the shader
   m_projectionMatrix = m_shader->GetUniformLocation("projectionMatrix");
@@ -427,6 +431,12 @@ void Graphics::Render()
 
   // Start the correct program
   m_shader->Enable();
+
+glUniform4f(m_shader->GetUniformLocation("LightPosition"), 4,20,0,0);
+glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
+glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), 1,1,1,1);
+glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1,1,1,1);
+glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
 
   // Send in the projection and view to the shader
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 

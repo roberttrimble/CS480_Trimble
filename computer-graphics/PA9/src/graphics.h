@@ -46,12 +46,12 @@ class Graphics
     GLint m_viewMatrix;
     GLint m_modelMatrix;
 
-		
-
     Object *table;
     Object *ball;
     Object *cube;
     Object *cylinder;
+
+GLuint Lpos;
     
     //Bullet
     

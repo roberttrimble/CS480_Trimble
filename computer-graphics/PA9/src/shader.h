@@ -18,9 +18,10 @@ class Shader
     
     std::vector<GLuint> m_shaderObjList;
 
-  private:
+
     GLuint m_shaderProg;    
     //std::vector<GLuint> m_shaderObjList;
+  private:
 };
 
 #endif  /* SHADER_H */

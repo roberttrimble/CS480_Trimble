@@ -39,7 +39,7 @@ class Engine
     int mouseXlocation;
     int mouseYlocation;
     
-    int state;
+    int state = 0;
 };
 
 #endif // ENGINE_H
