@@ -423,10 +423,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
 void Graphics::Render(char keyboardInput, bool newInput)
 {
-
-  // variables
-
-
   //clear the screen
   glClearColor(0.0, 0.0, 0.2, 1.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -438,9 +434,6 @@ void Graphics::Render(char keyboardInput, bool newInput)
   // Send in the projection and view to the shader
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView())); 
-
-
-
 
  if (newInput == true)
   {
