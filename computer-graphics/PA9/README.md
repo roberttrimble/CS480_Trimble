@@ -21,10 +21,10 @@ make
 ```
 
 ##Controls:
-Arrow keys move the cube in respective direction.
-q - lowers ambient lighting on the table
-w - raises ambient lighting on the table
-a - lowers specular lighting on the cylinder
-s - raises specular lighting on the cylinder
-space bar - toggle per vertex and per fragment shading
+Arrow keys move the cube in respective direction.  
+q - lowers ambient lighting on the table  
+w - raises ambient lighting on the table  
+a - lowers specular lighting on the cylinder  
+s - raises specular lighting on the cylinder  
+space bar - toggle per vertex and per fragment shading  
 
