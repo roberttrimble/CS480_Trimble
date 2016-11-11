@@ -25,32 +25,13 @@ Graphics::~Graphics()
   dynamicsWorld->removeRigidBody(cylinderRigidBody);
   delete cylinderRigidBody->getMotionState();
   delete cylinderRigidBody;
-       
-  dynamicsWorld->removeRigidBody(leftWallRigidBody);
-  delete leftWallRigidBody->getMotionState();
-  delete leftWallRigidBody;
-
-  dynamicsWorld->removeRigidBody(rightWallRigidBody);
-  delete rightWallRigidBody->getMotionState();
-  delete rightWallRigidBody;
-      
-  dynamicsWorld->removeRigidBody(backWallRigidBody);
-  delete backWallRigidBody->getMotionState();
-  delete backWallRigidBody;
-        
-  dynamicsWorld->removeRigidBody(frontWallRigidBody);
-  delete frontWallRigidBody->getMotionState();
-  delete frontWallRigidBody;
 
   dynamicsWorld->removeRigidBody(topWallRigidBody);
   delete topWallRigidBody->getMotionState();
   delete topWallRigidBody;
 
   delete tableMesh;
-  delete leftWall;
-  delete rightWall;
-  delete backWall;
-  delete frontWall;
+  delete topWall;
   delete ballMesh;
   delete cubeMesh;
   delete cylinderMesh;
@@ -115,8 +96,8 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Table
   triMesh1 = new btTriangleMesh();
-  table = new Object("../models/PinballTable3.obj", triMesh1);
-  tableMesh = new btStaticPlaneShape(btVector3(0, 1, 0), 0); //btBvhTriangleMeshShape(triMesh1, true);
+  table = new Object("../models/PinballTable5.obj", triMesh1);
+  tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
   tableMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 1, 0)));
@@ -131,63 +112,6 @@ bool Graphics::Initialize(int width, int height)
 
 /////////////////////////////////////////////////////////////////////////////
 
-
-  //Create left wall
-  leftWall = new btStaticPlaneShape(btVector3(-1, 0, 0), 1);
-  leftWallMotionState = NULL;
-  leftWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(7.8, 0, 0)));
-  
-  btRigidBody::btRigidBodyConstructionInfo leftWallRigidBodyCI(0, leftWallMotionState, leftWall, btVector3(0, 0, 0));
-  leftWallRigidBody = new btRigidBody(leftWallRigidBodyCI);
-
-  leftWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
-  dynamicsWorld->addRigidBody(leftWallRigidBody); 
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-  //Create right wall
-  rightWall = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
-  rightWallMotionState = NULL;
-  rightWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-7, 0, 0)));
-  
-  btRigidBody::btRigidBodyConstructionInfo rightWallRigidBodyCI(0, rightWallMotionState, rightWall, btVector3(0, 0, 0));
-  rightWallRigidBody = new btRigidBody(rightWallRigidBodyCI);
-
-  rightWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
-  dynamicsWorld->addRigidBody(rightWallRigidBody); 
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-  //Create back wall
-  backWall = new btStaticPlaneShape(btVector3(0, 0, -1), 1);
-  backWallMotionState = NULL;
-  backWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 15)));
-  
-  btRigidBody::btRigidBodyConstructionInfo backWallRigidBodyCI(0, backWallMotionState, backWall, btVector3(0, 0, 0));
-  backWallRigidBody = new btRigidBody(backWallRigidBodyCI);
-
-  backWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
-  dynamicsWorld->addRigidBody(backWallRigidBody); 
-
-/////////////////////////////////////////////////////////////////////////////
-
-  //Create front wall
-  frontWall = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
-  frontWallMotionState = NULL;
-  frontWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -8.8)));
-  
-  btRigidBody::btRigidBodyConstructionInfo frontWallRigidBodyCI(0, frontWallMotionState, frontWall, btVector3(0, 0, 0));
-  frontWallRigidBody = new btRigidBody(frontWallRigidBodyCI);
-
-  frontWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
-  dynamicsWorld->addRigidBody(frontWallRigidBody);
-  
 /////////////////////////////////////////////////////////////////////////////
 
   //Create top wall
@@ -345,6 +269,7 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mouseXlocation, int mouseYlocation)
 {
 
+
  float force = 8.0;
 
  if (newInput == true)
@@ -400,9 +325,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   table->model = glm::make_mat4(m);
-  table->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, 7.0))
-                              * glm::scale(table->model, glm::vec3(2.0, 2.0, 2.0))
-                              * glm::rotate(glm::mat4(1.0f), (float)(M_PI/2), glm::vec3(0.0, 12.0, 0.0));
+  
   
   ballRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
@@ -411,7 +334,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   cubeRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   cube->model = glm::make_mat4(m);
-  cube->model[3].y = 1.0f;
+  //cube->model[3].y = 1.0f;
   
   cylinderRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
