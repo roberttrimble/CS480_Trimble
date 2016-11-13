@@ -132,10 +132,10 @@ bool Graphics::Initialize(int width, int height)
   //Create Ball
   triMesh2 = new btTriangleMesh();
   ball = new Object("../models/sphere_normals.obj", triMesh2);
-  ballMesh = new btSphereShape(1);
+  ballMesh = new btSphereShape(.85);
   
   ballMotionState = NULL;
-  ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 10, 0)));
+  ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-5, 10, 5)));
   
   // the sphere must have a mass
   btScalar mass = 1;
@@ -299,17 +299,10 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       case 'v':
         cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,-force));
       break;
+      //Launch the ball
+      ///////////////////////
       case 'b':
-      	glm::vec3 modelLocation(cube->model[3]);
-      	int cubeXlocation = modelLocation.x;
-      	int cubeYlocation = modelLocation.z;
-       
-        
-        float xDirection = (mouseXlocation-cubeXlocation)/2;
-        float yDirection = (mouseYlocation-cubeYlocation)/2;
-        
-      	//cubeRigidBody->applyCentralImpulse(btVector3(force, 0.0, force));
-        cubeRigidBody->applyCentralImpulse(btVector3(xDirection,0.0,yDirection));
+        ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
         
       break;
     	}
@@ -334,7 +327,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   cubeRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   cube->model = glm::make_mat4(m);
-  //cube->model[3].y = 1.0f;
   
   cylinderRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
