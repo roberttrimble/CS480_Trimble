@@ -66,6 +66,7 @@ Object::Object(std::string fileInput, btTriangleMesh *objMesh)
 		  Vertex *tempVertex = new Vertex(vec, tex, norm);
 		  // push back tempVertex onto Vertices
 		  Vertices.push_back(*tempVertex);
+      delete tempVertex;
 		}
 
 		// get mesh indexes

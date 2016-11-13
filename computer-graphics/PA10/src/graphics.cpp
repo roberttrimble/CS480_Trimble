@@ -10,35 +10,44 @@ Graphics::~Graphics()
 
   //////////// clean up and end program
   // delete the pointers
-  dynamicsWorld->removeRigidBody(tableRigidBody);
-  delete tableRigidBody->getMotionState();
-  delete tableRigidBody;
-       
-  dynamicsWorld->removeRigidBody(ballRigidBody);
-  delete ballRigidBody->getMotionState();
-  delete ballRigidBody;
-       
-  dynamicsWorld->removeRigidBody(cubeRigidBody);
-  delete cubeRigidBody->getMotionState();
-  delete cubeRigidBody;
-        
+  delete cylinderRigidBody;
   dynamicsWorld->removeRigidBody(cylinderRigidBody);
   delete cylinderRigidBody->getMotionState();
-  delete cylinderRigidBody;
+  delete cylinderMesh;
+  delete cylinder; 
+  delete triMesh4;
 
+
+  delete cubeRigidBody;
+  dynamicsWorld->removeRigidBody(cubeRigidBody);
+  delete cubeRigidBody->getMotionState();
+  delete cubeMesh;
+  delete cube;
+  delete triMesh3;
+
+  delete ballRigidBody;
+  dynamicsWorld->removeRigidBody(ballRigidBody);
+  delete ballRigidBody->getMotionState();
+  delete ballMesh;
+  delete ball;
+  delete triMesh2;
+
+  delete topWallRigidBody;
   dynamicsWorld->removeRigidBody(topWallRigidBody);
   delete topWallRigidBody->getMotionState();
-  delete topWallRigidBody;
-
-  delete tableMesh;
   delete topWall;
-  delete ballMesh;
-  delete cubeMesh;
-  delete cylinderMesh;
+
+  delete tableRigidBody;
+  dynamicsWorld->removeRigidBody(tableRigidBody);
+  delete tableRigidBody->getMotionState();
+  delete tableMesh;
+  delete table;
+  delete triMesh1;
+
   delete dynamicsWorld;
   delete solver;
-  delete collisionConfiguration;
   delete dispatcher;
+  delete collisionConfiguration;
   delete broadphase;
 }
 
@@ -224,8 +233,6 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-
-
   // Connect the program
   if(!m_shader->Finalize())
   {
@@ -307,8 +314,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       break;
     	}
     }
-    
- 
 
   dynamicsWorld->stepSimulation(dt, 10);
   
@@ -334,6 +339,9 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
   // clean up!
   ballRigidBody->clearForces();
+  tableRigidBody->clearForces();
+  cubeRigidBody->clearForces();
+  cylinderRigidBody->clearForces();
 }
 
 void Graphics::Render(char keyboardInput, bool newInput)
@@ -344,7 +352,6 @@ void Graphics::Render(char keyboardInput, bool newInput)
 
   // Start the correct program
   m_shader->Enable();
-
 
   // Send in the projection and view to the shader
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 
