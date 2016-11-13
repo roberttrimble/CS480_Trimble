@@ -322,8 +322,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
-  table->model = glm::make_mat4(m);
-  
+  table->model = glm::make_mat4(m);  
   
   ballRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
