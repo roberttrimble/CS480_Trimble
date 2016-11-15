@@ -10,11 +10,11 @@ Graphics::~Graphics()
 
   //////////// clean up and end program
   // delete the pointers
-  delete cylinderRigidBody;
-  dynamicsWorld->removeRigidBody(cylinderRigidBody);
-  delete cylinderRigidBody->getMotionState();
-  delete cylinderMesh;
-  delete cylinder; 
+  delete cylinder1RigidBody;
+  dynamicsWorld->removeRigidBody(cylinder1RigidBody);
+  delete cylinder1RigidBody->getMotionState();
+  delete cylinder1Mesh;
+  delete cylinder1; 
   delete triMesh4;
 
 
@@ -105,7 +105,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Table
   triMesh1 = new btTriangleMesh();
-  table = new Object("../models/PinballTable5.obj", triMesh1);
+  table = new Object("../models/PinballTable7.obj", triMesh1);
   tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
@@ -117,11 +117,6 @@ bool Graphics::Initialize(int width, int height)
   tableRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(tableRigidBody); 
-
-
-/////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////
 
   //Create top wall
 
@@ -186,20 +181,48 @@ bool Graphics::Initialize(int width, int height)
 
 /////////////////////////////////////////////////////////////////////////////
   
-  //Create Cylinder
+  //Create Cylinders
   triMesh4 = new btTriangleMesh();
-  cylinder = new Object("../models/cylinder_normals.obj", triMesh4);
-  cylinderMesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
+  cylinder1 = new Object("../models/cylinder_normals.obj", triMesh4);
+  cylinder1Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
-	cylinderMotionState = NULL;
-  cylinderMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 1, 0)));
+	cylinder1MotionState = NULL;
+  cylinder1MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(1, 1, 2)));
   
-  btRigidBody::btRigidBodyConstructionInfo cylinderRigidBodyCI(0, cylinderMotionState, cylinderMesh, btVector3(0, 0, 0));
-  cylinderRigidBody = new btRigidBody(cylinderRigidBodyCI);
+  btRigidBody::btRigidBodyConstructionInfo cylinder1RigidBodyCI(0, cylinder1MotionState, cylinder1Mesh, btVector3(0, 0, 0));
+  cylinder1RigidBody = new btRigidBody(cylinder1RigidBodyCI);
 
-  cylinderRigidBody->setActivationState(DISABLE_DEACTIVATION);
+  cylinder1RigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-  dynamicsWorld->addRigidBody(cylinderRigidBody);
+  dynamicsWorld->addRigidBody(cylinder1RigidBody);
+  
+  
+  cylinder2 = new Object("../models/cylinder_normals.obj", triMesh4);
+  cylinder2Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
+	
+	cylinder2MotionState = NULL;
+  cylinder2MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(4, 1, 7)));
+  
+  btRigidBody::btRigidBodyConstructionInfo cylinder2RigidBodyCI(0, cylinder2MotionState, cylinder2Mesh, btVector3(0, 0, 0));
+  cylinder2RigidBody = new btRigidBody(cylinder2RigidBodyCI);
+
+  cylinder2RigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+  dynamicsWorld->addRigidBody(cylinder2RigidBody);
+  
+  
+  cylinder3 = new Object("../models/cylinder_normals.obj", triMesh4);
+  cylinder3Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
+	
+	cylinder3MotionState = NULL;
+  cylinder3MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2, 1, 7)));
+  
+  btRigidBody::btRigidBodyConstructionInfo cylinder3RigidBodyCI(0, cylinder3MotionState, cylinder3Mesh, btVector3(0, 0, 0));
+  cylinder3RigidBody = new btRigidBody(cylinder3RigidBodyCI);
+
+  cylinder3RigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+  dynamicsWorld->addRigidBody(cylinder3RigidBody);
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -332,15 +355,25 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   trans.getOpenGLMatrix(m);
   cube->model = glm::make_mat4(m);
   
-  cylinderRigidBody->getMotionState()->getWorldTransform(trans);
+  cylinder1RigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
-  cylinder->model = glm::make_mat4(m);
+  cylinder1->model = glm::make_mat4(m);
+  
+  cylinder2RigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  cylinder2->model = glm::make_mat4(m);
+  
+  cylinder3RigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  cylinder3->model = glm::make_mat4(m);
 
   // clean up!
   ballRigidBody->clearForces();
   tableRigidBody->clearForces();
   cubeRigidBody->clearForces();
-  cylinderRigidBody->clearForces();
+  cylinder1RigidBody->clearForces();
+  cylinder2RigidBody->clearForces();
+  cylinder3RigidBody->clearForces();
 }
 
 void Graphics::Render(char keyboardInput, bool newInput)
@@ -421,13 +454,17 @@ void Graphics::Render(char keyboardInput, bool newInput)
   glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
   cube->Render();
 
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder->GetModel()));
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder1->GetModel()));
   glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
   glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
   glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), cylDiffusex, cylDiffusez, cylDiffusez, 1);
   glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), cylSpecularx, cylSpeculary, cylSpecularz,1);
   glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
-  cylinder->Render();
+  cylinder1->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder2->GetModel()));
+  cylinder2->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder3->GetModel()));
+  cylinder3->Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();

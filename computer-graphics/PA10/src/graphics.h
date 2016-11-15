@@ -27,11 +27,9 @@ class Graphics
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
 		btCollisionShape *cubeMesh;
-		btCollisionShape *cylinderMesh;
-		btCollisionShape *leftWall;
-		btCollisionShape *rightWall;
-		btCollisionShape *backWall;
-		btCollisionShape *frontWall;
+		btCollisionShape *cylinder1Mesh;
+		btCollisionShape *cylinder2Mesh;
+		btCollisionShape *cylinder3Mesh;
 		btCollisionShape *topWall;
 		
 		Shader *m_shader;
@@ -43,7 +41,6 @@ class Graphics
     std::string ErrorString(GLenum error);
 
     Camera *m_camera;
-    //Shader *m_shader;
 
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
@@ -52,7 +49,9 @@ class Graphics
     Object *table;
     Object *ball;
     Object *cube;
-    Object *cylinder;
+    Object *cylinder1;
+    Object *cylinder2;
+    Object *cylinder3;
 
 GLuint Lpos;
     
@@ -61,23 +60,19 @@ GLuint Lpos;
     btDefaultMotionState *tableMotionState;
     btDefaultMotionState *ballMotionState;
     btDefaultMotionState *cubeMotionState;
-    btDefaultMotionState *cylinderMotionState;
+    btDefaultMotionState *cylinder1MotionState;
+    btDefaultMotionState *cylinder2MotionState;
+    btDefaultMotionState *cylinder3MotionState;
 
-    btDefaultMotionState *leftWallMotionState;
-    btDefaultMotionState *rightWallMotionState;
-    btDefaultMotionState *backWallMotionState;
-    btDefaultMotionState *frontWallMotionState;
     btDefaultMotionState *topWallMotionState;
     
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
 		btRigidBody *cubeRigidBody;
-		btRigidBody *cylinderRigidBody;
+		btRigidBody *cylinder1RigidBody;
+		btRigidBody *cylinder2RigidBody;
+		btRigidBody *cylinder3RigidBody;
 
-		btRigidBody *leftWallRigidBody;
-		btRigidBody *rightWallRigidBody;
-		btRigidBody *backWallRigidBody;
-		btRigidBody *frontWallRigidBody;
 		btRigidBody *topWallRigidBody;		
 		
 		btDiscreteDynamicsWorld *dynamicsWorld;
