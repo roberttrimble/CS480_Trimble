@@ -105,7 +105,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Table
   triMesh1 = new btTriangleMesh();
-  table = new Object("../models/PinballTable7.obj", triMesh1);
+  table = new Object("../models/PinballTable5.obj", triMesh1);
   tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
@@ -340,6 +340,43 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
   dynamicsWorld->stepSimulation(dt, 10);
   
+  glm::vec3 ballModel = glm::vec3(ball->model[3]);
+  glm::vec3 cylinderModel1 = glm::vec3(cylinder1->model[3]);
+
+  float diffx = ballModel.x - cylinderModel1.x;
+  float diffy = ballModel.y - cylinderModel1.y;
+  float diffz = ballModel.z - cylinderModel1.z;
+
+  if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    normalize(normalVec);
+    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+  }
+
+  glm::vec3 cylinderModel2 = glm::vec3(cylinder2->model[3]);
+
+  diffx = ballModel.x - cylinderModel2.x;
+  diffy = ballModel.y - cylinderModel2.y;
+  diffz = ballModel.z - cylinderModel2.z;
+
+  if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    normalize(normalVec);
+    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+  }
+
+  glm::vec3 cylinderModel3 = glm::vec3(cylinder3->model[3]);
+
+  diffx = ballModel.x - cylinderModel3.x;
+  diffy = ballModel.y - cylinderModel3.y;
+  diffz = ballModel.z - cylinderModel3.z;
+
+  if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    normalize(normalVec);
+    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+  }
+
   btTransform trans;
   btScalar m[16];
 
