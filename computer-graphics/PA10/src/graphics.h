@@ -33,8 +33,6 @@ class Graphics
 		btCollisionShape *cylinder2Mesh;
 		btCollisionShape *cylinder3Mesh;
 		
-		btCollisionShape *topWall;
-		
 		btCollisionShape *leftBumperMesh;
 		btCollisionShape *rightBumperMesh;
 		
@@ -43,6 +41,11 @@ class Graphics
     float cylSpecularx = .05, cylSpeculary = .05, cylSpecularz = .05;
     float cylDiffusex = .05, cylDiffusey = .05, cylDiffusez = .05;
 		
+		btTransform trans;
+		btQuaternion quat;
+    float diffx = 0;
+    float diffy = 0;
+    float diffz = 0;
   private:
     std::string ErrorString(GLenum error);
 
@@ -78,8 +81,6 @@ GLuint Lpos;
     btDefaultMotionState *cylinder1MotionState;
     btDefaultMotionState *cylinder2MotionState;
     btDefaultMotionState *cylinder3MotionState;
-
-    btDefaultMotionState *topWallMotionState;
     
     btDefaultMotionState *leftBumperMotionState;
     btDefaultMotionState *rightBumperMotionState;
@@ -89,8 +90,6 @@ GLuint Lpos;
 		btRigidBody *cylinder1RigidBody;
 		btRigidBody *cylinder2RigidBody;
 		btRigidBody *cylinder3RigidBody;
-
-		btRigidBody *topWallRigidBody;
 		
 		btRigidBody *leftBumperRigidBody;
 		btRigidBody *rightBumperRigidBody;		

@@ -10,37 +10,67 @@ Graphics::~Graphics()
 
   //////////// clean up and end program
   // delete the pointers
-  delete cylinder1RigidBody;
+  //////////// clean up and end program
+  // delete the pointers
+  dynamicsWorld->removeRigidBody(cylinder3RigidBody);
+  delete cylinder3RigidBody->getMotionState();
+  delete cylinder3RigidBody;
+
+  dynamicsWorld->removeRigidBody(cylinder2RigidBody);
+  delete cylinder2RigidBody->getMotionState();
+  delete cylinder2RigidBody;
+
   dynamicsWorld->removeRigidBody(cylinder1RigidBody);
   delete cylinder1RigidBody->getMotionState();
-  delete cylinder1Mesh;
-  delete cylinder1; 
-  delete triMesh4;
+  delete cylinder1RigidBody;
 
-  delete ballRigidBody;
   dynamicsWorld->removeRigidBody(ballRigidBody);
   delete ballRigidBody->getMotionState();
+  delete ballRigidBody;
+
+  dynamicsWorld->removeRigidBody(rightBumperRigidBody);
+  delete rightBumperRigidBody->getMotionState();
+  delete rightBumperRigidBody;
+
+  dynamicsWorld->removeRigidBody(leftBumperRigidBody);
+  delete leftBumperRigidBody->getMotionState();
+  delete leftBumperRigidBody;
+
+  dynamicsWorld->removeRigidBody(tableRigidBody);
+  delete tableRigidBody->getMotionState();
+  delete tableRigidBody;
+
+  delete cylinder3Mesh;
+  delete cylinder3;
+
+  delete cylinder2Mesh;
+  delete cylinder2;
+
+  delete cylinder1Mesh;
+  delete cylinder1;
+  delete triMesh4;
+
   delete ballMesh;
   delete ball;
   delete triMesh2;
 
-  delete topWallRigidBody;
-  dynamicsWorld->removeRigidBody(topWallRigidBody);
-  delete topWallRigidBody->getMotionState();
-  delete topWall;
+  delete rightBumperMesh;
+  delete rightBumper;
+  delete triMesh6;
 
-  delete tableRigidBody;
-  dynamicsWorld->removeRigidBody(tableRigidBody);
-  delete tableRigidBody->getMotionState();
+  delete leftBumperMesh;
+  delete leftBumper;
+  delete triMesh5;
+
   delete tableMesh;
   delete table;
   delete triMesh1;
 
   delete dynamicsWorld;
   delete solver;
+  delete broadphase;
   delete dispatcher;
   delete collisionConfiguration;
-  delete broadphase;
 }
 
 bool Graphics::Initialize(int width, int height)
@@ -138,19 +168,6 @@ bool Graphics::Initialize(int width, int height)
   rightBumperRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(rightBumperRigidBody);
-
-  //Create top wall
-
-  topWall = new btStaticPlaneShape(btVector3(0, -1, 0), 0);
-  topWallMotionState = NULL;
-  topWallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 5, 0)));
-  
-  btRigidBody::btRigidBodyConstructionInfo topWallRigidBodyCI(0, topWallMotionState, topWall, btVector3(0, 0, 0));
-  topWallRigidBody = new btRigidBody(topWallRigidBodyCI);
-
-  topWallRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
-  dynamicsWorld->addRigidBody(topWallRigidBody); 
   
 /////////////////////////////////////////////////////////////////////////////
 
@@ -299,6 +316,16 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 {
  //float force = 5.0;
 
+  // variables
+  glm::vec3 ballModel = glm::vec3(ball->model[3]);
+  glm::vec3 leftBumperModel = glm::vec3(leftBumper->model[3]);
+  glm::vec3 rightBumperModel = glm::vec3(rightBumper->model[3]);
+  glm::vec3 cylinderModel1 = glm::vec3(cylinder1->model[3]);
+  glm::vec3 cylinderModel2 = glm::vec3(cylinder2->model[3]);
+  glm::vec3 cylinderModel3 = glm::vec3(cylinder3->model[3]);
+  btScalar m[16];
+  btTransform trans;
+
 
  if (newInput == true)
   {
@@ -307,26 +334,16 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       //Left
       /////////////////////////////
       case '<':
-        
-        if(true){
-        
-        	glm::vec3 ballModel = glm::vec3(ball->model[3]);
-  				glm::vec3 leftBumperModel = glm::vec3(leftBumper->model[3]);
 
-  				float diffx = ballModel.x - leftBumperModel.x;
-  				float diffy = ballModel.y - leftBumperModel.y;
-  				float diffz = ballModel.z - leftBumperModel.z;
+  				diffx = ballModel.x - leftBumperModel.x;
+  				diffy = ballModel.y - leftBumperModel.y;
+  			  diffz = ballModel.z - leftBumperModel.z;
 
   				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
     				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     				normalize(normalVec);
     				ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
   					}
-        
-        
-		     	btTransform trans;
-		     	btQuaternion quat;
-		     	btScalar m[16];
 		     	
 		     	leftBumperRigidBody->getMotionState()->getWorldTransform(trans);
 					quat.setEuler(1.2, 0.0, 0.0);
@@ -339,32 +356,22 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 					leftWaitCount = 0;
 					dt3 = dt;
 					leftUp = true;
-  			}
+
       break;
       
       //Right
       ///////////////////////
       case '>':
-        
-        if(true){
-        
-        	glm::vec3 ballModel = glm::vec3(ball->model[3]);
-  				glm::vec3 rightBumperModel = glm::vec3(rightBumper->model[3]);
 
-  				float diffx = ballModel.x - rightBumperModel.x;
-  				float diffy = ballModel.y - rightBumperModel.y;
-  				float diffz = ballModel.z - rightBumperModel.z;
+  				diffx = ballModel.x - rightBumperModel.x;
+  				diffy = ballModel.y - rightBumperModel.y;
+  				diffz = ballModel.z - rightBumperModel.z;
 
   				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
     				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     				normalize(normalVec);
     				ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
   					}
-        
-        
-		     	btTransform trans;
-		     	btQuaternion quat;
-		     	btScalar m[16];
 		     	
 		     	rightBumperRigidBody->getMotionState()->getWorldTransform(trans);
 					quat.setEuler(-1.2, 0.0, 0.0);
@@ -377,7 +384,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 					rightWaitCount = 0;
 					dt2 = dt;
 					rightUp = true;
-  			}
+
       break;
         
       //Up/forward
@@ -410,10 +417,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
     if(rightUp && (rightWaitCount > 10))
     {
-		  	btTransform trans;
-		  	btQuaternion quat;
-		   	btScalar m[16];
-		     	
 		   	rightBumperRigidBody->getMotionState()->getWorldTransform(trans);
 				quat.setEuler(0.0, 0.0, 0.0);
 				trans.setRotation(quat);
@@ -431,11 +434,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
     }
 
     if(leftUp && (leftWaitCount > 10))
-    {
-		  	btTransform trans;
-		  	btQuaternion quat;
-		   	btScalar m[16];
-		     	
+    {	
 		   	leftBumperRigidBody->getMotionState()->getWorldTransform(trans);
 				quat.setEuler(0.0, 0.0, 0.0);
 				trans.setRotation(quat);
@@ -447,21 +446,16 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   		}
 
   dynamicsWorld->stepSimulation(dt, 10);
-  
-  glm::vec3 ballModel = glm::vec3(ball->model[3]);
-  glm::vec3 cylinderModel1 = glm::vec3(cylinder1->model[3]);
 
-  float diffx = ballModel.x - cylinderModel1.x;
-  float diffy = ballModel.y - cylinderModel1.y;
-  float diffz = ballModel.z - cylinderModel1.z;
+  diffx = ballModel.x - cylinderModel1.x;
+  diffy = ballModel.y - cylinderModel1.y;
+  diffz = ballModel.z - cylinderModel1.z;
 
   if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
   }
-
-  glm::vec3 cylinderModel2 = glm::vec3(cylinder2->model[3]);
 
   diffx = ballModel.x - cylinderModel2.x;
   diffy = ballModel.y - cylinderModel2.y;
@@ -473,8 +467,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
   }
 
-  glm::vec3 cylinderModel3 = glm::vec3(cylinder3->model[3]);
-
   diffx = ballModel.x - cylinderModel3.x;
   diffy = ballModel.y - cylinderModel3.y;
   diffz = ballModel.z - cylinderModel3.z;
@@ -484,9 +476,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
   }
-
-  btTransform trans;
-  btScalar m[16];
 
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
@@ -530,13 +519,13 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
   // clean up!
   ballRigidBody->clearForces();
-  tableRigidBody->clearForces();
+  //tableRigidBody->clearForces();
   //cubeRigidBody->clearForces();
-  cylinder1RigidBody->clearForces();
-  cylinder2RigidBody->clearForces();
-  cylinder3RigidBody->clearForces();
-  leftBumperRigidBody->clearForces();
-  rightBumperRigidBody->clearForces();
+  //cylinder1RigidBody->clearForces();
+  //cylinder2RigidBody->clearForces();
+  //cylinder3RigidBody->clearForces();
+  //leftBumperRigidBody->clearForces();
+  //rightBumperRigidBody->clearForces();
 }
 
 void Graphics::Render(char keyboardInput, bool newInput)
