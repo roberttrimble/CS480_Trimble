@@ -105,7 +105,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Table
   triMesh1 = new btTriangleMesh();
-  table = new Object("../models/PinballTable5.obj", triMesh1);
+  table = new Object("../models/PinballTable8.obj", triMesh1);
   tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
@@ -116,7 +116,36 @@ bool Graphics::Initialize(int width, int height)
 
   tableRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
-  dynamicsWorld->addRigidBody(tableRigidBody); 
+  dynamicsWorld->addRigidBody(tableRigidBody);
+  
+  //Create paddles
+  triMesh5 = new btTriangleMesh();
+  leftBumper = new Object("../models/leftBumper.obj", triMesh5);
+  leftBumperMesh = new btBvhTriangleMeshShape(triMesh5, true);
+  
+  leftBumperMotionState = NULL;
+  leftBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(5.2, 1, -4.8)));
+  
+  btRigidBody::btRigidBodyConstructionInfo leftBumperRigidBodyCI(0, leftBumperMotionState, leftBumperMesh, btVector3(0, 0, 0));
+  leftBumperRigidBody = new btRigidBody(leftBumperRigidBodyCI);
+
+  leftBumperRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+  dynamicsWorld->addRigidBody(leftBumperRigidBody); 
+  ///////////
+  triMesh6 = new btTriangleMesh();
+  rightBumper = new Object("../models/rightBumper.obj", triMesh6);
+  rightBumperMesh = new btBvhTriangleMeshShape(triMesh6, true);
+  
+  rightBumperMotionState = NULL;
+  rightBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2.5, 1, -4.8)));
+  
+  btRigidBody::btRigidBodyConstructionInfo rightBumperRigidBodyCI(0, rightBumperMotionState, rightBumperMesh, btVector3(0, 0, 0));
+  rightBumperRigidBody = new btRigidBody(rightBumperRigidBodyCI);
+
+  rightBumperRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+  dynamicsWorld->addRigidBody(rightBumperRigidBody);
 
   //Create top wall
 
@@ -298,9 +327,8 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mouseXlocation, int mouseYlocation)
 {
+ float force = 5.0;
 
-
- float force = 8.0;
 
  if (newInput == true)
   {
@@ -310,12 +338,78 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       /////////////////////////////
       case '<':
         cubeRigidBody->applyCentralImpulse(btVector3(force,0.0,0.0));
+        
+        if(true){
+        
+        	glm::vec3 cubeModel = glm::vec3(cube->model[3]);
+  				glm::vec3 leftBumperModel = glm::vec3(leftBumper->model[3]);
+
+  				float diffx = cubeModel.x - leftBumperModel.x;
+  				float diffy = cubeModel.y - leftBumperModel.y;
+  				float diffz = cubeModel.z - leftBumperModel.z;
+
+  				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+    				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    				normalize(normalVec);
+    				cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
+  					}
+        
+        
+		     	btTransform trans;
+		     	btQuaternion quat;
+		     	btScalar m[16];
+		     	
+		     	leftBumperRigidBody->getMotionState()->getWorldTransform(trans);
+					quat.setEuler(1.2, 0.0, 0.0);
+					trans.setRotation(quat);
+					trans.getOpenGLMatrix(m);
+					leftBumperRigidBody->getMotionState()->setWorldTransform(trans);
+					leftBumperRigidBody->setMotionState(leftBumperRigidBody->getMotionState());
+					leftBumper->model = glm::make_mat4(m);
+					
+					leftWaitCount = 0;
+					dt3 = dt;
+					leftUp = true;
+  			}
       break;
       
       //Right
       ///////////////////////
       case '>':
         cubeRigidBody->applyCentralImpulse(btVector3(-force,0.0,0.0));
+        
+        if(true){
+        
+        	glm::vec3 cubeModel = glm::vec3(cube->model[3]);
+  				glm::vec3 rightBumperModel = glm::vec3(rightBumper->model[3]);
+
+  				float diffx = cubeModel.x - rightBumperModel.x;
+  				float diffy = cubeModel.y - rightBumperModel.y;
+  				float diffz = cubeModel.z - rightBumperModel.z;
+
+  				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+    				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    				normalize(normalVec);
+    				cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
+  					}
+        
+        
+		     	btTransform trans;
+		     	btQuaternion quat;
+		     	btScalar m[16];
+		     	
+		     	rightBumperRigidBody->getMotionState()->getWorldTransform(trans);
+					quat.setEuler(-1.2, 0.0, 0.0);
+					trans.setRotation(quat);
+					trans.getOpenGLMatrix(m);
+					rightBumperRigidBody->getMotionState()->setWorldTransform(trans);
+					rightBumperRigidBody->setMotionState(rightBumperRigidBody->getMotionState());
+					rightBumper->model = glm::make_mat4(m);
+					
+					rightWaitCount = 0;
+					dt2 = dt;
+					rightUp = true;
+  			}
       break;
         
       //Up/forward
@@ -328,6 +422,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       ///////////////////////
       case 'v':
         cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,-force));
+        
       break;
       //Launch the ball
       ///////////////////////
@@ -337,6 +432,51 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       break;
     	}
     }
+    
+    //Put bumpers back down if need be
+    if(dt2 != dt)
+    {
+    	rightWaitCount++;
+    	dt2 = dt;
+    }
+
+    if(rightUp && (rightWaitCount > 10))
+    {
+		  	btTransform trans;
+		  	btQuaternion quat;
+		   	btScalar m[16];
+		     	
+		   	rightBumperRigidBody->getMotionState()->getWorldTransform(trans);
+				quat.setEuler(0.0, 0.0, 0.0);
+				trans.setRotation(quat);
+				trans.getOpenGLMatrix(m);
+				rightBumperRigidBody->getMotionState()->setWorldTransform(trans);
+				rightBumperRigidBody->setMotionState(rightBumperRigidBody->getMotionState());
+				rightBumper->model = glm::make_mat4(m);
+				rightUp = false;
+  		}
+  		
+  		if(dt3 != dt)
+    {
+    	leftWaitCount++;
+    	dt3 = dt;
+    }
+
+    if(leftUp && (leftWaitCount > 10))
+    {
+		  	btTransform trans;
+		  	btQuaternion quat;
+		   	btScalar m[16];
+		     	
+		   	leftBumperRigidBody->getMotionState()->getWorldTransform(trans);
+				quat.setEuler(0.0, 0.0, 0.0);
+				trans.setRotation(quat);
+				trans.getOpenGLMatrix(m);
+				leftBumperRigidBody->getMotionState()->setWorldTransform(trans);
+				leftBumperRigidBody->setMotionState(leftBumperRigidBody->getMotionState());
+				leftBumper->model = glm::make_mat4(m);
+				leftUp = false;
+  		}
 
   dynamicsWorld->stepSimulation(dt, 10);
   
@@ -382,7 +522,15 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
-  table->model = glm::make_mat4(m);  
+  table->model = glm::make_mat4(m);
+  
+  leftBumperRigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  leftBumper->model = glm::make_mat4(m);
+  
+  rightBumperRigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  rightBumper->model = glm::make_mat4(m); 
   
   ballRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
@@ -411,6 +559,8 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   cylinder1RigidBody->clearForces();
   cylinder2RigidBody->clearForces();
   cylinder3RigidBody->clearForces();
+  leftBumperRigidBody->clearForces();
+  rightBumperRigidBody->clearForces();
 }
 
 void Graphics::Render(char keyboardInput, bool newInput)
@@ -471,6 +621,11 @@ void Graphics::Render(char keyboardInput, bool newInput)
   glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1,1,1,1);
   glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
   table->Render();
+  
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(leftBumper->GetModel()));
+  leftBumper->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(rightBumper->GetModel()));
+  rightBumper->Render();
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball->GetModel()));
   glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);

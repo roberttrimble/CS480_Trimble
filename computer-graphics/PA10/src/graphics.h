@@ -24,13 +24,20 @@ class Graphics
     btTriangleMesh *triMesh2;
     btTriangleMesh *triMesh3;
     btTriangleMesh *triMesh4;
+    btTriangleMesh *triMesh5;
+    btTriangleMesh *triMesh6;
+    
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
 		btCollisionShape *cubeMesh;
 		btCollisionShape *cylinder1Mesh;
 		btCollisionShape *cylinder2Mesh;
 		btCollisionShape *cylinder3Mesh;
+		
 		btCollisionShape *topWall;
+		
+		btCollisionShape *leftBumperMesh;
+		btCollisionShape *rightBumperMesh;
 		
 		Shader *m_shader;
     float tableAmbientx = .2, tableAmbienty = .2, tableAmbientz = .2; 
@@ -52,6 +59,17 @@ class Graphics
     Object *cylinder1;
     Object *cylinder2;
     Object *cylinder3;
+    
+    Object *leftBumper;
+    Object *rightBumper;
+    
+    bool rightUp = false;
+    unsigned int dt2;
+    int rightWaitCount;
+    
+    bool leftUp = false;
+    unsigned int dt3;
+    int leftWaitCount;
 
 GLuint Lpos;
     
@@ -66,6 +84,9 @@ GLuint Lpos;
 
     btDefaultMotionState *topWallMotionState;
     
+    btDefaultMotionState *leftBumperMotionState;
+    btDefaultMotionState *rightBumperMotionState;
+    
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
 		btRigidBody *cubeRigidBody;
@@ -73,7 +94,10 @@ GLuint Lpos;
 		btRigidBody *cylinder2RigidBody;
 		btRigidBody *cylinder3RigidBody;
 
-		btRigidBody *topWallRigidBody;		
+		btRigidBody *topWallRigidBody;
+		
+		btRigidBody *leftBumperRigidBody;
+		btRigidBody *rightBumperRigidBody;		
 		
 		btDiscreteDynamicsWorld *dynamicsWorld;
     btBroadphaseInterface* broadphase;
