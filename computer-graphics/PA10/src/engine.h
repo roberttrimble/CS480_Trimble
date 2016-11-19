@@ -40,6 +40,8 @@ class Engine
     int mouseYlocation;
     
     int state = 0;
+    
+    int score = 0;
 };
 
 #endif // ENGINE_H

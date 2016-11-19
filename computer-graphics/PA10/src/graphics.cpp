@@ -17,14 +17,6 @@ Graphics::~Graphics()
   delete cylinder1; 
   delete triMesh4;
 
-
-  delete cubeRigidBody;
-  dynamicsWorld->removeRigidBody(cubeRigidBody);
-  delete cubeRigidBody->getMotionState();
-  delete cubeMesh;
-  delete cube;
-  delete triMesh3;
-
   delete ballRigidBody;
   dynamicsWorld->removeRigidBody(ballRigidBody);
   delete ballRigidBody->getMotionState();
@@ -185,28 +177,6 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld->addRigidBody(ballRigidBody);
 
 /////////////////////////////////////////////////////////////////////////////
-  
-  //Create Cube
-  triMesh3 = new btTriangleMesh();
-  cube = new Object("../models/cube_normals.obj", triMesh3);
-  cubeMesh = new btBoxShape(btVector3(.5, .5, .5));
-  
-  cubeMotionState = NULL;
-  cubeMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 10, -2)));
-  
-  // the cube must have a mass
-  mass = 1;
-
-  //we need the inertia of the sphere and we need to calculate it
-  btVector3 cubeInertia(0, 0, 0);
-  cubeMesh->calculateLocalInertia(mass, cubeInertia);
-
-  btRigidBody::btRigidBodyConstructionInfo cubeRigidBodyCI(1, cubeMotionState, cubeMesh, cubeInertia);
-  cubeRigidBody = new btRigidBody(cubeRigidBodyCI);
-
-  cubeRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
-  dynamicsWorld->addRigidBody(cubeRigidBody);
 
 /////////////////////////////////////////////////////////////////////////////
   
@@ -327,7 +297,7 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mouseXlocation, int mouseYlocation)
 {
- float force = 5.0;
+ //float force = 5.0;
 
 
  if (newInput == true)
@@ -337,21 +307,20 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       //Left
       /////////////////////////////
       case '<':
-        cubeRigidBody->applyCentralImpulse(btVector3(force,0.0,0.0));
         
         if(true){
         
-        	glm::vec3 cubeModel = glm::vec3(cube->model[3]);
+        	glm::vec3 ballModel = glm::vec3(ball->model[3]);
   				glm::vec3 leftBumperModel = glm::vec3(leftBumper->model[3]);
 
-  				float diffx = cubeModel.x - leftBumperModel.x;
-  				float diffy = cubeModel.y - leftBumperModel.y;
-  				float diffz = cubeModel.z - leftBumperModel.z;
+  				float diffx = ballModel.x - leftBumperModel.x;
+  				float diffy = ballModel.y - leftBumperModel.y;
+  				float diffz = ballModel.z - leftBumperModel.z;
 
   				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
     				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     				normalize(normalVec);
-    				cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
+    				ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
   					}
         
         
@@ -376,21 +345,20 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       //Right
       ///////////////////////
       case '>':
-        cubeRigidBody->applyCentralImpulse(btVector3(-force,0.0,0.0));
         
         if(true){
         
-        	glm::vec3 cubeModel = glm::vec3(cube->model[3]);
+        	glm::vec3 ballModel = glm::vec3(ball->model[3]);
   				glm::vec3 rightBumperModel = glm::vec3(rightBumper->model[3]);
 
-  				float diffx = cubeModel.x - rightBumperModel.x;
-  				float diffy = cubeModel.y - rightBumperModel.y;
-  				float diffz = cubeModel.z - rightBumperModel.z;
+  				float diffx = ballModel.x - rightBumperModel.x;
+  				float diffy = ballModel.y - rightBumperModel.y;
+  				float diffz = ballModel.z - rightBumperModel.z;
 
   				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
     				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     				normalize(normalVec);
-    				cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
+    				ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
   					}
         
         
@@ -415,13 +383,13 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       //Up/forward
       ///////////////////////
       case '^':
-        cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,force));
+        
       break;
         
       //Down/backwards
       ///////////////////////
       case 'v':
-        cubeRigidBody->applyCentralImpulse(btVector3(0.0,0.0,-force));
+        
         
       break;
       //Launch the ball
@@ -536,10 +504,6 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   trans.getOpenGLMatrix(m);
   ball->model = glm::make_mat4(m);
   
-  cubeRigidBody->getMotionState()->getWorldTransform(trans);
-  trans.getOpenGLMatrix(m);
-  cube->model = glm::make_mat4(m);
-  
   cylinder1RigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   cylinder1->model = glm::make_mat4(m);
@@ -552,10 +516,22 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
   trans.getOpenGLMatrix(m);
   cylinder3->model = glm::make_mat4(m);
 
+
+	//Reset the ball
+	if(ballModel.z < -7.25 && ballModel.x > -5)
+	{
+		ballRigidBody->getMotionState()->getWorldTransform(trans);
+		trans.setOrigin(btVector3(-5.0f, 10.0f, 5.0f));
+		ballRigidBody->getMotionState()->setWorldTransform(trans);
+		ballRigidBody->setMotionState(ballRigidBody->getMotionState());
+		ball->model = glm::make_mat4(m);
+	}
+
+
   // clean up!
   ballRigidBody->clearForces();
   tableRigidBody->clearForces();
-  cubeRigidBody->clearForces();
+  //cubeRigidBody->clearForces();
   cylinder1RigidBody->clearForces();
   cylinder2RigidBody->clearForces();
   cylinder3RigidBody->clearForces();
@@ -637,14 +613,6 @@ void Graphics::Render(char keyboardInput, bool newInput)
   glUniform1f(m_shader->GetUniformLocation("ball"), 1.0);
   ball->Render();
   glUniform1f(m_shader->GetUniformLocation("ball"), 0.0);
-
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cube->GetModel()));
-  glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
-  glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .25,.25,.25,1);
-  glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), .25,.25,.25,1);
-  glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1,1,1,1);
-  glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
-  cube->Render();
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder1->GetModel()));
   glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);

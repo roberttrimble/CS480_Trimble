@@ -29,7 +29,6 @@ class Graphics
     
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
-		btCollisionShape *cubeMesh;
 		btCollisionShape *cylinder1Mesh;
 		btCollisionShape *cylinder2Mesh;
 		btCollisionShape *cylinder3Mesh;
@@ -55,7 +54,6 @@ class Graphics
 
     Object *table;
     Object *ball;
-    Object *cube;
     Object *cylinder1;
     Object *cylinder2;
     Object *cylinder3;
@@ -77,7 +75,6 @@ GLuint Lpos;
     
     btDefaultMotionState *tableMotionState;
     btDefaultMotionState *ballMotionState;
-    btDefaultMotionState *cubeMotionState;
     btDefaultMotionState *cylinder1MotionState;
     btDefaultMotionState *cylinder2MotionState;
     btDefaultMotionState *cylinder3MotionState;
@@ -89,7 +86,6 @@ GLuint Lpos;
     
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
-		btRigidBody *cubeRigidBody;
 		btRigidBody *cylinder1RigidBody;
 		btRigidBody *cylinder2RigidBody;
 		btRigidBody *cylinder3RigidBody;

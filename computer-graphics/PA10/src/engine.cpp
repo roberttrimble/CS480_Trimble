@@ -75,7 +75,10 @@ void Engine::Run()
 
     // Swap to the Window
     m_window->Swap();
+    score++;
   }
+  
+  std::cout << "Congradulations! Your score was: " << score << std::endl;
 }
 
 void Engine::Keyboard()
