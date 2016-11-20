@@ -81,8 +81,9 @@ void Engine::Run()
     if(outOfLives == false)
     	m_running = false;
   }
-  
-  std::cout << "\n\nCongradulations! Your score was: " << score << "\n\n" << std::endl;
+  m_graphics->bumperHit = m_graphics->bumperHit - 100;
+  score += m_graphics->bumperHit;
+  std::cout << "\n\nCongradulations! Your score was: " << score << "\n\n" << m_graphics->bumperHit << std::endl<< std::endl;
 }
 
 void Engine::Keyboard()

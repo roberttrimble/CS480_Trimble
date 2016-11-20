@@ -54,6 +54,8 @@ class Graphics
     float diffx = 0;
     float diffy = 0;
     float diffz = 0;
+
+float bumperHit = 0;
   private:
     std::string ErrorString(GLenum error);
 

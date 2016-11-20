@@ -7,7 +7,7 @@ Graphics::Graphics()
 
 Graphics::~Graphics()
 {
-/*
+
   //////////// clean up and end program
   // delete the pointers
   //////////// clean up and end program
@@ -23,6 +23,10 @@ Graphics::~Graphics()
   dynamicsWorld->removeRigidBody(cylinder1RigidBody);
   delete cylinder1RigidBody->getMotionState();
   delete cylinder1RigidBody;
+
+  dynamicsWorld->removeRigidBody(plungerRigidBody);
+	delete plungerRigidBody->getMotionState();
+  delete plungerRigidBody;
 
   dynamicsWorld->removeRigidBody(ballRigidBody);
   delete ballRigidBody->getMotionState();
@@ -40,10 +44,6 @@ Graphics::~Graphics()
   delete tableRigidBody->getMotionState();
   delete tableRigidBody;
 
-	dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
-	delete launchPlaneRigidBody->getMotionState();
-  delete launchPlaneRigidBody;
-
   delete cylinder3Mesh;
   delete cylinder3;
 
@@ -52,6 +52,10 @@ Graphics::~Graphics()
 
   delete cylinder1Mesh;
   delete cylinder1;
+
+  delete plungerMesh;
+  delete plunger;
+  delete triMesh8;
 
   delete ballMesh;
   delete ball;
@@ -69,14 +73,11 @@ Graphics::~Graphics()
   delete table;
   delete triMesh1;
 
-	delete launchPlaneMesh;
-
   delete dynamicsWorld;
   delete solver;
   delete broadphase;
   delete dispatcher;
   delete collisionConfiguration;
-*/
 }
 bool Graphics::Initialize(int width, int height)
 {
@@ -509,6 +510,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+    bumperHit += 20;
   }
 
   diffx = ballModel.x - cylinderModel2.x;
@@ -519,6 +521,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+    bumperHit += 20;
   }
 
   diffx = ballModel.x - cylinderModel3.x;
@@ -529,6 +532,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+    bumperHit += 20;
   }
   
   //block off the launch tube
