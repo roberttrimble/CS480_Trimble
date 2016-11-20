@@ -25,6 +25,8 @@ class Graphics
     btTriangleMesh *triMesh5;
     btTriangleMesh *triMesh6;
     
+////////////////////////////////////////////////////
+
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
 		btCollisionShape *cylinder1Mesh;
@@ -35,7 +37,8 @@ class Graphics
 		btCollisionShape *rightBumperMesh;
 		
 		btCollisionShape *launchPlaneMesh;
-		
+//////////////////////////////////////////////////////		
+
 		Shader *m_shader;
     float tableAmbientx = .2, tableAmbienty = .2, tableAmbientz = .2; 
     float cylSpecularx = .05, cylSpeculary = .05, cylSpecularz = .05;

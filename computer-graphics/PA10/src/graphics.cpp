@@ -6,7 +6,7 @@ Graphics::Graphics()
 }
 
 Graphics::~Graphics()
-{
+{/*
 
   //////////// clean up and end program
   // delete the pointers
@@ -40,6 +40,10 @@ Graphics::~Graphics()
   delete tableRigidBody->getMotionState();
   delete tableRigidBody;
 
+		dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
+		delete launchPlaneRigidBody->getMotionState();
+  	delete launchPlaneRigidBody;
+
   delete cylinder3Mesh;
   delete cylinder3;
 
@@ -65,13 +69,15 @@ Graphics::~Graphics()
   delete table;
   delete triMesh1;
 
+delete launchPlaneMesh;
+
   delete dynamicsWorld;
   delete solver;
   delete broadphase;
   delete dispatcher;
   delete collisionConfiguration;
+}*/
 }
-
 bool Graphics::Initialize(int width, int height)
 {
   // Used for the linux OS
@@ -126,7 +132,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Table
   triMesh1 = new btTriangleMesh();
-  table = new Object("../models/PinballTable8.obj", triMesh1);
+  table = new Object("../models/PinballTable9.obj", triMesh1);
   tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
@@ -337,7 +343,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   				diffy = ballModel.y - leftBumperModel.y;
   			  diffz = ballModel.z - leftBumperModel.z;
 
-  				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+  				if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
     				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     				normalize(normalVec);
     				ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
@@ -365,7 +371,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   				diffy = ballModel.y - rightBumperModel.y;
   				diffz = ballModel.z - rightBumperModel.z;
 
-  				if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+  				if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
     				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     				normalize(normalVec);
     				ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
@@ -457,7 +463,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   diffy = ballModel.y - cylinderModel1.y;
   diffz = ballModel.z - cylinderModel1.z;
 
-  if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+  if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
@@ -467,7 +473,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   diffy = ballModel.y - cylinderModel2.y;
   diffz = ballModel.z - cylinderModel2.z;
 
-  if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+  if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
@@ -477,7 +483,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   diffy = ballModel.y - cylinderModel3.y;
   diffz = ballModel.z - cylinderModel3.z;
 
-  if ( abs(diffx) <= 1.8 && abs(diffz) <= 1.8){
+  if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
@@ -545,9 +551,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		ball->model = glm::make_mat4(m);
 		
 		dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
-		delete launchPlaneRigidBody->getMotionState();
-  	delete launchPlaneRigidBody;
-		
+
 		ballLaunched = false;
 	}
 
@@ -565,6 +569,11 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
 void Graphics::Render(char keyboardInput, bool newInput)
 {
+  glm::vec3 ballModel = glm::vec3(ball->model[3]);
+  glm::vec3 cylinderModel1 = glm::vec3(cylinder1->model[3]);
+  glm::vec3 cylinderModel2 = glm::vec3(cylinder2->model[3]);
+  glm::vec3 cylinderModel3 = glm::vec3(cylinder3->model[3]);
+
   //clear the screen
   glClearColor(0.0, 0.0, 0.2, 1.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -628,27 +637,68 @@ void Graphics::Render(char keyboardInput, bool newInput)
   rightBumper->Render();
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball->GetModel()));
-  glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
+  //glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
   glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
-  glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), 1, 1, 1,1);
-  glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1, 1, 1,1);
+  //glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), 1, 1, 1,1);
+  //glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1, 1, 1,1);
   glUniform1f(m_shader->GetUniformLocation("Shininess"), .0005);
 
   glUniform1f(m_shader->GetUniformLocation("ball"), 1.0);
   ball->Render();
   glUniform1f(m_shader->GetUniformLocation("ball"), 0.0);
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder1->GetModel()));
-  glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
-  glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
+  //glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
+  //glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
   glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), cylDiffusex, cylDiffusez, cylDiffusez, 1);
   glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), cylSpecularx, cylSpeculary, cylSpecularz,1);
   glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
+    
+  diffx = ballModel.x - cylinderModel1.x;
+  diffy = ballModel.y - cylinderModel1.y;
+  diffz = ballModel.z - cylinderModel1.z;
+  if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
+    glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), 55,55,55,1);
+    cylinder1->Render();
+  }
+  
+  
+  glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
   cylinder1->Render();
+  
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder2->GetModel()));
-  cylinder2->Render();
+  diffx = ballModel.x - cylinderModel2.x;
+  diffy = ballModel.y - cylinderModel2.y;
+  diffz = ballModel.z - cylinderModel2.z;
+  if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
+    glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), 55,55,55,1);
+    cylinder2->Render();
+  }
+  
+  
+    glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
+    cylinder2->Render();
+  
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder3->GetModel()));
-  cylinder3->Render();
+  diffx = ballModel.x - cylinderModel3.x;
+  diffy = ballModel.y - cylinderModel3.y;
+  diffz = ballModel.z - cylinderModel3.z;
+  if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
+    glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), 65,65,65,1);
+    cylinder3->Render();
+  }
+  
+  
+    glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
+    cylinder3->Render();
+  
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // Get any errors from OpenGL
   auto error = glGetError();
