@@ -459,7 +459,21 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
         	ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
         }
       break;
+      //toggle camera
+      //////////////////
+      case 'c':
+      	camera = !camera;
+      break;
     	}
+    }
+    
+    if (camera)
+    {
+    	m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, ballModel.x, ballModel.y, ballModel.z, 0.0f, 1.0f, 0.0f);
+    }
+    else
+    {
+    	m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     }
     
     //Put bumpers back down if need be
@@ -632,7 +646,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   //leftBumperRigidBody->clearForces();
   //rightBumperRigidBody->clearForces();
   
-  m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, ballModel.x, ballModel.y, ballModel.z, 0.0f, 1.0f, 0.0f);
+  
   
   return true;
 }

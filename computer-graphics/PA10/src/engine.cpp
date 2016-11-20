@@ -126,52 +126,57 @@ void Engine::Keyboard()
 		      state = 0;
         }
         break;
-      //start or stops orbit
+      //left paddle
       case SDLK_LEFT:
         keyboardInput = '<';
         newInput = true;
         
         break;
-      //reverses orbit
+      //right paddle
       case SDLK_RIGHT:
         keyboardInput = '>';
         newInput = true;
         
         break;
 
-      //start or stops rotation
+      //release plunger
       case SDLK_UP:
         keyboardInput = '^';
         newInput = true;
         break;
 
-      //start or stops rotation
+      //pull back plunger
       case SDLK_DOWN:
         keyboardInput = 'v';
         newInput = true;
         break;
 
-      //reverses rotation
+      //lowers table lights
       case SDLK_q:
         keyboardInput = 'q';
         newInput = true;
         break;
 
-      //reverses rotation
+      //raise table lights
       case SDLK_w:
         keyboardInput = 'w';
         newInput = true;
         break;
 
-      //reverses rotation
+      //loweer cylinder lights
       case SDLK_a:
         keyboardInput = 'a';
         newInput = true;
         break;
 
-      //reverses rotation
+      //raise cylinder lights
       case SDLK_s:
         keyboardInput = 's';
+        newInput = true;
+        break;
+      //toggle camera
+      case SDLK_c:
+        keyboardInput = 'c';
         newInput = true;
         break;
 

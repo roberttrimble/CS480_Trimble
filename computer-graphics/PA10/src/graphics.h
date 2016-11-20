@@ -55,7 +55,9 @@ class Graphics
     float diffy = 0;
     float diffz = 0;
 
-float bumperHit = 0;
+		float bumperHit = 0;
+		
+		bool camera = false;
   private:
     std::string ErrorString(GLenum error);
 
