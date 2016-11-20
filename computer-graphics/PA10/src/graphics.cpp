@@ -146,12 +146,12 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld->addRigidBody(tableRigidBody);
   
   //Create paddles
-  triMesh5 = new btTriangleMesh();
-  leftBumper = new Object("../models/leftBumper.obj", triMesh5);
-  leftBumperMesh = new btBvhTriangleMeshShape(triMesh5, true);
+  triMesh6 = new btTriangleMesh();
+  leftBumper = new Object("../models/leftBumper.obj", triMesh6);
+  leftBumperMesh = new btBvhTriangleMeshShape(triMesh6, true);
   
   leftBumperMotionState = NULL;
-  leftBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(5.2, 1, -4.8)));
+  leftBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(4.6, 1, -5)));
   
   btRigidBody::btRigidBodyConstructionInfo leftBumperRigidBodyCI(0, leftBumperMotionState, leftBumperMesh, btVector3(0, 0, 0));
   leftBumperRigidBody = new btRigidBody(leftBumperRigidBodyCI);
@@ -160,12 +160,12 @@ bool Graphics::Initialize(int width, int height)
     
   dynamicsWorld->addRigidBody(leftBumperRigidBody); 
   ///////////
-  triMesh6 = new btTriangleMesh();
-  rightBumper = new Object("../models/rightBumper.obj", triMesh6);
-  rightBumperMesh = new btBvhTriangleMeshShape(triMesh6, true);
+  triMesh7 = new btTriangleMesh();
+  rightBumper = new Object("../models/rightBumper.obj", triMesh7);
+  rightBumperMesh = new btBvhTriangleMeshShape(triMesh7, true);
   
   rightBumperMotionState = NULL;
-  rightBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2.5, 1, -4.8)));
+  rightBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2.5, 1, -5.1)));
   
   btRigidBody::btRigidBodyConstructionInfo rightBumperRigidBodyCI(0, rightBumperMotionState, rightBumperMesh, btVector3(0, 0, 0));
   rightBumperRigidBody = new btRigidBody(rightBumperRigidBodyCI);
@@ -173,6 +173,7 @@ bool Graphics::Initialize(int width, int height)
   rightBumperRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(rightBumperRigidBody);
+  
   
 /////////////////////////////////////////////////////////////////////////////
 
@@ -198,13 +199,33 @@ bool Graphics::Initialize(int width, int height)
   ballRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(ballRigidBody);
+  
+  
+  
+  
+  ////////////////////////////////////////////////////////////////////
+  //Create Plunger
+  triMesh8 = new btTriangleMesh();
+  plunger = new Object("../models/plunger3.obj", triMesh8);
+  plungerMesh = new btBvhTriangleMeshShape(triMesh8, true);
+	
+	plungerMotionState = NULL;
+  plungerMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(.25, 2, -3)));
+  
+  btRigidBody::btRigidBodyConstructionInfo plungerRigidBodyCI(0, plungerMotionState, plungerMesh, btVector3(0, 0, 0));
+  plungerRigidBody = new btRigidBody(plungerRigidBodyCI);
+
+  plungerRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+  dynamicsWorld->addRigidBody(plungerRigidBody);
 
 /////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////
   
   //Create Cylinders
-  cylinder1 = new Object("../models/cylinder_normals.obj", triMesh2);
+  triMesh3 = new btTriangleMesh();
+  cylinder1 = new Object("../models/cylinder_normals.obj", triMesh3);
   cylinder1Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder1MotionState = NULL;
@@ -218,7 +239,8 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld->addRigidBody(cylinder1RigidBody);
   
   
-  cylinder2 = new Object("../models/cylinder_normals.obj", triMesh2);
+  triMesh4 = new btTriangleMesh();
+  cylinder2 = new Object("../models/cylinder_normals.obj", triMesh4);
   cylinder2Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder2MotionState = NULL;
@@ -232,7 +254,8 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld->addRigidBody(cylinder2RigidBody);
   
   
-  cylinder3 = new Object("../models/cylinder_normals.obj", triMesh2);
+  triMesh5 = new btTriangleMesh();
+  cylinder3 = new Object("../models/cylinder_normals.obj", triMesh5);
   cylinder3Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder3MotionState = NULL;
@@ -317,7 +340,7 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
+bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
 
   // variables
@@ -394,13 +417,32 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       //Up/forward
       ///////////////////////
       case '^':
+        plungerPull = -3;
         
+        ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,plungerForce));
+        plungerForce = 0;
+      
+        plungerRigidBody->getMotionState()->getWorldTransform(trans);
+				trans.setOrigin(btVector3(.25f, 2.0f, plungerPull));
+				plungerRigidBody->getMotionState()->setWorldTransform(trans);
+				plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
+				plunger->model = glm::make_mat4(m);
       break;   
       //Down/backwards
       ///////////////////////
       case 'v':
-        
-        
+      	if( plungerForce < 20)
+      	{ 
+		    	plungerPull -= .2;
+		    
+		      plungerRigidBody->getMotionState()->getWorldTransform(trans);
+					trans.setOrigin(btVector3(.25f, 2.0f, plungerPull));
+					plungerRigidBody->getMotionState()->setWorldTransform(trans);
+					plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
+					plunger->model = glm::make_mat4(m);
+		      
+		      plungerForce += .5;
+        }
       break;
       //Launch the ball
       ///////////////////////
@@ -496,7 +538,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   	
   	launchPlaneMesh = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
   	launchPlaneMotionState = NULL;
-  	launchPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-5, 0, 0)));
+  	launchPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-5.72, 0, 0)));
   
   	btRigidBody::btRigidBodyConstructionInfo launchPlaneRigidBodyCI(0, launchPlaneMotionState, launchPlaneMesh, btVector3(0, 0, 0));
   	launchPlaneRigidBody = new btRigidBody(launchPlaneRigidBodyCI);
@@ -524,6 +566,10 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   trans.getOpenGLMatrix(m);
   rightBumper->model = glm::make_mat4(m); 
   
+  plungerRigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  plunger->model = glm::make_mat4(m);
+  
   ballRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
   ball->model = glm::make_mat4(m);
@@ -542,10 +588,11 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
 
 	//Reset the ball
-	if(ballModel.z < -7.25 && ballModel.x > -5)
+	if((ballModel.z < -7.25 && ballModel.x > -5) || ballModel.y < 0)
 	{
+		ballRigidBody->clearForces();
 		ballRigidBody->getMotionState()->getWorldTransform(trans);
-		trans.setOrigin(btVector3(-5.2f, 5.0f, 5.0f));
+		trans.setOrigin(btVector3(-6.3f, 3.0f, 5.0f));
 		ballRigidBody->getMotionState()->setWorldTransform(trans);
 		ballRigidBody->setMotionState(ballRigidBody->getMotionState());
 		ball->model = glm::make_mat4(m);
@@ -553,6 +600,13 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
 
 		ballLaunched = false;
+		plungerForce = 0;
+		
+		
+		if(liveCount == 0)
+			return false;
+			
+		liveCount--;
 	}
 
 
@@ -565,6 +619,8 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   //cylinder3RigidBody->clearForces();
   //leftBumperRigidBody->clearForces();
   //rightBumperRigidBody->clearForces();
+  
+  return true;
 }
 
 void Graphics::Render(char keyboardInput, bool newInput)
@@ -631,10 +687,16 @@ void Graphics::Render(char keyboardInput, bool newInput)
   glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
   table->Render();
   
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(plunger->GetModel()));
+  plunger->Render();
+  
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(leftBumper->GetModel()));
   leftBumper->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(rightBumper->GetModel()));
   rightBumper->Render();
+
+
+
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball->GetModel()));
   //glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);

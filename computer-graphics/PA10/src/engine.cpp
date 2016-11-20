@@ -53,8 +53,9 @@ bool Engine::Initialize()
 void Engine::Run()
 {
   m_running = true;
-  
   state = 0;
+  outOfLives = false;
+  //outOfLives = false;
 
   while(m_running)
   {
@@ -68,7 +69,7 @@ void Engine::Run()
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT, keyboardInput, newInput);
+    outOfLives = m_graphics->Update(m_DT, keyboardInput, newInput);
 
     m_graphics->Render(keyboardInput, newInput);
     newInput = false;
@@ -76,9 +77,12 @@ void Engine::Run()
     // Swap to the Window
     m_window->Swap();
     score++;
+    
+    if(outOfLives == false)
+    	m_running = false;
   }
   
-  std::cout << "Congradulations! Your score was: " << score << std::endl;
+  std::cout << "\n\nCongradulations! Your score was: " << score << std::endl;
 }
 
 void Engine::Keyboard()

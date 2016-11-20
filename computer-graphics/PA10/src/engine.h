@@ -18,6 +18,8 @@ class Engine
     void Keyboard();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
+    
+    bool outOfLives;
   
   private:
     // Window related variables
@@ -39,6 +41,7 @@ class Engine
 
     
     int state = 0;
+    
     
     int score = 0;
 };

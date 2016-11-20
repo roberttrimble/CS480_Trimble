@@ -16,14 +16,18 @@ class Graphics
     Graphics();
     ~Graphics();
     bool Initialize(int width, int height);
-    void Update(unsigned int dt, char keyboardInput, bool newInput);
+    bool Update(unsigned int dt, char keyboardInput, bool newInput);
     void Render(char keyboardInput, bool newInput);
 
     // Bullet    
     btTriangleMesh *triMesh1;
     btTriangleMesh *triMesh2;
+    btTriangleMesh *triMesh3;
+    btTriangleMesh *triMesh4;
     btTriangleMesh *triMesh5;
     btTriangleMesh *triMesh6;
+    btTriangleMesh *triMesh7;
+    btTriangleMesh *triMesh8;
     
 ////////////////////////////////////////////////////
 
@@ -37,10 +41,11 @@ class Graphics
 		btCollisionShape *rightBumperMesh;
 		
 		btCollisionShape *launchPlaneMesh;
+		btCollisionShape *plungerMesh;
 //////////////////////////////////////////////////////		
 
 		Shader *m_shader;
-    float tableAmbientx = .2, tableAmbienty = .2, tableAmbientz = .2; 
+    float tableAmbientx = .1, tableAmbienty = .1, tableAmbientz = .1; 
     float cylSpecularx = .05, cylSpeculary = .05, cylSpecularz = .05;
     float cylDiffusex = .05, cylDiffusey = .05, cylDiffusez = .05;
 		
@@ -67,6 +72,8 @@ class Graphics
     Object *leftBumper;
     Object *rightBumper;
     
+    Object *plunger;
+    
     bool ballLaunched = false;
     
     bool rightUp = false;
@@ -76,8 +83,11 @@ class Graphics
     bool leftUp = false;
     unsigned int dt3;
     int leftWaitCount;
-
-GLuint Lpos;
+    
+    float plungerForce = 0;
+    float plungerPull = -3;
+    
+    int liveCount = 2;
     
     //Bullet
     
@@ -91,6 +101,7 @@ GLuint Lpos;
     btDefaultMotionState *rightBumperMotionState;
     
     btDefaultMotionState *launchPlaneMotionState;
+    btDefaultMotionState *plungerMotionState;
     
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
@@ -101,7 +112,8 @@ GLuint Lpos;
 		btRigidBody *leftBumperRigidBody;
 		btRigidBody *rightBumperRigidBody;
 		
-		btRigidBody *launchPlaneRigidBody;		
+		btRigidBody *launchPlaneRigidBody;
+		btRigidBody *plungerRigidBody;		
 		
 		btDiscreteDynamicsWorld *dynamicsWorld;
     btBroadphaseInterface* broadphase;
