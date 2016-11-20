@@ -45,7 +45,7 @@ class Graphics
 //////////////////////////////////////////////////////		
 
 		Shader *m_shader;
-    float tableAmbientx = .1, tableAmbienty = .1, tableAmbientz = .1; 
+    float tableAmbientx = 0.0, tableAmbienty = 0.0, tableAmbientz = 0.0; 
     float cylSpecularx = .05, cylSpeculary = .05, cylSpecularz = .05;
     float cylDiffusex = .05, cylDiffusey = .05, cylDiffusez = .05;
 		

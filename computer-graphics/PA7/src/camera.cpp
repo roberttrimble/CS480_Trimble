@@ -34,6 +34,7 @@ void Camera::UpdateCamera(float x1, float y1, float z1, float x2, float y2, floa
                       glm::vec3(x2, y2, z2), //Focus point
                       glm::vec3(x3, y3, z3)); //Positive Y is up
 }
+
 glm::mat4 Camera::GetProjection()
 {
   return projection;

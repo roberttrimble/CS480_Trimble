@@ -82,7 +82,7 @@ void Engine::Run()
     	m_running = false;
   }
   
-  std::cout << "\n\nCongradulations! Your score was: " << score << std::endl;
+  std::cout << "\n\nCongradulations! Your score was: " << score << "\n\n" << std::endl;
 }
 
 void Engine::Keyboard()

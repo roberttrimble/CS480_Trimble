@@ -6,8 +6,8 @@ Graphics::Graphics()
 }
 
 Graphics::~Graphics()
-{/*
-
+{
+/*
   //////////// clean up and end program
   // delete the pointers
   //////////// clean up and end program
@@ -40,9 +40,9 @@ Graphics::~Graphics()
   delete tableRigidBody->getMotionState();
   delete tableRigidBody;
 
-		dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
-		delete launchPlaneRigidBody->getMotionState();
-  	delete launchPlaneRigidBody;
+	dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
+	delete launchPlaneRigidBody->getMotionState();
+  delete launchPlaneRigidBody;
 
   delete cylinder3Mesh;
   delete cylinder3;
@@ -69,14 +69,14 @@ Graphics::~Graphics()
   delete table;
   delete triMesh1;
 
-delete launchPlaneMesh;
+	delete launchPlaneMesh;
 
   delete dynamicsWorld;
   delete solver;
   delete broadphase;
   delete dispatcher;
   delete collisionConfiguration;
-}*/
+*/
 }
 bool Graphics::Initialize(int width, int height)
 {
@@ -147,7 +147,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create paddles
   triMesh6 = new btTriangleMesh();
-  leftBumper = new Object("../models/leftBumper.obj", triMesh6);
+  leftBumper = new Object("../models/leftBumper2.obj", triMesh6);
   leftBumperMesh = new btBvhTriangleMeshShape(triMesh6, true);
   
   leftBumperMotionState = NULL;
@@ -161,7 +161,7 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld->addRigidBody(leftBumperRigidBody); 
   ///////////
   triMesh7 = new btTriangleMesh();
-  rightBumper = new Object("../models/rightBumper.obj", triMesh7);
+  rightBumper = new Object("../models/rightBumper2.obj", triMesh7);
   rightBumperMesh = new btBvhTriangleMeshShape(triMesh7, true);
   
   rightBumperMotionState = NULL;
@@ -441,7 +441,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 					plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
 					plunger->model = glm::make_mat4(m);
 		      
-		      plungerForce += .5;
+		      plungerForce += .75;
         }
       break;
       //Launch the ball
@@ -598,6 +598,8 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		ball->model = glm::make_mat4(m);
 		
 		dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
+		delete launchPlaneRigidBody->getMotionState();
+		delete launchPlaneRigidBody;
 
 		ballLaunched = false;
 		plungerForce = 0;
@@ -619,6 +621,8 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   //cylinder3RigidBody->clearForces();
   //leftBumperRigidBody->clearForces();
   //rightBumperRigidBody->clearForces();
+  
+  m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, ballModel.x, ballModel.y, ballModel.z, 0.0f, 1.0f, 0.0f);
   
   return true;
 }
