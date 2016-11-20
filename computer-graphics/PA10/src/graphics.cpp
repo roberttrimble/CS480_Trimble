@@ -441,7 +441,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 					plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
 					plunger->model = glm::make_mat4(m);
 		      
-		      plungerForce += .75;
+		      plungerForce += 1;
         }
       break;
       //Launch the ball
@@ -592,7 +592,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 	{
 		ballRigidBody->clearForces();
 		ballRigidBody->getMotionState()->getWorldTransform(trans);
-		trans.setOrigin(btVector3(-6.3f, 3.0f, 5.0f));
+		trans.setOrigin(btVector3(-6.3f, 2.0f, 5.0f));
 		ballRigidBody->getMotionState()->setWorldTransform(trans);
 		ballRigidBody->setMotionState(ballRigidBody->getMotionState());
 		ball->model = glm::make_mat4(m);

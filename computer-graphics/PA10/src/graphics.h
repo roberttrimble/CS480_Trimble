@@ -45,9 +45,9 @@ class Graphics
 //////////////////////////////////////////////////////		
 
 		Shader *m_shader;
-    float tableAmbientx = 0.0, tableAmbienty = 0.0, tableAmbientz = 0.0; 
-    float cylSpecularx = .05, cylSpeculary = .05, cylSpecularz = .05;
-    float cylDiffusex = .05, cylDiffusey = .05, cylDiffusez = .05;
+    float tableAmbientx = -0.3, tableAmbienty = -0.3, tableAmbientz = -0.3; 
+    float cylSpecularx = .15, cylSpeculary = .15, cylSpecularz = .15;
+    float cylDiffusex = .15, cylDiffusey = .15, cylDiffusez = .15;
 		
 		btTransform trans;
 		btQuaternion quat;
