@@ -207,11 +207,11 @@ bool Graphics::Initialize(int width, int height)
   ////////////////////////////////////////////////////////////////////
   //Create Plunger
   triMesh8 = new btTriangleMesh();
-  plunger = new Object("../models/plunger3.obj", triMesh8);
+  plunger = new Object("../models/plunger4.obj", triMesh8);
   plungerMesh = new btBvhTriangleMeshShape(triMesh8, true);
 	
 	plungerMotionState = NULL;
-  plungerMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(.25, 2, -3)));
+  plungerMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2, 1.5, -3)));
   
   btRigidBody::btRigidBodyConstructionInfo plungerRigidBodyCI(0, plungerMotionState, plungerMesh, btVector3(0, 0, 0));
   plungerRigidBody = new btRigidBody(plungerRigidBodyCI);
@@ -422,12 +422,18 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
         
         ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,plungerForce));
         plungerForce = 0;
+        
+        ballRigidBody->getMotionState()->getWorldTransform(trans);
+				trans.setOrigin(btVector3(-6.0f, 1.5f, plungerPull));
+				ballRigidBody->getMotionState()->setWorldTransform(trans);
+				ballRigidBody->setMotionState(ballRigidBody->getMotionState());
+				plunger->model = glm::make_mat4(m);
       
         plungerRigidBody->getMotionState()->getWorldTransform(trans);
-				trans.setOrigin(btVector3(.25f, 2.0f, plungerPull));
+				trans.setOrigin(btVector3(2.0f, 1.5f, plungerPull));
 				plungerRigidBody->getMotionState()->setWorldTransform(trans);
 				plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
-				plunger->model = glm::make_mat4(m);
+				ball->model = glm::make_mat4(m);
       break;   
       //Down/backwards
       ///////////////////////
@@ -437,7 +443,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    	plungerPull -= .2;
 		    
 		      plungerRigidBody->getMotionState()->getWorldTransform(trans);
-					trans.setOrigin(btVector3(.25f, 2.0f, plungerPull));
+					trans.setOrigin(btVector3(2.0f, 1.5f, plungerPull));
 					plungerRigidBody->getMotionState()->setWorldTransform(trans);
 					plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
 					plunger->model = glm::make_mat4(m);
