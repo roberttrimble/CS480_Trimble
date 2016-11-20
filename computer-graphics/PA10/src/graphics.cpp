@@ -172,8 +172,8 @@ bool Graphics::Initialize(int width, int height)
 
   //Create Ball
   triMesh2 = new btTriangleMesh();
-  ball = new Object("../models/sphere_normals.obj", triMesh2);
-  ballMesh = new btSphereShape(.85);
+  ball = new Object("../models/ball2.obj", triMesh2);
+  ballMesh = new btSphereShape(.425);
   
   ballMotionState = NULL;
   ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-6, 5, 5)));
