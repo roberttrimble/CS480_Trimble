@@ -16,14 +16,12 @@ class Graphics
     Graphics();
     ~Graphics();
     bool Initialize(int width, int height);
-    void Update(unsigned int dt, char keyboardInput, bool newInput, int mouseXlocation, int mouseYlocation);
+    void Update(unsigned int dt, char keyboardInput, bool newInput);
     void Render(char keyboardInput, bool newInput);
 
     // Bullet    
     btTriangleMesh *triMesh1;
     btTriangleMesh *triMesh2;
-    btTriangleMesh *triMesh3;
-    btTriangleMesh *triMesh4;
     btTriangleMesh *triMesh5;
     btTriangleMesh *triMesh6;
     
@@ -35,6 +33,8 @@ class Graphics
 		
 		btCollisionShape *leftBumperMesh;
 		btCollisionShape *rightBumperMesh;
+		
+		btCollisionShape *launchPlaneMesh;
 		
 		Shader *m_shader;
     float tableAmbientx = .2, tableAmbienty = .2, tableAmbientz = .2; 
@@ -64,6 +64,8 @@ class Graphics
     Object *leftBumper;
     Object *rightBumper;
     
+    bool ballLaunched = false;
+    
     bool rightUp = false;
     unsigned int dt2;
     int rightWaitCount;
@@ -85,6 +87,8 @@ GLuint Lpos;
     btDefaultMotionState *leftBumperMotionState;
     btDefaultMotionState *rightBumperMotionState;
     
+    btDefaultMotionState *launchPlaneMotionState;
+    
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
 		btRigidBody *cylinder1RigidBody;
@@ -92,7 +96,9 @@ GLuint Lpos;
 		btRigidBody *cylinder3RigidBody;
 		
 		btRigidBody *leftBumperRigidBody;
-		btRigidBody *rightBumperRigidBody;		
+		btRigidBody *rightBumperRigidBody;
+		
+		btRigidBody *launchPlaneRigidBody;		
 		
 		btDiscreteDynamicsWorld *dynamicsWorld;
     btBroadphaseInterface* broadphase;

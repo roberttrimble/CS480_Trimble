@@ -48,7 +48,6 @@ Graphics::~Graphics()
 
   delete cylinder1Mesh;
   delete cylinder1;
-  delete triMesh4;
 
   delete ballMesh;
   delete ball;
@@ -177,7 +176,8 @@ bool Graphics::Initialize(int width, int height)
   ballMesh = new btSphereShape(.85);
   
   ballMotionState = NULL;
-  ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-5, 10, 5)));
+  ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-6, 5, 5)));
+  
   
   // the sphere must have a mass
   btScalar mass = 1;
@@ -198,8 +198,7 @@ bool Graphics::Initialize(int width, int height)
 /////////////////////////////////////////////////////////////////////////////
   
   //Create Cylinders
-  triMesh4 = new btTriangleMesh();
-  cylinder1 = new Object("../models/cylinder_normals.obj", triMesh4);
+  cylinder1 = new Object("../models/cylinder_normals.obj", triMesh2);
   cylinder1Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder1MotionState = NULL;
@@ -213,7 +212,7 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld->addRigidBody(cylinder1RigidBody);
   
   
-  cylinder2 = new Object("../models/cylinder_normals.obj", triMesh4);
+  cylinder2 = new Object("../models/cylinder_normals.obj", triMesh2);
   cylinder2Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder2MotionState = NULL;
@@ -227,7 +226,7 @@ bool Graphics::Initialize(int width, int height)
   dynamicsWorld->addRigidBody(cylinder2RigidBody);
   
   
-  cylinder3 = new Object("../models/cylinder_normals.obj", triMesh4);
+  cylinder3 = new Object("../models/cylinder_normals.obj", triMesh2);
   cylinder3Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder3MotionState = NULL;
@@ -312,9 +311,8 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mouseXlocation, int mouseYlocation)
+void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 {
- //float force = 5.0;
 
   // variables
   glm::vec3 ballModel = glm::vec3(ball->model[3]);
@@ -391,8 +389,7 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       ///////////////////////
       case '^':
         
-      break;
-        
+      break;   
       //Down/backwards
       ///////////////////////
       case 'v':
@@ -402,8 +399,10 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
       //Launch the ball
       ///////////////////////
       case 'b':
-        ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
-        
+      	if(ballLaunched == false)
+      	{
+        	ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
+        }
       break;
     	}
     }
@@ -417,15 +416,15 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
     if(rightUp && (rightWaitCount > 10))
     {
-		   	rightBumperRigidBody->getMotionState()->getWorldTransform(trans);
-				quat.setEuler(0.0, 0.0, 0.0);
-				trans.setRotation(quat);
-				trans.getOpenGLMatrix(m);
-				rightBumperRigidBody->getMotionState()->setWorldTransform(trans);
-				rightBumperRigidBody->setMotionState(rightBumperRigidBody->getMotionState());
-				rightBumper->model = glm::make_mat4(m);
-				rightUp = false;
-  		}
+		  rightBumperRigidBody->getMotionState()->getWorldTransform(trans);
+			quat.setEuler(0.0, 0.0, 0.0);
+			trans.setRotation(quat);
+			trans.getOpenGLMatrix(m);
+			rightBumperRigidBody->getMotionState()->setWorldTransform(trans);
+			rightBumperRigidBody->setMotionState(rightBumperRigidBody->getMotionState());
+			rightBumper->model = glm::make_mat4(m);
+			rightUp = false;
+  	}
   		
   		if(dt3 != dt)
     {
@@ -435,15 +434,22 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 
     if(leftUp && (leftWaitCount > 10))
     {	
-		   	leftBumperRigidBody->getMotionState()->getWorldTransform(trans);
-				quat.setEuler(0.0, 0.0, 0.0);
-				trans.setRotation(quat);
-				trans.getOpenGLMatrix(m);
-				leftBumperRigidBody->getMotionState()->setWorldTransform(trans);
-				leftBumperRigidBody->setMotionState(leftBumperRigidBody->getMotionState());
-				leftBumper->model = glm::make_mat4(m);
-				leftUp = false;
-  		}
+		  leftBumperRigidBody->getMotionState()->getWorldTransform(trans);
+			quat.setEuler(0.0, 0.0, 0.0);
+			trans.setRotation(quat);
+			trans.getOpenGLMatrix(m);
+			leftBumperRigidBody->getMotionState()->setWorldTransform(trans);
+			leftBumperRigidBody->setMotionState(leftBumperRigidBody->getMotionState());
+			leftBumper->model = glm::make_mat4(m);
+			leftUp = false;
+  	}
+
+
+
+
+
+
+///////////////////////////////////////////////////////
 
   dynamicsWorld->stepSimulation(dt, 10);
 
@@ -476,6 +482,29 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
   }
+  
+  //block off the launch tube
+  if(ballModel.x > 0 && ballLaunched == false)
+  {
+  	ballLaunched = true;
+  	
+  	launchPlaneMesh = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
+  	launchPlaneMotionState = NULL;
+  	launchPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-5, 0, 0)));
+  
+  	btRigidBody::btRigidBodyConstructionInfo launchPlaneRigidBodyCI(0, launchPlaneMotionState, launchPlaneMesh, btVector3(0, 0, 0));
+  	launchPlaneRigidBody = new btRigidBody(launchPlaneRigidBodyCI);
+
+  	launchPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+  	dynamicsWorld->addRigidBody(launchPlaneRigidBody);
+  }
+  
+  
+  
+  
+  
+  
 
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
@@ -510,10 +539,16 @@ void Graphics::Update(unsigned int dt, char keyboardInput, bool newInput, int mo
 	if(ballModel.z < -7.25 && ballModel.x > -5)
 	{
 		ballRigidBody->getMotionState()->getWorldTransform(trans);
-		trans.setOrigin(btVector3(-5.0f, 10.0f, 5.0f));
+		trans.setOrigin(btVector3(-5.2f, 5.0f, 5.0f));
 		ballRigidBody->getMotionState()->setWorldTransform(trans);
 		ballRigidBody->setMotionState(ballRigidBody->getMotionState());
 		ball->model = glm::make_mat4(m);
+		
+		dynamicsWorld->removeRigidBody(launchPlaneRigidBody);
+		delete launchPlaneRigidBody->getMotionState();
+  	delete launchPlaneRigidBody;
+		
+		ballLaunched = false;
 	}
 
 

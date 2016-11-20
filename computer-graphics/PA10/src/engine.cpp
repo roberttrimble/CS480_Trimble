@@ -68,7 +68,7 @@ void Engine::Run()
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT, keyboardInput, newInput, mouseXlocation, mouseYlocation);
+    m_graphics->Update(m_DT, keyboardInput, newInput);
 
     m_graphics->Render(keyboardInput, newInput);
     newInput = false;
@@ -177,7 +177,6 @@ void Engine::Keyboard()
 		  if (m_event.button.button == SDL_BUTTON_LEFT)
 		  {
 		    keyboardInput = 'b';
-		    SDL_GetMouseState(&mouseXlocation, &mouseYlocation);
 		    
 		    newInput = true;
 		  }
