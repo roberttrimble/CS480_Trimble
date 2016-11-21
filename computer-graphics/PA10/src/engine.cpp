@@ -76,14 +76,18 @@ void Engine::Run()
 
     // Swap to the Window
     m_window->Swap();
-    score++;
-    
-    if(outOfLives == false)
+    if (m_graphics->ballLaunched){
+      score++;
+    }
+   
+    if(outOfLives == false){
     	m_running = false;
+      m_graphics->bumperHit = m_graphics->bumperHit - 100;
+    }
   }
-  m_graphics->bumperHit = m_graphics->bumperHit - 100;
-  score += m_graphics->bumperHit;
-  std::cout << "\n\nCongradulations! Your score was: " << score << "\n\n" << m_graphics->bumperHit << std::endl<< std::endl;
+   float totalScore = score + m_graphics->bumperHit;
+
+  std::cout << "\n\nCongradulations! \nYour score was: " << score << "\nBumper Bounus: " << m_graphics->bumperHit << "\nTotal Score: " << totalScore << "\n\n";
 }
 
 void Engine::Keyboard()

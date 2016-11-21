@@ -19,7 +19,8 @@ class Graphics
     bool Update(unsigned int dt, char keyboardInput, bool newInput);
     void Render(char keyboardInput, bool newInput);
 
-    // Bullet    
+    // Bullet   
+    btTriangleMesh *triMesh0; 
     btTriangleMesh *triMesh1;
     btTriangleMesh *triMesh2;
     btTriangleMesh *triMesh3;
@@ -45,7 +46,7 @@ class Graphics
 //////////////////////////////////////////////////////		
 
 		Shader *m_shader;
-    float tableAmbientx = -0.3, tableAmbienty = -0.3, tableAmbientz = -0.3; 
+    float tableAmbientx = .5, tableAmbienty = .5, tableAmbientz = .5; 
     float cylSpecularx = .15, cylSpeculary = .15, cylSpecularz = .15;
     float cylDiffusex = .15, cylDiffusey = .15, cylDiffusez = .15;
 		
@@ -58,6 +59,7 @@ class Graphics
 		float bumperHit = 0;
 		
 		bool camera = false;
+    bool ballLaunched = false;
   private:
     std::string ErrorString(GLenum error);
 
@@ -72,13 +74,12 @@ class Graphics
     Object *cylinder1;
     Object *cylinder2;
     Object *cylinder3;
+    Object *stars;
     
     Object *leftBumper;
     Object *rightBumper;
     
     Object *plunger;
-    
-    bool ballLaunched = false;
     
     bool rightUp = false;
     unsigned int dt2;

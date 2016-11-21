@@ -73,6 +73,9 @@ Graphics::~Graphics()
   delete table;
   delete triMesh1;
 
+  delete stars;
+  delete triMesh0;
+
   delete dynamicsWorld;
   delete solver;
   delete broadphase;
@@ -130,10 +133,14 @@ bool Graphics::Initialize(int width, int height)
 // Create the objects
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
-  
+  // background
+  triMesh0 = new btTriangleMesh();
+  stars = new Object("../models/planet.obj", triMesh0);  
+  stars->model = glm::scale(stars->model, glm::vec3(28, 28, 28));
+
   //Create Table
   triMesh1 = new btTriangleMesh();
-  table = new Object("../models/PinballTable9.obj", triMesh1);
+  table = new Object("../models/pinballTable12.obj", triMesh1);
   tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
@@ -152,7 +159,7 @@ bool Graphics::Initialize(int width, int height)
   leftBumperMesh = new btBvhTriangleMeshShape(triMesh6, true);
   
   leftBumperMotionState = NULL;
-  leftBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(4.6, 1, -5)));
+  leftBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(4.7, 1, -4.8)));
   
   btRigidBody::btRigidBodyConstructionInfo leftBumperRigidBodyCI(0, leftBumperMotionState, leftBumperMesh, btVector3(0, 0, 0));
   leftBumperRigidBody = new btRigidBody(leftBumperRigidBodyCI);
@@ -160,13 +167,13 @@ bool Graphics::Initialize(int width, int height)
   leftBumperRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(leftBumperRigidBody); 
-  ///////////
+  //////////////////////////////////////////
   triMesh7 = new btTriangleMesh();
   rightBumper = new Object("../models/rightBumper2.obj", triMesh7);
   rightBumperMesh = new btBvhTriangleMeshShape(triMesh7, true);
   
   rightBumperMotionState = NULL;
-  rightBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2.5, 1, -5.1)));
+  rightBumperMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2.6, 1, -4.9)));
   
   btRigidBody::btRigidBodyConstructionInfo rightBumperRigidBodyCI(0, rightBumperMotionState, rightBumperMesh, btVector3(0, 0, 0));
   rightBumperRigidBody = new btRigidBody(rightBumperRigidBodyCI);
@@ -186,7 +193,6 @@ bool Graphics::Initialize(int width, int height)
   ballMotionState = NULL;
   ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-6, 5, 5)));
   
-  
   // the sphere must have a mass
   btScalar mass = 1;
 
@@ -200,9 +206,6 @@ bool Graphics::Initialize(int width, int height)
   ballRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(ballRigidBody);
-  
-  
-  
   
   ////////////////////////////////////////////////////////////////////
   //Create Plunger
@@ -230,7 +233,7 @@ bool Graphics::Initialize(int width, int height)
   cylinder1Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder1MotionState = NULL;
-  cylinder1MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(1, 1, 2)));
+  cylinder1MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(1, 1, 3)));
   
   btRigidBody::btRigidBodyConstructionInfo cylinder1RigidBodyCI(0, cylinder1MotionState, cylinder1Mesh, btVector3(0, 0, 0));
   cylinder1RigidBody = new btRigidBody(cylinder1RigidBodyCI);
@@ -245,7 +248,7 @@ bool Graphics::Initialize(int width, int height)
   cylinder2Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder2MotionState = NULL;
-  cylinder2MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(4, 1, 7)));
+  cylinder2MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(4, 1, 8)));
   
   btRigidBody::btRigidBodyConstructionInfo cylinder2RigidBodyCI(0, cylinder2MotionState, cylinder2Mesh, btVector3(0, 0, 0));
   cylinder2RigidBody = new btRigidBody(cylinder2RigidBodyCI);
@@ -260,7 +263,7 @@ bool Graphics::Initialize(int width, int height)
   cylinder3Mesh = new btCylinderShape(btVector3(1.0,1.0,1.0));
 	
 	cylinder3MotionState = NULL;
-  cylinder3MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2, 1, 7)));
+  cylinder3MotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-2, 1, 8)));
   
   btRigidBody::btRigidBodyConstructionInfo cylinder3RigidBodyCI(0, cylinder3MotionState, cylinder3Mesh, btVector3(0, 0, 0));
   cylinder3RigidBody = new btRigidBody(cylinder3RigidBodyCI);
@@ -307,8 +310,6 @@ bool Graphics::Initialize(int width, int height)
     printf("Program to Finalize\n");
     return false;
   }
-
-
 
   // Locate the projection matrix in the shader
   m_projectionMatrix = m_shader->GetUniformLocation("projectionMatrix");
@@ -395,7 +396,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   				diffy = ballModel.y - rightBumperModel.y;
   				diffz = ballModel.z - rightBumperModel.z;
 
-  				if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4){
+  				if ( abs(diffx) <= 1.4 && abs(diffz) <= 1.4 ){
     				glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     				normalize(normalVec);
     				ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,10.0));
@@ -418,27 +419,29 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       //Up/forward
       ///////////////////////
       case '^':
-        plungerPull = -3;
+        if(ballLaunched == false){
+          plungerPull = -3;
+          
+          ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,plungerForce));
+          plungerForce = 0;
+          
+          ballRigidBody->getMotionState()->getWorldTransform(trans);
+				  trans.setOrigin(btVector3(-6.0f, 1.5f, plungerPull));
+				  ballRigidBody->getMotionState()->setWorldTransform(trans);
+				  ballRigidBody->setMotionState(ballRigidBody->getMotionState());
+				  plunger->model = glm::make_mat4(m);
         
-        ballRigidBody->applyCentralImpulse(btVector3(0.0,0.0,plungerForce));
-        plungerForce = 0;
-        
-        ballRigidBody->getMotionState()->getWorldTransform(trans);
-				trans.setOrigin(btVector3(-6.0f, 1.5f, plungerPull));
-				ballRigidBody->getMotionState()->setWorldTransform(trans);
-				ballRigidBody->setMotionState(ballRigidBody->getMotionState());
-				plunger->model = glm::make_mat4(m);
-      
-        plungerRigidBody->getMotionState()->getWorldTransform(trans);
-				trans.setOrigin(btVector3(2.0f, 1.5f, plungerPull));
-				plungerRigidBody->getMotionState()->setWorldTransform(trans);
-				plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
-				ball->model = glm::make_mat4(m);
+          plungerRigidBody->getMotionState()->getWorldTransform(trans);
+				  trans.setOrigin(btVector3(2.0f, 1.5f, plungerPull));
+				  plungerRigidBody->getMotionState()->setWorldTransform(trans);
+				  plungerRigidBody->setMotionState(plungerRigidBody->getMotionState());
+				  ball->model = glm::make_mat4(m);
+        }
       break;   
       //Down/backwards
       ///////////////////////
       case 'v':
-      	if( plungerForce < 20)
+      	if( plungerForce < 20 && ballLaunched == false)
       	{ 
 		    	plungerPull -= .2;
 		    
@@ -514,10 +517,6 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   	}
 
 
-
-
-
-
 ///////////////////////////////////////////////////////
 
   dynamicsWorld->stepSimulation(dt, 10);
@@ -530,7 +529,8 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
-    bumperHit += 20;
+    if (ballLaunched)
+      bumperHit += 11;
   }
 
   diffx = ballModel.x - cylinderModel2.x;
@@ -541,7 +541,8 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
-    bumperHit += 20;
+    if (ballLaunched)
+      bumperHit += 17;
   }
 
   diffx = ballModel.x - cylinderModel3.x;
@@ -552,7 +553,8 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
     normalize(normalVec);
     ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
-    bumperHit += 20;
+    if (ballLaunched)
+      bumperHit += 17;
   }
   
   //block off the launch tube
@@ -571,12 +573,6 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     
   	dynamicsWorld->addRigidBody(launchPlaneRigidBody);
   }
-  
-  
-  
-  
-  
-  
 
   tableRigidBody->getMotionState()->getWorldTransform(trans);
   trans.getOpenGLMatrix(m);
@@ -638,15 +634,6 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
   // clean up!
   ballRigidBody->clearForces();
-  //tableRigidBody->clearForces();
-  //cubeRigidBody->clearForces();
-  //cylinder1RigidBody->clearForces();
-  //cylinder2RigidBody->clearForces();
-  //cylinder3RigidBody->clearForces();
-  //leftBumperRigidBody->clearForces();
-  //rightBumperRigidBody->clearForces();
-  
-  
   
   return true;
 }
@@ -659,7 +646,7 @@ void Graphics::Render(char keyboardInput, bool newInput)
   glm::vec3 cylinderModel3 = glm::vec3(cylinder3->model[3]);
 
   //clear the screen
-  glClearColor(0.0, 0.0, 0.2, 1.0);
+  glClearColor(0.0, 0.0, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   // Start the correct program
@@ -707,6 +694,9 @@ void Graphics::Render(char keyboardInput, bool newInput)
   }
 
   // Render the object 
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(stars->GetModel()));
+  stars->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(table->GetModel()));
   glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
   glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), tableAmbientx, tableAmbienty, tableAmbientz,1);
@@ -724,13 +714,8 @@ void Graphics::Render(char keyboardInput, bool newInput)
   rightBumper->Render();
 
 
-
-
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball->GetModel()));
-  //glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
   glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
-  //glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), 1, 1, 1,1);
-  //glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), 1, 1, 1,1);
   glUniform1f(m_shader->GetUniformLocation("Shininess"), .0005);
 
   glUniform1f(m_shader->GetUniformLocation("ball"), 1.0);
@@ -740,8 +725,6 @@ void Graphics::Render(char keyboardInput, bool newInput)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cylinder1->GetModel()));
-  //glUniform4f(m_shader->GetUniformLocation("LightPosition"), 0,2,0,0);
-  //glUniform4f(m_shader->GetUniformLocation("AmbientProduct"), .5,.5,.5,1);
   glUniform4f(m_shader->GetUniformLocation("DiffuseProduct"), cylDiffusex, cylDiffusez, cylDiffusez, 1);
   glUniform4f(m_shader->GetUniformLocation("SpecularProduct"), cylSpecularx, cylSpeculary, cylSpecularz,1);
   glUniform1f(m_shader->GetUniformLocation("Shininess"), 10);
