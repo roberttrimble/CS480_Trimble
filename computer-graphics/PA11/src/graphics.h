@@ -23,11 +23,13 @@ class Graphics
     btTriangleMesh *triMesh0; 
     btTriangleMesh *triMesh1;
     btTriangleMesh *triMesh2;
+    btTriangleMesh *triMesh3;
     
 ////////////////////////////////////////////////////
 
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
+		btCollisionShape *ballMesh2;
 		btStaticPlaneShape *leftPlaneMesh;
 		btStaticPlaneShape *rightPlaneMesh;
 		btStaticPlaneShape *frontPlaneMesh;
@@ -43,6 +45,10 @@ class Graphics
     float diffx = 0;
     float diffy = 0;
     float diffz = 0;
+
+    float diffx2 = 0;
+    float diffy2 = 0;
+    float diffz2 = 0;
 		
 		bool camera = false;
   private:
@@ -56,9 +62,11 @@ class Graphics
 
     Object *table;
     Object *ball;
+    Object *ball2;
     Object *stars;
     
     glm::vec3 PrevBallModel = glm::vec3(0.0f,0.0f,0.0f);
+    glm::vec3 PrevBallModel2 = glm::vec3(0.0f,0.0f,0.0f);
     
     //Bullet
     btDefaultMotionState *leftPlaneMotionState;
@@ -68,9 +76,13 @@ class Graphics
 
     btDefaultMotionState *tableMotionState;
     btDefaultMotionState *ballMotionState;
+    btDefaultMotionState *ballMotionState2;
     
     btRigidBody *tableRigidBody;
+
     btRigidBody *ballRigidBody;
+    btRigidBody *ballRigidBody2;
+
 		btRigidBody *leftPlaneRigidBody;	
 		btRigidBody *rightPlaneRigidBody;
 		btRigidBody *frontPlaneRigidBody;

@@ -29,6 +29,10 @@ Graphics::~Graphics()
 	delete leftPlaneRigidBody->getMotionState();
 	delete leftPlaneRigidBody;
 
+  dynamicsWorld->removeRigidBody(ballRigidBody2);
+  delete ballRigidBody2->getMotionState();
+  delete ballRigidBody2;
+
   dynamicsWorld->removeRigidBody(ballRigidBody);
   delete ballRigidBody->getMotionState();
   delete ballRigidBody;
@@ -41,6 +45,10 @@ Graphics::~Graphics()
   delete frontPlaneMesh;
   delete rightPlaneMesh;
   delete leftPlaneMesh;
+
+  delete ballMesh2;
+  delete ball2;
+  delete triMesh3;
 
   delete ballMesh;
   delete ball;
@@ -155,6 +163,26 @@ bool Graphics::Initialize(int width, int height)
   ballRigidBody->setActivationState(DISABLE_DEACTIVATION);
     
   dynamicsWorld->addRigidBody(ballRigidBody);
+
+/////////////////////////////////////////////////////////////////////////////
+
+  //Create Ball
+  triMesh3 = new btTriangleMesh();
+  ball2 = new Object("../models/ball2.obj", triMesh3);
+  ballMesh2 = new btSphereShape(.425);
+  
+  ballMotionState2 = NULL;
+  ballMotionState2 = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(3, 5, 0)));
+
+  //we need the inertia of the sphere and we need to calculate it
+  ballMesh2->calculateLocalInertia(mass, sphereInertia);
+
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI2(1, ballMotionState2, ballMesh2, sphereInertia);
+  ballRigidBody2 = new btRigidBody(ballRigidBodyCI2);
+
+  ballRigidBody2->setActivationState(DISABLE_DEACTIVATION);
+    
+  dynamicsWorld->addRigidBody(ballRigidBody2);
   
 
 /////////////////////////////////////////////////////////////////////////////
@@ -285,6 +313,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
   // variables
   glm::vec3 ballModel = glm::vec3(ball->model[3]);
+  glm::vec3 ballModel2 = glm::vec3(ball2->model[3]);
   btScalar m[16];
   btTransform trans;
 
@@ -297,6 +326,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       /////////////////////////////
       case '<':
 				ballRigidBody->applyCentralImpulse(btVector3(10.0,0.0,0.0));
+        ballRigidBody->applyCentralImpulse(btVector3(10.0,0.0,0.0));
 
       break;
       
@@ -393,6 +423,55 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     else
     	ballRigidBody->applyCentralImpulse(btVector3( -0.5, 0, 0.5 ));
   }
+
+////////////////////////////////////////////////////////////////////////////////
+
+  diffx2 = (ballModel2.x - PrevBallModel2.x);
+  diffy2 = (ballModel2.y - PrevBallModel2.y);
+  diffz2 = (ballModel2.z - PrevBallModel2.z);
+
+  if ( ballModel2.x > 7){
+  
+    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //normalize(normalVec);
+    
+    if (diffz >= 0)
+    	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, 0.5 ));
+    else
+    	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, -0.5 ));
+  }
+  if ( ballModel2.x < -7){
+  
+    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //normalize(normalVec);
+    
+    if (diffz >= 0)
+    	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, 0.5 ));
+    else
+    	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, -0.5 ));
+  }
+  if ( ballModel2.z > 7){
+  
+    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //normalize(normalVec);
+    
+    if (diffx >= 0)
+    	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, -0.5 ));
+    else
+    	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, -0.5 ));
+  }
+  if ( ballModel2.z < -7){
+
+    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //normalize(normalVec);
+    
+    if (diffx >= 0)
+    	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, 0.5 ));
+    else
+    	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, 0.5 ));
+  }
+  
+/////////////////////////////////////////////////////////////////////////////////
   
 
   tableRigidBody->getMotionState()->getWorldTransform(trans);
@@ -403,6 +482,9 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   trans.getOpenGLMatrix(m);
   ball->model = glm::make_mat4(m);
 
+  ballRigidBody2->getMotionState()->getWorldTransform(trans);
+  trans.getOpenGLMatrix(m);
+  ball2->model = glm::make_mat4(m);
 
   // clean up!
   //ballRigidBody->clearForces();
@@ -411,6 +493,10 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   PrevBallModel.x = ballModel.x;
   PrevBallModel.y = ballModel.y;
   PrevBallModel.z = ballModel.z;
+
+  PrevBallModel2.x = ballModel2.x;
+  PrevBallModel2.y = ballModel2.y;
+  PrevBallModel2.z = ballModel2.z;
   return true;
 }
 
@@ -482,6 +568,9 @@ void Graphics::Render(char keyboardInput, bool newInput)
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball->GetModel()));
   ball->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(ball2->GetModel()));
+  ball2->Render();
  
 
   
