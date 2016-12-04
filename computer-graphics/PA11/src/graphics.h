@@ -28,7 +28,11 @@ class Graphics
 
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
-		
+		btStaticPlaneShape *leftPlaneMesh;
+		btStaticPlaneShape *rightPlaneMesh;
+		btStaticPlaneShape *frontPlaneMesh;
+		btStaticPlaneShape *backPlaneMesh;
+
 //////////////////////////////////////////////////////		
 
 		Shader *m_shader;
@@ -55,13 +59,21 @@ class Graphics
     Object *stars;
     
     //Bullet
-    
+    btDefaultMotionState *leftPlaneMotionState;
+    btDefaultMotionState *rightPlaneMotionState;
+    btDefaultMotionState *frontPlaneMotionState;
+    btDefaultMotionState *backPlaneMotionState;
+
     btDefaultMotionState *tableMotionState;
     btDefaultMotionState *ballMotionState;
     
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
-		
+		btRigidBody *leftPlaneRigidBody;	
+		btRigidBody *rightPlaneRigidBody;
+		btRigidBody *frontPlaneRigidBody;
+		btRigidBody *backPlaneRigidBody;	
+
 		btDiscreteDynamicsWorld *dynamicsWorld;
     btBroadphaseInterface* broadphase;
     btDefaultCollisionConfiguration* collisionConfiguration;

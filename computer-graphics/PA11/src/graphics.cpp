@@ -12,6 +12,23 @@ Graphics::~Graphics()
   // delete the pointers
   //////////// clean up and end program
   // delete the pointers
+
+	dynamicsWorld->removeRigidBody(backPlaneRigidBody);
+	delete backPlaneRigidBody->getMotionState();
+	delete backPlaneRigidBody;
+
+	dynamicsWorld->removeRigidBody(frontPlaneRigidBody);
+	delete frontPlaneRigidBody->getMotionState();
+	delete frontPlaneRigidBody;
+
+	dynamicsWorld->removeRigidBody(rightPlaneRigidBody);
+	delete rightPlaneRigidBody->getMotionState();
+	delete rightPlaneRigidBody;
+
+  dynamicsWorld->removeRigidBody(leftPlaneRigidBody);
+	delete leftPlaneRigidBody->getMotionState();
+	delete leftPlaneRigidBody;
+
   dynamicsWorld->removeRigidBody(ballRigidBody);
   delete ballRigidBody->getMotionState();
   delete ballRigidBody;
@@ -19,6 +36,11 @@ Graphics::~Graphics()
   dynamicsWorld->removeRigidBody(tableRigidBody);
   delete tableRigidBody->getMotionState();
   delete tableRigidBody;
+
+  delete backPlaneMesh;
+  delete frontPlaneMesh;
+  delete rightPlaneMesh;
+  delete leftPlaneMesh;
 
   delete ballMesh;
   delete ball;
@@ -36,6 +58,7 @@ Graphics::~Graphics()
   delete broadphase;
   delete dispatcher;
   delete collisionConfiguration;
+
 }
 bool Graphics::Initialize(int width, int height)
 {
@@ -136,8 +159,58 @@ bool Graphics::Initialize(int width, int height)
 
 /////////////////////////////////////////////////////////////////////////////
   
+  leftPlaneMesh = new btStaticPlaneShape(btVector3(-1, 0, 0), 1);
+ 	leftPlaneMotionState = NULL;
+ 	leftPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(7, 0, 0)));
+ 
+ 	btRigidBody::btRigidBodyConstructionInfo leftPlaneRigidBodyCI(0, leftPlaneMotionState, leftPlaneMesh, btVector3(0, 0, 0));
+ 	leftPlaneRigidBody = new btRigidBody(leftPlaneRigidBodyCI);
+
+ 	leftPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+ 	dynamicsWorld->addRigidBody(leftPlaneRigidBody);
 
 ////////////////////////////////////////////////////////////////////////////
+
+  rightPlaneMesh = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
+ 	rightPlaneMotionState = NULL;
+ 	rightPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-7, 0, 0)));
+ 
+ 	btRigidBody::btRigidBodyConstructionInfo rightPlaneRigidBodyCI(0, rightPlaneMotionState, rightPlaneMesh, btVector3(0, 0, 0));
+ 	rightPlaneRigidBody = new btRigidBody(rightPlaneRigidBodyCI);
+
+ 	rightPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+ 	dynamicsWorld->addRigidBody(rightPlaneRigidBody);
+
+////////////////////////////////////////////////////////////////////////////
+
+  frontPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
+ 	frontPlaneMotionState = NULL;
+ 	frontPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -7)));
+ 
+ 	btRigidBody::btRigidBodyConstructionInfo frontPlaneRigidBodyCI(0, frontPlaneMotionState, frontPlaneMesh, btVector3(0, 0, 0));
+ 	frontPlaneRigidBody = new btRigidBody(frontPlaneRigidBodyCI);
+
+ 	frontPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+ 	dynamicsWorld->addRigidBody(frontPlaneRigidBody);
+
+////////////////////////////////////////////////////////////////////////////
+
+  backPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, -1), 1);
+ 	backPlaneMotionState = NULL;
+ 	backPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 7)));
+ 
+ 	btRigidBody::btRigidBodyConstructionInfo backPlaneRigidBodyCI(0, backPlaneMotionState, backPlaneMesh, btVector3(0, 0, 0));
+ 	backPlaneRigidBody = new btRigidBody(backPlaneRigidBodyCI);
+
+ 	backPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
+    
+ 	dynamicsWorld->addRigidBody(backPlaneRigidBody);
+
+////////////////////////////////////////////////////////////////////////////
+
 
   // Init Camera
   m_camera = new Camera();
@@ -275,33 +348,6 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 ///////////////////////////////////////////////////////
 
   dynamicsWorld->stepSimulation(dt, 10);
-
-  diffx = ballModel.x;// - cylinderModel1.x;
-  diffy = ballModel.y;// - cylinderModel1.y;
-  diffz = ballModel.z;// - cylinderModel1.z;
-
-  if ( diffx > 7){
-    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
-    normalize(normalVec);
-    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
-  }
-  if ( diffx < -7){
-    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
-    normalize(normalVec);
-    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
-  }
-  if ( diffz > 7){
-    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
-    normalize(normalVec);
-    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
-  }
-  if ( diffz < -7){
-    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
-    normalize(normalVec);
-    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
-  }
-
-  
   
   //block off the launch tube
   

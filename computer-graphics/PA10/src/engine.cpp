@@ -82,7 +82,7 @@ void Engine::Run()
    
     if(outOfLives == false){
     	m_running = false;
-      m_graphics->bumperHit = m_graphics->bumperHit - 100;
+      //m_graphics->bumperHit = m_graphics->bumperHit - 100;
     }
   }
    float totalScore = score + m_graphics->bumperHit;
