@@ -117,7 +117,7 @@ bool Graphics::Initialize(int width, int height)
   ballMesh = new btSphereShape(.425);
   
   ballMotionState = NULL;
-  ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-6, 5, 5)));
+  ballMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 5, 0)));
   
   // the sphere must have a mass
   btScalar mass = 1;
@@ -276,9 +276,30 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
   dynamicsWorld->stepSimulation(dt, 10);
 
-  diffx = ballModel.x;
-  diffy = ballModel.y;
-  diffz = ballModel.z;
+  diffx = ballModel.x;// - cylinderModel1.x;
+  diffy = ballModel.y;// - cylinderModel1.y;
+  diffz = ballModel.z;// - cylinderModel1.z;
+
+  if ( diffx > 7){
+    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    normalize(normalVec);
+    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+  }
+  if ( diffx < -7){
+    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    normalize(normalVec);
+    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+  }
+  if ( diffz > 7){
+    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    normalize(normalVec);
+    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+  }
+  if ( diffz < -7){
+    glm::vec3 normalVec = glm::vec3 (diffx, diffy, diffz);
+    normalize(normalVec);
+    ballRigidBody->applyCentralImpulse(btVector3(normalVec.x, normalVec.y, normalVec.z));
+  }
 
   
   
