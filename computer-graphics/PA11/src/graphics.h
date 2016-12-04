@@ -23,43 +23,24 @@ class Graphics
     btTriangleMesh *triMesh0; 
     btTriangleMesh *triMesh1;
     btTriangleMesh *triMesh2;
-    btTriangleMesh *triMesh3;
-    btTriangleMesh *triMesh4;
-    btTriangleMesh *triMesh5;
-    btTriangleMesh *triMesh6;
-    btTriangleMesh *triMesh7;
-    btTriangleMesh *triMesh8;
     
 ////////////////////////////////////////////////////
 
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh;
-		btCollisionShape *cylinder1Mesh;
-		btCollisionShape *cylinder2Mesh;
-		btCollisionShape *cylinder3Mesh;
 		
-		btCollisionShape *leftBumperMesh;
-		btCollisionShape *rightBumperMesh;
-		
-		btCollisionShape *launchPlaneMesh;
-		btCollisionShape *plungerMesh;
 //////////////////////////////////////////////////////		
 
 		Shader *m_shader;
     float tableAmbientx = .5, tableAmbienty = .5, tableAmbientz = .5; 
-    float cylSpecularx = .15, cylSpeculary = .15, cylSpecularz = .15;
-    float cylDiffusex = .15, cylDiffusey = .15, cylDiffusez = .15;
 		
 		btTransform trans;
 		btQuaternion quat;
     float diffx = 0;
     float diffy = 0;
     float diffz = 0;
-
-		float bumperHit = 0;
 		
 		bool camera = false;
-    bool ballLaunched = false;
   private:
     std::string ErrorString(GLenum error);
 
@@ -71,54 +52,15 @@ class Graphics
 
     Object *table;
     Object *ball;
-    Object *cylinder1;
-    Object *cylinder2;
-    Object *cylinder3;
     Object *stars;
-    
-    Object *leftBumper;
-    Object *rightBumper;
-    
-    Object *plunger;
-    
-    bool rightUp = false;
-    unsigned int dt2;
-    int rightWaitCount;
-    
-    bool leftUp = false;
-    unsigned int dt3;
-    int leftWaitCount;
-    
-    float plungerForce = 0;
-    float plungerPull = -3;
-    
-    int liveCount = 2;
     
     //Bullet
     
     btDefaultMotionState *tableMotionState;
     btDefaultMotionState *ballMotionState;
-    btDefaultMotionState *cylinder1MotionState;
-    btDefaultMotionState *cylinder2MotionState;
-    btDefaultMotionState *cylinder3MotionState;
-    
-    btDefaultMotionState *leftBumperMotionState;
-    btDefaultMotionState *rightBumperMotionState;
-    
-    btDefaultMotionState *launchPlaneMotionState;
-    btDefaultMotionState *plungerMotionState;
     
     btRigidBody *tableRigidBody;
     btRigidBody *ballRigidBody;
-		btRigidBody *cylinder1RigidBody;
-		btRigidBody *cylinder2RigidBody;
-		btRigidBody *cylinder3RigidBody;
-		
-		btRigidBody *leftBumperRigidBody;
-		btRigidBody *rightBumperRigidBody;
-		
-		btRigidBody *launchPlaneRigidBody;
-		btRigidBody *plungerRigidBody;		
 		
 		btDiscreteDynamicsWorld *dynamicsWorld;
     btBroadphaseInterface* broadphase;

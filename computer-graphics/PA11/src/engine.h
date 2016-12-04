@@ -35,7 +35,7 @@ class Engine
     long long m_currentTimeMillis;
     bool m_running;
 
-    //for keyboard detection PA2
+    //for keyboard detection
     char keyboardInput;
     bool newInput;
 
