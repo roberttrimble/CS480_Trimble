@@ -161,7 +161,7 @@ bool Graphics::Initialize(int width, int height)
   
   leftPlaneMesh = new btStaticPlaneShape(btVector3(-1, 0, 0), 1);
  	leftPlaneMotionState = NULL;
- 	leftPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(7, 0, 0)));
+ 	leftPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(10, 0, 0)));
  
  	btRigidBody::btRigidBodyConstructionInfo leftPlaneRigidBodyCI(0, leftPlaneMotionState, leftPlaneMesh, btVector3(0, 0, 0));
  	leftPlaneRigidBody = new btRigidBody(leftPlaneRigidBodyCI);
@@ -174,7 +174,7 @@ bool Graphics::Initialize(int width, int height)
 
   rightPlaneMesh = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
  	rightPlaneMotionState = NULL;
- 	rightPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-7, 0, 0)));
+ 	rightPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-10, 0, 0)));
  
  	btRigidBody::btRigidBodyConstructionInfo rightPlaneRigidBodyCI(0, rightPlaneMotionState, rightPlaneMesh, btVector3(0, 0, 0));
  	rightPlaneRigidBody = new btRigidBody(rightPlaneRigidBodyCI);
@@ -187,7 +187,7 @@ bool Graphics::Initialize(int width, int height)
 
   frontPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
  	frontPlaneMotionState = NULL;
- 	frontPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -7)));
+ 	frontPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -10)));
  
  	btRigidBody::btRigidBodyConstructionInfo frontPlaneRigidBodyCI(0, frontPlaneMotionState, frontPlaneMesh, btVector3(0, 0, 0));
  	frontPlaneRigidBody = new btRigidBody(frontPlaneRigidBodyCI);
@@ -200,7 +200,7 @@ bool Graphics::Initialize(int width, int height)
 
   backPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, -1), 1);
  	backPlaneMotionState = NULL;
- 	backPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 7)));
+ 	backPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 10)));
  
  	btRigidBody::btRigidBodyConstructionInfo backPlaneRigidBodyCI(0, backPlaneMotionState, backPlaneMesh, btVector3(0, 0, 0));
  	backPlaneRigidBody = new btRigidBody(backPlaneRigidBodyCI);
@@ -348,8 +348,51 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 ///////////////////////////////////////////////////////
 
   dynamicsWorld->stepSimulation(dt, 10);
+
+  diffx = (ballModel.x - PrevBallModel.x);
+  diffy = (ballModel.y - PrevBallModel.y);
+  diffz = (ballModel.z - PrevBallModel.z);
+
+  if ( ballModel.x > 7){
   
-  //block off the launch tube
+    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //normalize(normalVec);
+    
+    if (diffz >= 0)
+    	ballRigidBody->applyCentralImpulse(btVector3( -0.5, 0, 0.5 ));
+    else
+    	ballRigidBody->applyCentralImpulse(btVector3( -0.5, 0, -0.5 ));
+  }
+  if ( ballModel.x < -7){
+  
+    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //normalize(normalVec);
+    
+    if (diffz >= 0)
+    	ballRigidBody->applyCentralImpulse(btVector3( 0.5, 0, 0.5 ));
+    else
+    	ballRigidBody->applyCentralImpulse(btVector3( 0.5, 0, -0.5 ));
+  }
+  if ( ballModel.z > 7){
+  
+    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //normalize(normalVec);
+    
+    if (diffx >= 0)
+    	ballRigidBody->applyCentralImpulse(btVector3( 0.5, 0, -0.5 ));
+    else
+    	ballRigidBody->applyCentralImpulse(btVector3( -0.5, 0, -0.5 ));
+  }
+  if ( ballModel.z < -7){
+
+    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //normalize(normalVec);
+    
+    if (diffx >= 0)
+    	ballRigidBody->applyCentralImpulse(btVector3( 0.5, 0, 0.5 ));
+    else
+    	ballRigidBody->applyCentralImpulse(btVector3( -0.5, 0, 0.5 ));
+  }
   
 
   tableRigidBody->getMotionState()->getWorldTransform(trans);
@@ -362,8 +405,12 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
 
   // clean up!
-  ballRigidBody->clearForces();
+  //ballRigidBody->clearForces();
   
+  
+  PrevBallModel.x = ballModel.x;
+  PrevBallModel.y = ballModel.y;
+  PrevBallModel.z = ballModel.z;
   return true;
 }
 

@@ -58,6 +58,8 @@ class Graphics
     Object *ball;
     Object *stars;
     
+    glm::vec3 PrevBallModel = glm::vec3(0.0f,0.0f,0.0f);
+    
     //Bullet
     btDefaultMotionState *leftPlaneMotionState;
     btDefaultMotionState *rightPlaneMotionState;
