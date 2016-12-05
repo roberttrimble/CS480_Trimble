@@ -326,7 +326,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       /////////////////////////////
       case '<':
 				ballRigidBody->applyCentralImpulse(btVector3(10.0,0.0,0.0));
-        ballRigidBody->applyCentralImpulse(btVector3(10.0,0.0,0.0));
+        ballRigidBody2->applyCentralImpulse(btVector3(10.0,0.0,0.0));
 
       break;
       
@@ -385,7 +385,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
   if ( ballModel.x > 7){
   
-    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
     //normalize(normalVec);
     
     if (diffz >= 0)
@@ -395,7 +395,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   }
   if ( ballModel.x < -7){
   
-    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
     //normalize(normalVec);
     
     if (diffz >= 0)
@@ -405,7 +405,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   }
   if ( ballModel.z > 7){
   
-    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
     //normalize(normalVec);
     
     if (diffx >= 0)
@@ -415,7 +415,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   }
   if ( ballModel.z < -7){
 
-    glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
     //normalize(normalVec);
     
     if (diffx >= 0)
@@ -432,40 +432,40 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
   if ( ballModel2.x > 7){
   
-    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
     //normalize(normalVec);
     
-    if (diffz >= 0)
+    if (diffz2 >= 0)
     	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, 0.5 ));
     else
     	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, -0.5 ));
   }
   if ( ballModel2.x < -7){
   
-    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
     //normalize(normalVec);
     
-    if (diffz >= 0)
+    if (diffz2 >= 0)
     	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, 0.5 ));
     else
     	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, -0.5 ));
   }
   if ( ballModel2.z > 7){
   
-    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
     //normalize(normalVec);
     
-    if (diffx >= 0)
+    if (diffx2 >= 0)
     	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, -0.5 ));
     else
     	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, -0.5 ));
   }
   if ( ballModel2.z < -7){
 
-    glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
+    //glm::vec3 normalVec = glm::vec3 (ballModel2.x , ballModel2.y , ballModel2.z);
     //normalize(normalVec);
     
-    if (diffx >= 0)
+    if (diffx2 >= 0)
     	ballRigidBody2->applyCentralImpulse(btVector3( 0.5, 0, 0.5 ));
     else
     	ballRigidBody2->applyCentralImpulse(btVector3( -0.5, 0, 0.5 ));
@@ -502,7 +502,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 
 void Graphics::Render(char keyboardInput, bool newInput)
 {
-  glm::vec3 ballModel = glm::vec3(ball->model[3]);
+  //glm::vec3 ballModel = glm::vec3(ball->model[3]);
 
   //clear the screen
   glClearColor(0.0, 0.0, 0.0, 1.0);
