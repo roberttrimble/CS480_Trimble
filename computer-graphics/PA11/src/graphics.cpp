@@ -124,7 +124,7 @@ bool Graphics::Initialize(int width, int height)
 
   //Create Table
   triMesh1 = new btTriangleMesh();
-  table = new Object("../models/JezzBoard.obj", triMesh1);
+  table = new Object("../models/JezzBoard2.obj", triMesh1);
   tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
   
   tableMotionState = NULL;
@@ -236,7 +236,7 @@ bool Graphics::Initialize(int width, int height)
   
   leftPlaneMesh = new btStaticPlaneShape(btVector3(-1, 0, 0), 1);
  	leftPlaneMotionState = NULL;
- 	leftPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(10, 0, 0)));
+ 	leftPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(25, 0, 0)));
  
  	btRigidBody::btRigidBodyConstructionInfo leftPlaneRigidBodyCI(0, leftPlaneMotionState, leftPlaneMesh, btVector3(0, 0, 0));
  	leftPlaneRigidBody = new btRigidBody(leftPlaneRigidBodyCI);
@@ -249,7 +249,7 @@ bool Graphics::Initialize(int width, int height)
 
   rightPlaneMesh = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
  	rightPlaneMotionState = NULL;
- 	rightPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-10, 0, 0)));
+ 	rightPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-25, 0, 0)));
  
  	btRigidBody::btRigidBodyConstructionInfo rightPlaneRigidBodyCI(0, rightPlaneMotionState, rightPlaneMesh, btVector3(0, 0, 0));
  	rightPlaneRigidBody = new btRigidBody(rightPlaneRigidBodyCI);
@@ -262,7 +262,7 @@ bool Graphics::Initialize(int width, int height)
 
   frontPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
  	frontPlaneMotionState = NULL;
- 	frontPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -10)));
+ 	frontPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -25)));
  
  	btRigidBody::btRigidBodyConstructionInfo frontPlaneRigidBodyCI(0, frontPlaneMotionState, frontPlaneMesh, btVector3(0, 0, 0));
  	frontPlaneRigidBody = new btRigidBody(frontPlaneRigidBodyCI);
@@ -275,7 +275,7 @@ bool Graphics::Initialize(int width, int height)
 
   backPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, -1), 1);
  	backPlaneMotionState = NULL;
- 	backPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 10)));
+ 	backPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 25)));
  
  	btRigidBody::btRigidBodyConstructionInfo backPlaneRigidBodyCI(0, backPlaneMotionState, backPlaneMesh, btVector3(0, 0, 0));
  	backPlaneRigidBody = new btRigidBody(backPlaneRigidBodyCI);

@@ -25,8 +25,8 @@ class Object
   	
   	float upperBound = 7;
   	float lowerBound = -7;
-  	float leftBound = 7;
-  	float rightBound = -7;
+  	float leftBound = 11;
+  	float rightBound = -11;
 
   private:
     
