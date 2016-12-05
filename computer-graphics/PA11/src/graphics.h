@@ -47,13 +47,16 @@ class Graphics
 		
 		bool camera = false;
 		
+		bool roundStarted = false;
+		
 		int numBalls = 2;
+		float minBallSpeed = 2.5;
 		
   private:
     std::string ErrorString(GLenum error);
     
     btScalar mass = 1; //mass for balls
-		float force = 0.33; //for off wall bounce
+		float force = 0.1; //for off wall bounce
 		float ballSize = 0.425; //radius of ball
 
     Camera *m_camera;
