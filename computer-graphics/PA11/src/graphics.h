@@ -47,7 +47,7 @@ class Graphics
 		
 		bool camera = false;
 		
-		int numBalls = 1;
+		int numBalls = 2;
 		
   private:
     std::string ErrorString(GLenum error);

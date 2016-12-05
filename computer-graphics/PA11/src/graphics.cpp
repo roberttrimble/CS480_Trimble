@@ -177,7 +177,7 @@ bool Graphics::Initialize(int width, int height)
 
   ballRigidBody[1]->setActivationState(DISABLE_DEACTIVATION);
     
-  //dynamicsWorld->addRigidBody(ballRigidBody[1]);
+  dynamicsWorld->addRigidBody(ballRigidBody[1]);
   
   //Create Ball 3
   //////////////////////////////////
@@ -383,14 +383,14 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       //Left
       /////////////////////////////
       case '<':
-				ballRigidBody[0]->applyCentralImpulse(btVector3(10.0,0.0,0.0));
+				ballRigidBody[0]->applyCentralImpulse(btVector3(force,0.0,0.0));
 
       break;
       
       //Right
       ///////////////////////
       case '>':
-				ballRigidBody[0]->applyCentralImpulse(btVector3(-10.0,0.0,0.0));
+				ballRigidBody[0]->applyCentralImpulse(btVector3(-force,0.0,0.0));
   				
 
       break;
@@ -398,14 +398,47 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
       //Up/forward
       ///////////////////////
       case '^':
-        ballRigidBody[0]->applyCentralImpulse(btVector3(0.0,0.0,10.0));
+        ballRigidBody[0]->applyCentralImpulse(btVector3(0.0,0.0,force));
         
         
       break;   
       //Down/backwards
       ///////////////////////
       case 'v':
-      	ballRigidBody[0]->applyCentralImpulse(btVector3(0.0,0.0,-10.0));
+      	ballRigidBody[0]->applyCentralImpulse(btVector3(0.0,0.0,-force));
+      	
+      	
+      break;
+      //scatter balls
+      ////////////////
+      case 'q':
+		    if (numBalls == 2)
+		    {
+		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+		    }
+		    if (numBalls == 3)
+		    {
+		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+		    	ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
+		    }
+		    if (numBalls == 4)
+		    {
+		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+		    	ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
+		    	ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
+		    }
+		    if (numBalls == 5)
+		    {
+		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+		    	ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
+		    	ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
+		    	ballRigidBody[4]->applyCentralImpulse(btVector3(force*5,0.0,force*5));
+		    }
+      	
       	
       	
       break;
