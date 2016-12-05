@@ -22,14 +22,12 @@ class Graphics
     // Bullet   
     btTriangleMesh *triMesh0; 
     btTriangleMesh *triMesh1;
-    btTriangleMesh *triMesh2;
-    btTriangleMesh *triMesh3;
+    btTriangleMesh *ballTriMesh[5];
     
 ////////////////////////////////////////////////////
 
     btCollisionShape *tableMesh;
-		btCollisionShape *ballMesh;
-		btCollisionShape *ballMesh2;
+		btCollisionShape *ballMesh[5];
 		btStaticPlaneShape *leftPlaneMesh;
 		btStaticPlaneShape *rightPlaneMesh;
 		btStaticPlaneShape *frontPlaneMesh;
@@ -42,15 +40,13 @@ class Graphics
 		
 		btTransform trans;
 		btQuaternion quat;
-    float diffx = 0;
-    float diffy = 0;
-    float diffz = 0;
-
-    float diffx2 = 0;
-    float diffy2 = 0;
-    float diffz2 = 0;
+    float diffx[5] = {0, 0, 0, 0, 0};
+    float diffy[5] = {0, 0, 0, 0, 0};
+    float diffz[5] = {0, 0, 0, 0, 0};
 		
 		bool camera = false;
+		
+		int numBalls = 1;
   private:
     std::string ErrorString(GLenum error);
 
@@ -61,12 +57,12 @@ class Graphics
     GLint m_modelMatrix;
 
     Object *table;
-    Object *ball;
-    Object *ball2;
+    Object *ball[5];
+
     Object *stars;
     
-    glm::vec3 PrevBallModel = glm::vec3(0.0f,0.0f,0.0f);
-    glm::vec3 PrevBallModel2 = glm::vec3(0.0f,0.0f,0.0f);
+    glm::vec3 PrevBallModel[5];
+    
     
     //Bullet
     btDefaultMotionState *leftPlaneMotionState;
@@ -75,13 +71,11 @@ class Graphics
     btDefaultMotionState *backPlaneMotionState;
 
     btDefaultMotionState *tableMotionState;
-    btDefaultMotionState *ballMotionState;
-    btDefaultMotionState *ballMotionState2;
+    btDefaultMotionState *ballMotionState[5];
     
     btRigidBody *tableRigidBody;
 
-    btRigidBody *ballRigidBody;
-    btRigidBody *ballRigidBody2;
+    btRigidBody *ballRigidBody[5];
 
 		btRigidBody *leftPlaneRigidBody;	
 		btRigidBody *rightPlaneRigidBody;
