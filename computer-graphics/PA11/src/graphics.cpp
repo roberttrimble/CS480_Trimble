@@ -144,19 +144,16 @@ bool Graphics::Initialize(int width, int height)
   ///////////////////////////////////
   ballTriMesh[0] = new btTriangleMesh();
   ball[0] = new Object("../models/ball2.obj", ballTriMesh[0]);
-  ballMesh[0] = new btSphereShape(.425);
+  ballMesh[0] = new btSphereShape(ballSize);
   
   ballMotionState[0] = NULL;
   ballMotionState[0] = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 5, 0)));
-  
-  // the sphere must have a mass
-  btScalar mass = 1;
 
   //we need the inertia of the sphere and we need to calculate it
   btVector3 sphereInertia(0, 0, 0);
   ballMesh[0]->calculateLocalInertia(mass, sphereInertia);
 
-  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI0(1, ballMotionState[0], ballMesh[0], sphereInertia);
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI0(mass, ballMotionState[0], ballMesh[0], sphereInertia);
   ballRigidBody[0] = new btRigidBody(ballRigidBodyCI0);
 
   ballRigidBody[0]->setActivationState(DISABLE_DEACTIVATION);
@@ -167,7 +164,7 @@ bool Graphics::Initialize(int width, int height)
   /////////////////////////////////
   ballTriMesh[1] = new btTriangleMesh();
   ball[1] = new Object("../models/ball2.obj", ballTriMesh[1]);
-  ballMesh[1] = new btSphereShape(.425);
+  ballMesh[1] = new btSphereShape(ballSize);
   
   ballMotionState[1] = NULL;
   ballMotionState[1] = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(3, 5, 0)));
@@ -175,7 +172,7 @@ bool Graphics::Initialize(int width, int height)
   //we need the inertia of the sphere and we need to calculate it
   ballMesh[1]->calculateLocalInertia(mass, sphereInertia);
 
-  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI1(1, ballMotionState[1], ballMesh[1], sphereInertia);
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI1(mass, ballMotionState[1], ballMesh[1], sphereInertia);
   ballRigidBody[1] = new btRigidBody(ballRigidBodyCI1);
 
   ballRigidBody[1]->setActivationState(DISABLE_DEACTIVATION);
@@ -186,7 +183,7 @@ bool Graphics::Initialize(int width, int height)
   //////////////////////////////////
   ballTriMesh[2] = new btTriangleMesh();
   ball[2] = new Object("../models/ball2.obj", ballTriMesh[2]);
-  ballMesh[2] = new btSphereShape(.425);
+  ballMesh[2] = new btSphereShape(ballSize);
   
   ballMotionState[2] = NULL;
   ballMotionState[2] = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-3, 5, 0)));
@@ -194,7 +191,7 @@ bool Graphics::Initialize(int width, int height)
   //we need the inertia of the sphere and we need to calculate it
   ballMesh[2]->calculateLocalInertia(mass, sphereInertia);
 
-  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI2(1, ballMotionState[2], ballMesh[2], sphereInertia);
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI2(mass, ballMotionState[2], ballMesh[2], sphereInertia);
   ballRigidBody[2] = new btRigidBody(ballRigidBodyCI2);
 
   ballRigidBody[2]->setActivationState(DISABLE_DEACTIVATION);
@@ -204,7 +201,7 @@ bool Graphics::Initialize(int width, int height)
   ////////////////////////////////////
   ballTriMesh[3] = new btTriangleMesh();
   ball[3] = new Object("../models/ball2.obj", ballTriMesh[3]);
-  ballMesh[3] = new btSphereShape(.425);
+  ballMesh[3] = new btSphereShape(ballSize);
   
   ballMotionState[3] = NULL;
   ballMotionState[3] = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 5, 3)));
@@ -212,7 +209,7 @@ bool Graphics::Initialize(int width, int height)
   //we need the inertia of the sphere and we need to calculate it
   ballMesh[3]->calculateLocalInertia(mass, sphereInertia);
 
-  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI3(1, ballMotionState[3], ballMesh[3], sphereInertia);
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI3(mass, ballMotionState[3], ballMesh[3], sphereInertia);
   ballRigidBody[3] = new btRigidBody(ballRigidBodyCI3);
 
   ballRigidBody[3]->setActivationState(DISABLE_DEACTIVATION);
@@ -221,7 +218,7 @@ bool Graphics::Initialize(int width, int height)
   //////////////////////////////////
   ballTriMesh[4] = new btTriangleMesh();
   ball[4] = new Object("../models/ball2.obj", ballTriMesh[4]);
-  ballMesh[4] = new btSphereShape(.425);
+  ballMesh[4] = new btSphereShape(ballSize);
   
   ballMotionState[4] = NULL;
   ballMotionState[4] = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 5, -3)));
@@ -229,7 +226,7 @@ bool Graphics::Initialize(int width, int height)
   //we need the inertia of the sphere and we need to calculate it
   ballMesh[4]->calculateLocalInertia(mass, sphereInertia);
 
-  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI4(1, ballMotionState[4], ballMesh[4], sphereInertia);
+  btRigidBody::btRigidBodyConstructionInfo ballRigidBodyCI4(mass, ballMotionState[4], ballMesh[4], sphereInertia);
   ballRigidBody[4] = new btRigidBody(ballRigidBodyCI4);
 
   ballRigidBody[4]->setActivationState(DISABLE_DEACTIVATION);
@@ -449,6 +446,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		diffx[currentBall] = (ballModel[currentBall].x - PrevBallModel[currentBall].x);
 		diffy[currentBall] = (ballModel[currentBall].y - PrevBallModel[currentBall].y);
 		diffz[currentBall] = (ballModel[currentBall].z - PrevBallModel[currentBall].z);
+		
 
 		if ( ballModel[currentBall].x > ball[currentBall]->leftBound){
 		
@@ -456,9 +454,9 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  //normalize(normalVec);
 		  
 		  if (diffz[currentBall] >= 0)
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -0.25, 0, 0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, force ));
 		  else
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -0.25, 0, -0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, -force ));
 		}
 		if ( ballModel[currentBall].x < ball[currentBall]->rightBound){
 		
@@ -466,9 +464,9 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  //normalize(normalVec);
 		  
 		  if (diffz[currentBall] >= 0)
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( 0.25, 0, 0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, force ));
 		  else
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( 0.25, 0, -0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, -force ));
 		}
 		if ( ballModel[currentBall].z > ball[currentBall]->upperBound){
 		
@@ -476,9 +474,9 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  //normalize(normalVec);
 		  
 		  if (diffx[currentBall] >= 0)
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( 0.25, 0, -0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, -force ));
 		  else
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -0.25, 0, -0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, -force ));
 		}
 		if ( ballModel[currentBall].z < ball[currentBall]->lowerBound){
 
@@ -486,9 +484,9 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  //normalize(normalVec);
 		  
 		  if (diffx[currentBall] >= 0)
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( 0.25, 0, 0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, force ));
 		  else
-		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -0.25, 0, 0.25 ));
+		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, force ));
 		}
 	}
 /////////////////////////////////////////////////////////////////////////////////
@@ -505,6 +503,13 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		trans.getOpenGLMatrix(m);
 		ball[i]->model = glm::make_mat4(m);
 	}
+	
+	
+	//printText2D("Hello", 10, 10, 20);
+	
+	
+	
+	
   for (int i = 0; i < numBalls; i++)
   {
   	PrevBallModel[i].x = ballModel[i].x;

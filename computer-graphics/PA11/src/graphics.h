@@ -8,6 +8,7 @@ using namespace std;
 #include "camera.h"
 #include "shader.h"
 #include "object.h"
+//#include "text2D.h"
 #include <btBulletDynamicsCommon.h>
 
 class Graphics
@@ -47,8 +48,13 @@ class Graphics
 		bool camera = false;
 		
 		int numBalls = 1;
+		
   private:
     std::string ErrorString(GLenum error);
+    
+    btScalar mass = 1; //mass for balls
+		float force = 0.33; //for off wall bounce
+		float ballSize = 0.425; //radius of ball
 
     Camera *m_camera;
 
