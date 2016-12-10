@@ -421,7 +421,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    	if (numWalls < 300)
 		    	{
 				  	wall[numWalls][0] = new Object("../models/wall_v3.obj");
-				  	wall[numWalls][0]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+				  	wall[numWalls][0]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
 				  		if(cursorVertical)
 				  	wall[numWalls][0]->model = glm::rotate(wall[numWalls][0]->model, angle, glm::vec3(0.0, 12.0, 0.0));
 				  
@@ -491,30 +491,97 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     	
     	
 ///////////////////////////////////////////////////////////////////////////////////////
-
-			if(!cursorVertical && wallMaking == true)
+	//Build vertical walls
+	///////////////////////////
+			if(cursorVertical && wallMaking == true)
 				  {
 				  	
-				  	for(int j = 1; j < 28; j ++)
+				  	for(int j = 1; j < 28; j+=0)
 				  	{
-				  		if(cursor_x - j >= -13)
+				  		if(cursor_y - j >= -8 && cursor_y + j <= 8)
 				  		{
 				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - j, 1.5, cursor_y)));
-				  			
-				  			wallLength[numWalls-1]++;
-				  			//j++;
-				  		}
-				  		/*if(cursor_x + j <= 13)
-				  		{
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + j, 1.5, cursor_y)));
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - j)));
+				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
 				  			
 				  			wallLength[numWalls-1]++;
 				  			j++;
-				  		}*/
-				  		if(cursor_x - j <= -13)// && cursor_x + j >= 13)
+				  			
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y + j)));
+				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  		}
+				  		else if(cursor_y - j >= -8)
+				  		{
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - j)));
+				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  		}
+				  		else if(cursor_y + j <= 8)
+				  		{
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y + j)));
+				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  		}
+				  		else if(cursor_y - j <= -8 && cursor_y + j >= 8)
+				  		{
 				  			wallMaking = false;
+				  			break;
+				  		}
+				  	}
+				  }
+	
+	//Build horizontal walls
+	///////////////////////////
+			if(!cursorVertical && wallMaking == true)
+				  {
+				  	
+				  	for(int j = 1; j < 28; j+=0)
+				  	{
+				  		if(cursor_x - j >= -13 && cursor_x + j <= 13)
+				  		{
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - j, 1.0, cursor_y)));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  			
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + j, 1.0, cursor_y)));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  		}
+				  		else if(cursor_x - j >= -13)
+				  		{
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - j, 1.0, cursor_y)));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  		}
+				  		else if(cursor_x + j <= 13)
+				  		{
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + j, 1.0, cursor_y)));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  		}
+				  		else if(cursor_x - j <= -13 && cursor_x + j >= 13)
+				  		{
+				  			wallMaking = false;
+				  			break;
+				  		}
 				  	}
 				  }
 
