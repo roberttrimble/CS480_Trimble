@@ -304,8 +304,6 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   {
   	ballModel[i] = glm::vec3(ball[i]->model[3]);
   }
-
-  glm::vec3 cursorModel = glm::vec3(cursor->model[3]);
   
   btScalar m[16];
   btTransform trans;
@@ -341,10 +339,6 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    	
 		roundStarted = true;
 	}
-
-  //cursorDiffx = cursorModel.x
-	//cursorDiffy = 1;
-	//cursorDiffz = 1;
 
 	float angle = M_PI/2;
 	 if (newInput == true)
