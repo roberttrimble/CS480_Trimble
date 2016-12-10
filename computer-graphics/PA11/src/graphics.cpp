@@ -99,7 +99,7 @@ bool Graphics::Initialize(int width, int height)
   stars->model = glm::scale(stars->model, glm::vec3(28, 28, 28));
   
   cursor = new Object("../models/jezzBallArrowv1.obj");
-  cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.0, 0.0)));
+  cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.5, 0.0)));
 
   wall = new Object("../models/wall_v1.obj");
   wall->model = (glm::translate(glm::mat4(1.0f), glm::vec3(2.0, 1.0, 0.0)));
@@ -351,9 +351,12 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    	cursor_x += 1;
 		    	
 		    	if(!cursorVertical)
-		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		    	
-					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+		    	{
+		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    	}
+		    	else
+						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 
 		    break;
 		    
@@ -363,9 +366,12 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 					cursor_x -= 1;
 					
 					if(!cursorVertical)
-		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-					
-					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+		    	{
+		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    	}
+		    	else
+						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 						
 
 		    break;
@@ -376,9 +382,12 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		      cursor_y += 1;
 		      
 		      if(!cursorVertical)
-		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		      
-					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+		    	{
+		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    	}
+		    	else
+						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 		      
 		      
 		    break;   
@@ -388,9 +397,12 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    	cursor_y -= 1;
 		    	
 		    	if(!cursorVertical)
-		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		    	
-					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+		    	{
+		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    	}
+		    	else
+						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 		    	
 		    	
 		    break;
@@ -449,26 +461,17 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    case 'c':
 		    	camera = !camera;
 		    break;
-
-        // draw a wall
-        ////////////////////////////////////////////////////////////
-		    case 'w':
-
-		    	
-		    break;
 		  	}
-
-
 		  }
 		  
 		  if (camera)
-		  {
-		  	m_camera->UpdateCamera(0.0f ,25.0f , 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-		  }
-		  else
-		  {
-		  	m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-		  }
+    	{
+    		m_camera->UpdateCamera(0.0f ,25.0f , 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    	}
+    	else
+    	{
+    		m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    	}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
