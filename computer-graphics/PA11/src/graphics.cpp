@@ -98,11 +98,11 @@ bool Graphics::Initialize(int width, int height)
   stars = new Object("../models/planet.obj");  
   stars->model = glm::scale(stars->model, glm::vec3(28, 28, 28));
   
-  cursor = new Object("../models/jezzBallArrowv1.obj");
+  cursor = new Object("../models/jezzBallArrow_v2.obj");
   cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.5, 0.0)));
 
-  wall = new Object("../models/wall_v1.obj");
-  wall->model = (glm::translate(glm::mat4(1.0f), glm::vec3(2.0, 1.0, 0.0)));
+  wall = new Object("../models/wall_v3.obj");
+  wall->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.0, 0.0)));
 
   //Create Table
   triMesh = new btTriangleMesh();
