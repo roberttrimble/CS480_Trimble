@@ -32,7 +32,7 @@ if (ball == 1.0){
   vec4 color2 = gl_FrontMaterial.ambient + vec4(4,4,4,1);
   
   float cosAngIncidence = dot(normalize(normal), normalize(lightDir));
-  cosAngIncidence = clamp(cosAngIncidence, 0, 1);
+  cosAngIncidence = clamp(cosAngIncidence, 0.0, 1.0);
   colorV =  (color1+color2+color)*cosAngIncidence + vec4(0.1,0.1,0.1,1.0);
         
   texcoord = v_texcoord;

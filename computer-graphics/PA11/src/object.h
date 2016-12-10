@@ -35,7 +35,6 @@ class Object
     std::vector<unsigned int> Indices;
     GLuint VB;
     GLuint IB;
-    GLuint normal;
     
     // texture variables
   	GLuint m_textureObj = 0;
