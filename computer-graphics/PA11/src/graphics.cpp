@@ -418,22 +418,15 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    //Launch the ball
 		    ///////////////////////
 		    case 'n':
-		    	if (numWalls < 50)
+		    	if (numWalls < 300)
 		    	{
 				  	wall[numWalls][0] = new Object("../models/wall_v3.obj");
 				  	wall[numWalls][0]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 				  		if(cursorVertical)
 				  	wall[numWalls][0]->model = glm::rotate(wall[numWalls][0]->model, angle, glm::vec3(0.0, 12.0, 0.0));
-				  		
-				  	
-				  	
-				  if(cursorVertical)
-				  {
-				  	
-				  }
-				  
 				  
 				  numWalls++;
+				  wallMaking = true;
 		    	}
 		    break;
 		    
@@ -495,6 +488,35 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     	{
     		m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     	}
+    	
+    	
+///////////////////////////////////////////////////////////////////////////////////////
+
+			if(!cursorVertical && wallMaking == true)
+				  {
+				  	
+				  	for(int j = 1; j < 28; j ++)
+				  	{
+				  		if(cursor_x - j >= -13)
+				  		{
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - j, 1.5, cursor_y)));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			//j++;
+				  		}
+				  		/*if(cursor_x + j <= 13)
+				  		{
+				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + j, 1.5, cursor_y)));
+				  			
+				  			wallLength[numWalls-1]++;
+				  			j++;
+				  		}*/
+				  		if(cursor_x - j <= -13)// && cursor_x + j >= 13)
+				  			wallMaking = false;
+				  	}
+				  }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -665,8 +687,11 @@ void Graphics::Render(char keyboardInput, bool newInput)
 
 	for(int i = 0; i < numWalls; i++)
 	{
-		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(wall[i][0]->GetModel()));
-		wall[i][0]->Render();
+		for(int j = 0; j < wallLength[i]; j++)
+		{
+			glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(wall[i][j]->GetModel()));
+			wall[i][j]->Render();
+		}
 	}
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(table->GetModel()));

@@ -48,7 +48,9 @@ class Graphics
 		float minBallSpeed = 2.5;
 		
 		int numWalls = 0;
-		int wallLength[50] = {0};
+		int wallLength[300] = {0};
+		bool wallMaking = false;
+		
 		
 		
   private:
@@ -72,7 +74,7 @@ class Graphics
     Object *ball[5];
     Object *cursor;
     
-    Object *wall[50][14];
+    Object *wall[300][28];
 
     Object *stars;
     
