@@ -101,6 +101,9 @@ bool Graphics::Initialize(int width, int height)
   cursor = new Object("../models/jezzBallArrowv1.obj");
   cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.0, 0.0)));
 
+  wall = new Object("../models/wall_v1.obj");
+  wall->model = (glm::translate(glm::mat4(1.0f), glm::vec3(2.0, 1.0, 0.0)));
+
   //Create Table
   triMesh = new btTriangleMesh();
   table = new Object("../models/JezzBoard2.obj", triMesh);
@@ -446,7 +449,16 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    case 'c':
 		    	camera = !camera;
 		    break;
+
+        // draw a wall
+        ////////////////////////////////////////////////////////////
+		    case 'w':
+
+		    	
+		    break;
 		  	}
+
+
 		  }
 		  
 		  if (camera)
@@ -624,6 +636,9 @@ void Graphics::Render(char keyboardInput, bool newInput)
   
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cursor->GetModel()));
   cursor->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(wall->GetModel()));
+  wall->Render();
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(table->GetModel()));
   table->Render();

@@ -67,6 +67,7 @@ class Graphics
     Object *table;
     Object *ball[5];
     Object *cursor;
+    Object *wall;
 
     Object *stars;
     

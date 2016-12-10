@@ -163,6 +163,13 @@ void Engine::Keyboard()
 		    
 		    newInput = true;
 		  }
+
+		  if (m_event.button.button == SDL_BUTTON_RIGHT)
+		  {
+		    keyboardInput = 'w';
+		    
+		    newInput = true;
+		  }
   	}
   
 }
