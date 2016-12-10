@@ -34,11 +34,11 @@ bool Shader::Initialize()
 }
 
 // Use this method to add shaders to the program. When finished - call finalize()
-bool Shader::AddShader(GLenum ShaderType, int type)
+bool Shader::AddShader(GLenum ShaderType)
 {
   std::string s;
 
-  if(ShaderType == GL_VERTEX_SHADER && type == 0)
+  if(ShaderType == GL_VERTEX_SHADER)
   {
     //Read in vertex shader file into a string
     std::ifstream file("../shaders/vertex_shaderL.txt");
@@ -47,28 +47,11 @@ bool Shader::AddShader(GLenum ShaderType, int type)
     s = fileString;
     
   }
-  else if(ShaderType == GL_VERTEX_SHADER && type == 1)
-  {
-    //Read in fragment shader file into a string
-    std::ifstream file("../shaders/vertex_shader2.txt");
-    std::string fileString((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    //set the string to s
-    s = fileString;
   
-  }
-  else if(ShaderType == GL_FRAGMENT_SHADER && type == 0)
+  else if(ShaderType == GL_FRAGMENT_SHADER)
   {
     //Read in fragment shader file into a string
     std::ifstream file("../shaders/fragment_shadersL.txt");
-    std::string fileString((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    //set the string to s
-    s = fileString;
-  
-  }
-  else if(ShaderType == GL_FRAGMENT_SHADER && type == 1)
-  {
-    //Read in fragment shader file into a string
-    std::ifstream file("../shaders/fragment_shader2.txt");
     std::string fileString((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     //set the string to s
     s = fileString;
