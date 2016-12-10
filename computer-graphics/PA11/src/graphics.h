@@ -53,6 +53,10 @@ class Graphics
     btScalar mass = 1; //mass for balls
 		float force = 0.1; //for off wall bounce
 		float ballSize = 0.425; //radius of ball
+		
+		float cursor_x = 0.0;
+		float cursor_y = 0.0;
+		bool cursorVertical = true;
 
     Camera *m_camera;
 
@@ -62,6 +66,7 @@ class Graphics
 
     Object *table;
     Object *ball[5];
+    Object *cursor;
 
     Object *stars;
     

@@ -97,6 +97,9 @@ bool Graphics::Initialize(int width, int height)
   // background
   stars = new Object("../models/planet.obj");  
   stars->model = glm::scale(stars->model, glm::vec3(28, 28, 28));
+  
+  cursor = new Object("../models/jezzBallArrowv1.obj");
+  cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.0, 0.0)));
 
   //Create Table
   triMesh = new btTriangleMesh();
@@ -301,100 +304,159 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   
   btScalar m[16];
   btTransform trans;
+  //launch the balls to start
+	if(!roundStarted)
+	{
+		if (numBalls == 2)
+		{
+			ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+			ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+		}
+		if (numBalls == 3)
+		{
+			ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+			ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+			ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
+		}
+		if (numBalls == 4)
+		{
+			ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+			ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+			ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
+			ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
+		}
+	 if (numBalls == 5)
+		{
+			ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
+			ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
+			ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
+			ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
+			ballRigidBody[4]->applyCentralImpulse(btVector3(force*5,0.0,force*5));
+		}
+		    	
+		roundStarted = true;
+	}
 
+	float angle = M_PI/2;
+	 if (newInput == true)
+		{
+		  switch (keyboardInput)
+		  {
+		    //Left
+		    /////////////////////////////
+		    case '<':
+		    	cursor_x += 1;
+		    	
+		    	if(!cursorVertical)
+		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    	
+					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
 
- if (newInput == true)
-  {
-    switch (keyboardInput)
-    {
-      //Left
-      /////////////////////////////
-      case '<':
-				ballRigidBody[0]->applyCentralImpulse(btVector3(force,0.0,0.0));
+		    break;
+		    
+		    //Right
+		    ///////////////////////
+		    case '>':
+					cursor_x -= 1;
+					
+					if(!cursorVertical)
+		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+					
+					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+						
 
-      break;
-      
-      //Right
-      ///////////////////////
-      case '>':
-				ballRigidBody[0]->applyCentralImpulse(btVector3(-force,0.0,0.0));
-  				
-
-      break;
-        
-      //Up/forward
-      ///////////////////////
-      case '^':
-        ballRigidBody[0]->applyCentralImpulse(btVector3(0.0,0.0,force));
-        
-        
-      break;   
-      //Down/backwards
-      ///////////////////////
-      case 'v':
-      	ballRigidBody[0]->applyCentralImpulse(btVector3(0.0,0.0,-force));
-      	
-      	
-      break;
-      //scatter balls
-      ////////////////
-      case 'q':
-		    if (numBalls == 2)
-		    {
-		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
-		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
-		    }
-		    if (numBalls == 3)
-		    {
-		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
-		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
-		    	ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
-		    }
-		    if (numBalls == 4)
-		    {
-		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
-		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
-		    	ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
-		    	ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
-		    }
-		    if (numBalls == 5)
-		    {
-		    	ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
-		    	ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
-		    	ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
-		    	ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
-		    	ballRigidBody[4]->applyCentralImpulse(btVector3(force*5,0.0,force*5));
-		    }
-      	
-      	roundStarted = true;
-      	
-      break;
-      //Launch the ball
-      ///////////////////////
-      case 'b':
-      	if (numBalls < 5)
-      	{
-      		numBalls++;
-      		dynamicsWorld->addRigidBody(ballRigidBody[numBalls - 1]);
-      		
-      	}
-      break;
-      //toggle camera
-      //////////////////
-      case 'c':
-      	camera = !camera;
-      break;
-    	}
-    }
-    
-    if (camera)
-    {
-    	m_camera->UpdateCamera(0.0f ,25.0f , 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-    }
-    else
-    {
-    	m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-    }
+		    break;
+		      
+		    //Up
+		    ///////////////////////
+		    case '^':
+		      cursor_y += 1;
+		      
+		      if(!cursorVertical)
+		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		      
+					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+		      
+		      
+		    break;   
+		    //Down
+		    ///////////////////////
+		    case 'v':
+		    	cursor_y -= 1;
+		    	
+		    	if(!cursorVertical)
+		    		cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    	
+					cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+		    	
+		    	
+		    break;
+		    //turn cursor
+		    ////////////////
+		    case '_':
+		    	
+				  cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    	cursorVertical = !cursorVertical;
+		    break;
+		    //Launch the ball
+		    ///////////////////////
+		    case 'b':
+		    	if (numBalls < 5)
+		    	{
+		    		numBalls++;
+		    		dynamicsWorld->addRigidBody(ballRigidBody[numBalls - 1]);
+		    		
+		    			
+				  	ballRigidBody[0]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(0.0f, 1.15f, 0.0f));
+						ballRigidBody[0]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[0]->setMotionState(ballRigidBody[0]->getMotionState());
+						ball[0]->model = glm::make_mat4(m);
+						
+						ballRigidBody[1]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(3.0f, 1.15f, 0.0f));
+						ballRigidBody[1]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[1]->setMotionState(ballRigidBody[1]->getMotionState());
+						ball[1]->model = glm::make_mat4(m);
+						
+						ballRigidBody[2]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(-3.0f, 1.15f, 0.0f));
+						ballRigidBody[2]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[2]->setMotionState(ballRigidBody[2]->getMotionState());
+						ball[2]->model = glm::make_mat4(m);
+						
+						ballRigidBody[3]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(0.0f, 1.15f, 3.0f));
+						ballRigidBody[3]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[3]->setMotionState(ballRigidBody[3]->getMotionState());
+						ball[3]->model = glm::make_mat4(m);
+						
+						ballRigidBody[4]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(0.0f, 1.15f, -3.0f));
+						ballRigidBody[4]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[4]->setMotionState(ballRigidBody[4]->getMotionState());
+						ball[4]->model = glm::make_mat4(m);
+		    		
+		    		
+		    		roundStarted = false;
+		    	}
+		    break;
+		    //toggle camera
+		    //////////////////
+		    case 'c':
+		    	camera = !camera;
+		    break;
+		  	}
+		  }
+		  
+		  if (camera)
+		  {
+		  	m_camera->UpdateCamera(0.0f ,25.0f , 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+		  }
+		  else
+		  {
+		  	m_camera->UpdateCamera(0.0f ,15.0f , -16.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+		  }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -559,6 +621,9 @@ void Graphics::Render(char keyboardInput, bool newInput)
   
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(stars->GetModel()));
   stars->Render();
+  
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cursor->GetModel()));
+  cursor->Render();
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(table->GetModel()));
   table->Render();

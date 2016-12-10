@@ -95,9 +95,10 @@ void Engine::Keyboard()
         m_running = false;
         break;
       case SDLK_SPACE:
-
+				keyboardInput = '_';
+        newInput = true;
        
-        break;
+       break;
       //left paddle
       case SDLK_LEFT:
         keyboardInput = '<';
