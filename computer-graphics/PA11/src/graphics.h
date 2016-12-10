@@ -39,6 +39,10 @@ class Graphics
     float diffx[5] = {0, 0, 0, 0, 0};
     float diffy[5] = {0, 0, 0, 0, 0};
     float diffz[5] = {0, 0, 0, 0, 0};
+
+    float cursorDiffx = 0;
+    float cursorDiffy = 0;
+    float cursorDiffz = 0;
 		
 		bool camera = false;
 		

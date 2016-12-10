@@ -304,6 +304,8 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
   {
   	ballModel[i] = glm::vec3(ball[i]->model[3]);
   }
+
+  glm::vec3 cursorModel = glm::vec3(cursor->model[3]);
   
   btScalar m[16];
   btTransform trans;
@@ -340,6 +342,10 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		roundStarted = true;
 	}
 
+  //cursorDiffx = cursorModel.x
+	//cursorDiffy = 1;
+	//cursorDiffz = 1;
+
 	float angle = M_PI/2;
 	 if (newInput == true)
 		{
@@ -348,64 +354,66 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    //Left
 		    /////////////////////////////
 		    case '<':
-		    	cursor_x += 1;
-		    	
-		    	if(!cursorVertical)
-		    	{
+
+		    	if(!cursorVertical && cursor_x < 13){
+            cursor_x += 1;
 		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
 		    	}
-		    	else
+		    	else if(cursor_x < 13){
+            cursor_x += 1;
 						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-
+          }
 		    break;
 		    
 		    //Right
 		    ///////////////////////
 		    case '>':
-					cursor_x -= 1;
 					
-					if(!cursorVertical)
-		    	{
+					if(!cursorVertical && cursor_x > -13){
+            cursor_x -= 1;
 		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
 		    	}
-		    	else
+		    	else if(cursor_x > -13){
+            cursor_x -= 1;
 						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-						
-
+					}
 		    break;
 		      
 		    //Up
 		    ///////////////////////
-		    case '^':
-		      cursor_y += 1;
+		    case '^':    
 		      
-		      if(!cursorVertical)
-		    	{
+		      if(!cursorVertical && cursor_y < 7){
+            cursor_y += 1;
 		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
 		    	}
-		    	else
+		    	
+          else if(cursor_y < 7){
+            cursor_y += 1;
 						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+          }
 		      
 		      
 		    break;   
 		    //Down
 		    ///////////////////////
 		    case 'v':
-		    	cursor_y -= 1;
 		    	
-		    	if(!cursorVertical)
-		    	{
+		    	if(!cursorVertical && cursor_y > -7){
+            cursor_y -= 1;
 		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
 		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
 		    	}
-		    	else
+		    	
+          else if(cursor_y > -7){
+            cursor_y -= 1;
 						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-		    	
-		    	
+          }
 		    break;
+
 		    //turn cursor
 		    ////////////////
 		    case '_':
