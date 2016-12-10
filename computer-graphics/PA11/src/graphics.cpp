@@ -49,15 +49,13 @@ Graphics::~Graphics()
 	{
 		delete ballMesh[i];
   	delete ball[i];
-  	delete ballTriMesh[i];
 	}
 
   delete tableMesh;
   delete table;
-  delete triMesh1;
+  delete triMesh;
 
   delete stars;
-  delete triMesh0;
 
   delete dynamicsWorld;
   delete solver;
@@ -118,14 +116,13 @@ bool Graphics::Initialize(int width, int height)
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
   // background
-  triMesh0 = new btTriangleMesh();
-  stars = new Object("../models/planet.obj", triMesh0);  
+  stars = new Object("../models/planet.obj");  
   stars->model = glm::scale(stars->model, glm::vec3(28, 28, 28));
 
   //Create Table
-  triMesh1 = new btTriangleMesh();
-  table = new Object("../models/JezzBoard2.obj", triMesh1);
-  tableMesh = new btBvhTriangleMeshShape(triMesh1, true);
+  triMesh = new btTriangleMesh();
+  table = new Object("../models/JezzBoard2.obj", triMesh);
+  tableMesh = new btBvhTriangleMeshShape(triMesh, true);
   
   tableMotionState = NULL;
   tableMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 1, 0)));
@@ -142,8 +139,7 @@ bool Graphics::Initialize(int width, int height)
 
   //Create Ball 1
   ///////////////////////////////////
-  ballTriMesh[0] = new btTriangleMesh();
-  ball[0] = new Object("../models/ball2.obj", ballTriMesh[0]);
+  ball[0] = new Object("../models/ball2.obj");
   ballMesh[0] = new btSphereShape(ballSize);
   
   ballMotionState[0] = NULL;
@@ -164,8 +160,7 @@ bool Graphics::Initialize(int width, int height)
 
   //Create Ball 2
   /////////////////////////////////
-  ballTriMesh[1] = new btTriangleMesh();
-  ball[1] = new Object("../models/ball2.obj", ballTriMesh[1]);
+  ball[1] = new Object("../models/ball2.obj");
   ballMesh[1] = new btSphereShape(ballSize);
   
   ballMotionState[1] = NULL;
@@ -185,8 +180,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Ball 3
   //////////////////////////////////
-  ballTriMesh[2] = new btTriangleMesh();
-  ball[2] = new Object("../models/ball2.obj", ballTriMesh[2]);
+  ball[2] = new Object("../models/ball2.obj");
   ballMesh[2] = new btSphereShape(ballSize);
   
   ballMotionState[2] = NULL;
@@ -205,8 +199,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Ball 4
   ////////////////////////////////////
-  ballTriMesh[3] = new btTriangleMesh();
-  ball[3] = new Object("../models/ball2.obj", ballTriMesh[3]);
+  ball[3] = new Object("../models/ball2.obj");
   ballMesh[3] = new btSphereShape(ballSize);
   
   ballMotionState[3] = NULL;
@@ -224,8 +217,7 @@ bool Graphics::Initialize(int width, int height)
   
   //Create Ball 5
   //////////////////////////////////
-  ballTriMesh[4] = new btTriangleMesh();
-  ball[4] = new Object("../models/ball2.obj", ballTriMesh[4]);
+  ball[4] = new Object("../models/ball2.obj");
   ballMesh[4] = new btSphereShape(ballSize);
   
   ballMotionState[4] = NULL;
@@ -240,7 +232,6 @@ bool Graphics::Initialize(int width, int height)
   ballRigidBody[4]->setLinearFactor(btVector3(1,0,1));
 
   ballRigidBody[4]->setActivationState(DISABLE_DEACTIVATION);
-  
 
 /////////////////////////////////////////////////////////////////////////////
   
@@ -296,6 +287,8 @@ bool Graphics::Initialize(int width, int height)
 
 ////////////////////////////////////////////////////////////////////////////
 
+
+////////////////////////////////////////////////////////////////////////////
 
 	glm::vec3 temp = glm::vec3(0.0f, 0.0f, 0.0f);
 	for (int i = 0; i < numBalls; i++)

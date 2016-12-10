@@ -13,6 +13,7 @@
 class Object 
 {
   public: 
+    Object(std::string fileInput);
     Object(std::string fileInput, btTriangleMesh *objMesh);
     ~Object();
     void Render();

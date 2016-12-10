@@ -21,9 +21,8 @@ class Graphics
     void Render(char keyboardInput, bool newInput);
 
     // Bullet   
-    btTriangleMesh *triMesh0; 
-    btTriangleMesh *triMesh1;
-    btTriangleMesh *ballTriMesh[5];
+    btTriangleMesh *triMesh;
+
     
 ////////////////////////////////////////////////////
 
