@@ -90,15 +90,20 @@ Object::Object(std::string fileInput)
 		
 	}
 
-		// bind texture buffer		
     glGenTextures(1, &m_textureObj);
-    //glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_textureObj);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_pImage->columns(), m_pImage->rows(), -0.5, GL_RGBA, GL_UNSIGNED_BYTE, m_blob.data());
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    //glActiveTexture(GL_TEXTURE0);
-    //glBindTexture(GL_TEXTURE_2D, m_textureObj);
+
+	  // bind vertex buffers
+	  glGenBuffers(1, &VB);
+	  glBindBuffer(GL_ARRAY_BUFFER, VB);
+	  glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
+
+	  // bind indice buffer
+	  glGenBuffers(1, &IB);
+	  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
+	  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
 
 		angle = 0.0f;
 		
@@ -212,15 +217,21 @@ Object::Object(std::string fileInput, btTriangleMesh *objMesh)
 		
 	}
 
-		// bind texture buffer		
     glGenTextures(1, &m_textureObj);
     //glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_textureObj);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_pImage->columns(), m_pImage->rows(), -0.5, GL_RGBA, GL_UNSIGNED_BYTE, m_blob.data());
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    //glActiveTexture(GL_TEXTURE0);
-    //glBindTexture(GL_TEXTURE_2D, m_textureObj);
+
+	  // bind vertex buffers
+	  glGenBuffers(1, &VB);
+	  glBindBuffer(GL_ARRAY_BUFFER, VB);
+	  glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
+
+	  // bind indice buffer
+	  glGenBuffers(1, &IB);
+	  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
+	  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
 
 		angle = 0.0f;
 		
@@ -235,9 +246,9 @@ Object::~Object()
   Vertices.clear();
   Indices.clear();
 
-glDeleteTextures(	1,	&m_textureObj);
-		m_pImage = NULL;
-		delete m_pImage;
+  glDeleteTextures(	1,	&m_textureObj);
+	m_pImage = NULL;
+	delete m_pImage;
 }
 
 glm::mat4 Object::GetModel()
@@ -247,26 +258,8 @@ glm::mat4 Object::GetModel()
 
 void Object::Render()
 {
-	// bind vertex buffers
-	glGenBuffers(1, &VB);
-	glBindBuffer(GL_ARRAY_BUFFER, VB);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
 
-	// bind indice buffer
-	glGenBuffers(1, &IB);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
-
-	// bind indice buffer
-	//glGenBuffers(1, &normal);
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, normal);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Vertex->uv) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
-
-
-  //glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, m_textureObj);
-
-//glEnable(GL_LIGHTING);
 
   glEnableVertexAttribArray(0);
   glEnableVertexAttribArray(1);
@@ -284,10 +277,6 @@ void Object::Render()
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
   glDisableVertexAttribArray(2);
-
-
-
-//glDeleteTextures(	1,	m_textureObj);
 
 }
 

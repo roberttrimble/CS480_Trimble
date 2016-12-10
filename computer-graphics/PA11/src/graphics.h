@@ -28,10 +28,6 @@ class Graphics
 
     btCollisionShape *tableMesh;
 		btCollisionShape *ballMesh[5];
-		btStaticPlaneShape *leftPlaneMesh;
-		btStaticPlaneShape *rightPlaneMesh;
-		btStaticPlaneShape *frontPlaneMesh;
-		btStaticPlaneShape *backPlaneMesh;
 
 //////////////////////////////////////////////////////		
 
@@ -73,11 +69,6 @@ class Graphics
     
     
     //Bullet
-    btDefaultMotionState *leftPlaneMotionState;
-    btDefaultMotionState *rightPlaneMotionState;
-    btDefaultMotionState *frontPlaneMotionState;
-    btDefaultMotionState *backPlaneMotionState;
-
     btDefaultMotionState *tableMotionState;
     btDefaultMotionState *ballMotionState[5];
     

@@ -13,22 +13,6 @@ Graphics::~Graphics()
   //////////// clean up and end program
   // delete the pointers
 
-	dynamicsWorld->removeRigidBody(backPlaneRigidBody);
-	delete backPlaneRigidBody->getMotionState();
-	delete backPlaneRigidBody;
-
-	dynamicsWorld->removeRigidBody(frontPlaneRigidBody);
-	delete frontPlaneRigidBody->getMotionState();
-	delete frontPlaneRigidBody;
-
-	dynamicsWorld->removeRigidBody(rightPlaneRigidBody);
-	delete rightPlaneRigidBody->getMotionState();
-	delete rightPlaneRigidBody;
-
-  dynamicsWorld->removeRigidBody(leftPlaneRigidBody);
-	delete leftPlaneRigidBody->getMotionState();
-	delete leftPlaneRigidBody;
-
 	for (int i = 0; i < numBalls; i++)
 	{
 		dynamicsWorld->removeRigidBody(ballRigidBody[i]);
@@ -39,11 +23,6 @@ Graphics::~Graphics()
   dynamicsWorld->removeRigidBody(tableRigidBody);
   delete tableRigidBody->getMotionState();
   delete tableRigidBody;
-
-  delete backPlaneMesh;
-  delete frontPlaneMesh;
-  delete rightPlaneMesh;
-  delete leftPlaneMesh;
 
 	for (int i = 0; i < numBalls; i++)
 	{
@@ -232,61 +211,6 @@ bool Graphics::Initialize(int width, int height)
   ballRigidBody[4]->setLinearFactor(btVector3(1,0,1));
 
   ballRigidBody[4]->setActivationState(DISABLE_DEACTIVATION);
-
-/////////////////////////////////////////////////////////////////////////////
-  
-  leftPlaneMesh = new btStaticPlaneShape(btVector3(-1, 0, 0), 1);
- 	leftPlaneMotionState = NULL;
- 	leftPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(25, 0, 0)));
- 
- 	btRigidBody::btRigidBodyConstructionInfo leftPlaneRigidBodyCI(0, leftPlaneMotionState, leftPlaneMesh, btVector3(0, 0, 0));
- 	leftPlaneRigidBody = new btRigidBody(leftPlaneRigidBodyCI);
-
- 	leftPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
- 	dynamicsWorld->addRigidBody(leftPlaneRigidBody);
-
-////////////////////////////////////////////////////////////////////////////
-
-  rightPlaneMesh = new btStaticPlaneShape(btVector3(1, 0, 0), 1);
- 	rightPlaneMotionState = NULL;
- 	rightPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(-25, 0, 0)));
- 
- 	btRigidBody::btRigidBodyConstructionInfo rightPlaneRigidBodyCI(0, rightPlaneMotionState, rightPlaneMesh, btVector3(0, 0, 0));
- 	rightPlaneRigidBody = new btRigidBody(rightPlaneRigidBodyCI);
-
- 	rightPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
- 	dynamicsWorld->addRigidBody(rightPlaneRigidBody);
-
-////////////////////////////////////////////////////////////////////////////
-
-  frontPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
- 	frontPlaneMotionState = NULL;
- 	frontPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, -25)));
- 
- 	btRigidBody::btRigidBodyConstructionInfo frontPlaneRigidBodyCI(0, frontPlaneMotionState, frontPlaneMesh, btVector3(0, 0, 0));
- 	frontPlaneRigidBody = new btRigidBody(frontPlaneRigidBodyCI);
-
- 	frontPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
- 	dynamicsWorld->addRigidBody(frontPlaneRigidBody);
-
-////////////////////////////////////////////////////////////////////////////
-
-  backPlaneMesh = new btStaticPlaneShape(btVector3(0, 0, -1), 1);
- 	backPlaneMotionState = NULL;
- 	backPlaneMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 25)));
- 
- 	btRigidBody::btRigidBodyConstructionInfo backPlaneRigidBodyCI(0, backPlaneMotionState, backPlaneMesh, btVector3(0, 0, 0));
- 	backPlaneRigidBody = new btRigidBody(backPlaneRigidBodyCI);
-
- 	backPlaneRigidBody->setActivationState(DISABLE_DEACTIVATION);
-    
- 	dynamicsWorld->addRigidBody(backPlaneRigidBody);
-
-////////////////////////////////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////////////////////////////////////
 
