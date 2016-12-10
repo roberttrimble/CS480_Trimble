@@ -101,8 +101,8 @@ bool Graphics::Initialize(int width, int height)
   cursor = new Object("../models/jezzBallArrow_v2.obj");
   cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.5, 0.0)));
 
-  wall = new Object("../models/wall_v3.obj");
-  wall->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.0, 0.0)));
+  //wall = new Object("../models/wall_v3.obj");
+  //wall->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.0, 0.0)));
 
   //Create Table
   triMesh = new btTriangleMesh();
@@ -417,9 +417,30 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    break;
 		    //Launch the ball
 		    ///////////////////////
+		    case 'n':
+		    	if (numWalls < 50)
+		    	{
+				  	wall[numWalls][0] = new Object("../models/wall_v3.obj");
+				  	wall[numWalls][0]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+				  		if(cursorVertical)
+				  	wall[numWalls][0]->model = glm::rotate(wall[numWalls][0]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  		
+				  	
+				  	
+				  if(cursorVertical)
+				  {
+				  	
+				  }
+				  
+				  
+				  numWalls++;
+		    	}
+		    break;
+		    
 		    case 'b':
 		    	if (numBalls < 5)
 		    	{
+		    	
 		    		numBalls++;
 		    		dynamicsWorld->addRigidBody(ballRigidBody[numBalls - 1]);
 		    		
@@ -642,8 +663,11 @@ void Graphics::Render(char keyboardInput, bool newInput)
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(cursor->GetModel()));
   cursor->Render();
 
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(wall->GetModel()));
-  wall->Render();
+	for(int i = 0; i < numWalls; i++)
+	{
+		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(wall[i][0]->GetModel()));
+		wall[i][0]->Render();
+	}
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(table->GetModel()));
   table->Render();

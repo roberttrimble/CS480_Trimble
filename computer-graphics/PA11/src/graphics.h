@@ -47,6 +47,10 @@ class Graphics
 		int numBalls = 2;
 		float minBallSpeed = 2.5;
 		
+		int numWalls = 0;
+		int wallLength[50] = {0};
+		
+		
   private:
     std::string ErrorString(GLenum error);
     
@@ -67,7 +71,8 @@ class Graphics
     Object *table;
     Object *ball[5];
     Object *cursor;
-    Object *wall;
+    
+    Object *wall[50][14];
 
     Object *stars;
     
