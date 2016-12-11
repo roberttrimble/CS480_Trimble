@@ -426,7 +426,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    break;
 		    //Launch the ball
 		    ///////////////////////
-		    case 'n':
+		    case 'z':
 		    	if(wallMaking == false)
 		    	{
 				  	if (numWalls < 300)
@@ -462,7 +462,15 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    			ball[i]->leftBound = 13;
 		    			ball[i]->rightBound = -13;
 		    		}
+		    		
+		    		for (int i = 0; i < 50; i++)
+		    		{
+		    			wallLength[i] = 0;
+		    		}
 		    	
+		    		wallLocationX.clear();
+		    		wallLocationY.clear();
+		    		numWalls = 0;
 		    	
 		    	
 		    		numBalls++;
@@ -539,12 +547,12 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  		float stopTop = 8;
 				  		float stopBottom = -8;
 				  		
-				  		for(unsigned int i = 0; i < wallLocationY.size(); i++)
+				  		for(unsigned int i = 0; i < wallLocationY.size(); i += 3)
 				  		{
-				  			if(cursor_y < wallLocationY[i])
+				  			if(cursor_y < wallLocationY[i] && cursor_x < wallLocationY[i+1] && cursor_x > wallLocationY[i+2])
 				  				stopTop = wallLocationY[i];
 				  				
-				  			if(cursor_y > wallLocationY[i])
+				  			if(cursor_y > wallLocationY[i] && cursor_x < wallLocationY[i+1] && cursor_x > wallLocationY[i+2])
 				  				stopBottom = wallLocationY[i];
 				  		}
 				  	
@@ -593,21 +601,27 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallCount = 1;
 				  			wallOffset = 1;
 				  			
-				  			wallLocationX.push_back(cursor_x);
-				  			//wallLocationX.push_back(stopTop);
-				  			//wallLocationX.push_back();
+				  			
 				  			
 				  			for(int currentBall = 0; currentBall < numBalls; currentBall++)
 				  			{
 				  				if(ballModel[currentBall].x > cursor_x && ball[currentBall]->rightBound < cursor_x 
 				  						&& ballModel[currentBall].z < stopTop && ballModel[currentBall].z > stopBottom)
 				  				{
-				  					ball[currentBall]->rightBound = cursor_x+1.25;
+				  					ball[currentBall]->rightBound = cursor_x+1.2;
+				  					
+				  					wallLocationX.push_back(cursor_x);
+				  					wallLocationX.push_back(stopTop);
+				  					wallLocationX.push_back(stopBottom);
 				  				}
 				  				else if(ballModel[currentBall].x < cursor_x && ball[currentBall]->leftBound > cursor_x
 				  						&& ballModel[currentBall].z < stopTop && ballModel[currentBall].z > stopBottom)
 				  				{
-				  					ball[currentBall]->leftBound = cursor_x-1.25;
+				  					ball[currentBall]->leftBound = cursor_x-1.2;
+				  					
+				  					wallLocationX.push_back(cursor_x);
+				  					wallLocationX.push_back(stopTop);
+				  					wallLocationX.push_back(stopBottom);
 				  				}
 				  			}
 				  			
@@ -627,12 +641,12 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  		float stopLeft = 14;
 				  		float stopRight = -14;
 				  		
-				  		for(unsigned int i = 0; i < wallLocationX.size(); i++)
+				  		for(unsigned int i = 0; i < wallLocationX.size(); i += 3)
 				  		{
-				  			if(cursor_x < wallLocationX[i])
+				  			if(cursor_x < wallLocationX[i] && cursor_y < wallLocationX[i+1] && cursor_y > wallLocationX[i+2])
 				  				stopLeft = wallLocationX[i];
 				  				
-				  			if(cursor_x > wallLocationX[i])
+				  			if(cursor_x > wallLocationX[i] && cursor_y < wallLocationX[i+1] && cursor_y > wallLocationX[i+2])
 				  				stopRight = wallLocationX[i];
 				  		}
 				  	
@@ -676,19 +690,27 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 								wallCount = 1;
 								wallOffset = 1;
 								
-								wallLocationY.push_back(cursor_y);
+								
 								
 								for(int currentBall = 0; currentBall < numBalls; currentBall++)
 				  			{
 				  				if(ballModel[currentBall].z > cursor_y && ball[currentBall]->lowerBound < cursor_y
 				  						&& ballModel[currentBall].x < stopLeft && ballModel[currentBall].x > stopRight)
 				  				{
-				  					ball[currentBall]->lowerBound = cursor_y+1.25;
+				  					ball[currentBall]->lowerBound = cursor_y+1.2;
+				  					
+				  					wallLocationY.push_back(cursor_y);
+										wallLocationY.push_back(stopLeft);
+				  					wallLocationY.push_back(stopRight);
 				  				}
 				  				else if(ballModel[currentBall].z < cursor_y && ball[currentBall]->upperBound > cursor_y
 				  						&& ballModel[currentBall].x < stopLeft && ballModel[currentBall].x > stopRight)
 				  				{
-				  					ball[currentBall]->upperBound = cursor_y-1.25;
+				  					ball[currentBall]->upperBound = cursor_y-1.2;
+				  					
+				  					wallLocationY.push_back(cursor_y);
+										wallLocationY.push_back(stopLeft);
+				  					wallLocationY.push_back(stopRight);
 				  				}
 				  			}
 								

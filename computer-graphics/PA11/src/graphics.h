@@ -48,7 +48,7 @@ class Graphics
 		float ballSpeed = 1.25;
 		
 		int numWalls = 0;
-		int wallLength[300] = {0};
+		int wallLength[50] = {0};
 		bool wallMaking = false;
 		
 		

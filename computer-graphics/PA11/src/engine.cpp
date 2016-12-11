@@ -97,6 +97,11 @@ void Engine::Keyboard()
       case SDLK_SPACE:
 				keyboardInput = '_';
         newInput = true;
+       break;
+        
+       case SDLK_z:
+				keyboardInput = 'z';
+        newInput = true;
        
        break;
       //left paddle
