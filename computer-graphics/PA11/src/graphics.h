@@ -74,7 +74,9 @@ class Graphics
     Object *ball[5];
     Object *cursor;
     
-    Object *wall[300][40];
+    Object *wall[50][40];
+    std::vector<float> wallLocationX;
+    std::vector<float> wallLocationY;
     unsigned int waitTime;
     unsigned int waitCount = 0;
     unsigned int wallCount = 1;

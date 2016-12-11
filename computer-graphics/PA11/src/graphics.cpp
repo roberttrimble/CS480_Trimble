@@ -223,6 +223,7 @@ bool Graphics::Initialize(int width, int height)
 	glm::vec3 temp = glm::vec3(0.0f, 0.0f, 0.0f);
 	for (int i = 0; i < numBalls; i++)
 		PrevBallModel[i] = temp;
+		
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -445,6 +446,25 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    	if (numBalls < 5)
 		    	{
 		    	
+		    		//Object *wall[50][40];
+		    		for (int i = 0; i < 50; i++)
+		    		{
+		    			for (int j = 0; j < 40; j++)
+		    			{
+		    				wall[i][j] = NULL;
+		    			}
+		    		}
+		    		
+		    		for (int i = 0; i < numBalls; i++)
+		    		{
+		    			ball[i]->upperBound = 7;
+		    			ball[i]->lowerBound = -7;
+		    			ball[i]->leftBound = 13;
+		    			ball[i]->rightBound = -13;
+		    		}
+		    	
+		    	
+		    	
 		    		numBalls++;
 		    		dynamicsWorld->addRigidBody(ballRigidBody[numBalls - 1]);
 		    		
@@ -516,7 +536,21 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			{
 				  	if(waitCount > 8)
 				  	{
-				  		if(cursor_y - wallOffset >= -8 && cursor_y + wallOffset <= 8)
+				  		float stopTop = 8;
+				  		float stopBottom = -8;
+				  		
+				  		for(unsigned int i = 0; i < wallLocationY.size(); i++)
+				  		{
+				  			if(cursor_y < wallLocationY[i])
+				  				stopTop = wallLocationY[i];
+				  				
+				  			if(cursor_y > wallLocationY[i])
+				  				stopBottom = wallLocationY[i];
+				  		}
+				  	
+				  	
+				  	
+				  		if(cursor_y - wallOffset >= stopBottom && cursor_y + wallOffset <= stopTop)
 				  		{
 				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v4.obj");
 				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - wallOffset)));
@@ -533,7 +567,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallCount++;
 				  			wallOffset++;
 				  		}
-				  		else if(cursor_y - wallOffset >= -8)
+				  		else if(cursor_y - wallOffset >= stopBottom)
 				  		{
 				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
 				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - wallOffset)));
@@ -543,7 +577,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallCount++;
 				  			wallOffset++;
 				  		}
-				  		else if(cursor_y + wallOffset <= 8)
+				  		else if(cursor_y + wallOffset <= stopTop)
 				  		{
 				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
 				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y + wallOffset)));
@@ -559,12 +593,22 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallCount = 1;
 				  			wallOffset = 1;
 				  			
+				  			wallLocationX.push_back(cursor_x);
+				  			//wallLocationX.push_back(stopTop);
+				  			//wallLocationX.push_back();
+				  			
 				  			for(int currentBall = 0; currentBall < numBalls; currentBall++)
 				  			{
-				  				if(ballModel[currentBall].x > cursor_x && ball[currentBall]->rightBound < cursor_x)
+				  				if(ballModel[currentBall].x > cursor_x && ball[currentBall]->rightBound < cursor_x 
+				  						&& ballModel[currentBall].z < stopTop && ballModel[currentBall].z > stopBottom)
+				  				{
 				  					ball[currentBall]->rightBound = cursor_x+1.25;
-				  				else if(ballModel[currentBall].x < cursor_x && ball[currentBall]->leftBound > cursor_x)
+				  				}
+				  				else if(ballModel[currentBall].x < cursor_x && ball[currentBall]->leftBound > cursor_x
+				  						&& ballModel[currentBall].z < stopTop && ballModel[currentBall].z > stopBottom)
+				  				{
 				  					ball[currentBall]->leftBound = cursor_x-1.25;
+				  				}
 				  			}
 				  			
 				  		}
@@ -579,7 +623,21 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  	
 				  	if(waitCount > 8)
 				  	{
-				  		if(cursor_x - wallOffset >= -14 && cursor_x + wallOffset <= 14)
+				  	
+				  		float stopLeft = 14;
+				  		float stopRight = -14;
+				  		
+				  		for(unsigned int i = 0; i < wallLocationX.size(); i++)
+				  		{
+				  			if(cursor_x < wallLocationX[i])
+				  				stopLeft = wallLocationX[i];
+				  				
+				  			if(cursor_x > wallLocationX[i])
+				  				stopRight = wallLocationX[i];
+				  		}
+				  	
+				  	
+				  		if(cursor_x - wallOffset >= stopRight && cursor_x + wallOffset <= stopLeft)
 				  		{
 				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v4.obj");
 				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - wallOffset, 1.0, cursor_y)));
@@ -594,7 +652,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallCount++;
 				  			wallOffset++;
 				  		}
-				  		else if(cursor_x - wallOffset >= -14)
+				  		else if(cursor_x - wallOffset >= stopRight)
 				  		{
 				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
 				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - wallOffset, 1.0, cursor_y)));
@@ -603,7 +661,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallCount++;
 				  			wallOffset++;
 				  		}
-				  		else if(cursor_x + wallOffset <= 14)
+				  		else if(cursor_x + wallOffset <= stopLeft)
 				  		{
 				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
 				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + wallOffset, 1.0, cursor_y)));
@@ -618,12 +676,20 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 								wallCount = 1;
 								wallOffset = 1;
 								
+								wallLocationY.push_back(cursor_y);
+								
 								for(int currentBall = 0; currentBall < numBalls; currentBall++)
 				  			{
-				  				if(ballModel[currentBall].z > cursor_y && ball[currentBall]->lowerBound < cursor_y)
+				  				if(ballModel[currentBall].z > cursor_y && ball[currentBall]->lowerBound < cursor_y
+				  						&& ballModel[currentBall].x < stopLeft && ballModel[currentBall].x > stopRight)
+				  				{
 				  					ball[currentBall]->lowerBound = cursor_y+1.25;
-				  				else if(ballModel[currentBall].z < cursor_y && ball[currentBall]->upperBound > cursor_y)
+				  				}
+				  				else if(ballModel[currentBall].z < cursor_y && ball[currentBall]->upperBound > cursor_y
+				  						&& ballModel[currentBall].x < stopLeft && ballModel[currentBall].x > stopRight)
+				  				{
 				  					ball[currentBall]->upperBound = cursor_y-1.25;
+				  				}
 				  			}
 								
 				  		}
