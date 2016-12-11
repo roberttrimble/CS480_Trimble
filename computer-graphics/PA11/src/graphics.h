@@ -50,6 +50,10 @@ class Graphics
 		int numWalls = 0;
 		int wallLength[50] = {0};
 		bool wallMaking = false;
+		bool wallDestroyed = false;
+		
+		float difference = 20;
+		float difference2 = 20;
 		
 		
 		

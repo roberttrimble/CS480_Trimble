@@ -542,18 +542,34 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 	///////////////////////////
 			if(cursorVertical && wallMaking == true)
 			{
+						
 				  	if(waitCount > 8)
 				  	{
 				  		float stopTop = 8;
 				  		float stopBottom = -8;
 				  		
+				  		
 				  		for(unsigned int i = 0; i < wallLocationY.size(); i += 3)
 				  		{
+				  			difference2 = abs(wallLocationY[i] - cursor_y);
+				  			
 				  			if(cursor_y < wallLocationY[i] && cursor_x < wallLocationY[i+1] && cursor_x > wallLocationY[i+2])
-				  				stopTop = wallLocationY[i];
-				  				
+				  			{
+				  				if(difference2 <= difference)
+				  				{
+				  					stopTop = wallLocationY[i];
+				  					difference = difference2;
+				  				}
+				  			}		
+				  		
 				  			if(cursor_y > wallLocationY[i] && cursor_x < wallLocationY[i+1] && cursor_x > wallLocationY[i+2])
-				  				stopBottom = wallLocationY[i];
+				  			{
+				  				if(difference2 <= difference)
+				  				{
+				  					stopBottom = wallLocationY[i];
+				  					difference = difference2;
+				  				}
+				  			}
 				  		}
 				  	
 				  	
@@ -600,6 +616,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallMaking = false;
 				  			wallCount = 1;
 				  			wallOffset = 1;
+				  			difference = difference2 = 20;
 				  			
 				  			
 				  			
@@ -628,12 +645,31 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  		}
 				  	waitCount = 0;
 				  	}
+				  	
+				  	for(int currentBall = 0; currentBall < numBalls; currentBall++)
+						{
+							for(unsigned int k = 0; k < wallCount; k++)
+							{
+								glm::vec3 wallModel = glm::vec3(wall[numWalls-1][k]->model[3]);
+								
+								if( abs(ballModel[currentBall].x - wallModel.x) < 0.5 && abs(ballModel[currentBall].y - wallModel.y) < 0.5)
+								{
+									wallDestroyed = true;
+									wallMaking = false;
+									wallCount = 1;
+									wallOffset = 1;
+								}
+							}
+						}
 				  }
+	
+	
 	
 	//Build horizontal walls
 	///////////////////////////
 			if(!cursorVertical && wallMaking == true)
 				  {
+				  
 				  	
 				  	if(waitCount > 8)
 				  	{
@@ -641,13 +677,28 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  		float stopLeft = 14;
 				  		float stopRight = -14;
 				  		
+				  		
 				  		for(unsigned int i = 0; i < wallLocationX.size(); i += 3)
 				  		{
+				  			difference2 = abs(wallLocationX[i] - cursor_x);
+				  		
 				  			if(cursor_x < wallLocationX[i] && cursor_y < wallLocationX[i+1] && cursor_y > wallLocationX[i+2])
-				  				stopLeft = wallLocationX[i];
+				  			{
+				  				if(difference2 <= difference)
+				  				{
+				  					stopLeft = wallLocationX[i];
+				  					difference = difference2;
+				  				}
+				  			}
 				  				
 				  			if(cursor_x > wallLocationX[i] && cursor_y < wallLocationX[i+1] && cursor_y > wallLocationX[i+2])
-				  				stopRight = wallLocationX[i];
+				  			{
+				  				if(difference2 <= difference)
+				  				{
+				  					stopRight = wallLocationX[i];
+				  					difference = difference2;
+				  				}
+				  			}
 				  		}
 				  	
 				  	
@@ -689,6 +740,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  			wallMaking = false;
 								wallCount = 1;
 								wallOffset = 1;
+								difference = difference2 = 20;
 								
 								
 								
@@ -717,7 +769,36 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  		}
 				  	waitCount = 0;
 				  	}
+				  	
+				  	for(int currentBall = 0; currentBall < numBalls; currentBall++)
+						{
+							for(unsigned int k = 0; k < wallCount; k++)
+							{
+								glm::vec3 wallModel = glm::vec3(wall[numWalls-1][k]->model[3]);
+								
+								if( abs(ballModel[currentBall].x - wallModel.x) < 0.5 && abs(ballModel[currentBall].y - wallModel.y) < 0.5)
+								{
+									wallDestroyed = true;
+									wallMaking = false;
+									wallCount = 1;
+									wallOffset = 1;
+								}
+							}
+						}
 				  }
+				  
+	//Destroy a wall if hit
+	if(wallDestroyed == true)
+	{
+		for(int i = 0; i < wallLength[numWalls-1]; i++)
+		{
+			wall[numWalls-1][i] = NULL;
+			wallLength[numWalls-1] = 0;
+			difference = difference2 = 20;
+			numWalls--;
+		}
+		wallDestroyed = false;
+	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
