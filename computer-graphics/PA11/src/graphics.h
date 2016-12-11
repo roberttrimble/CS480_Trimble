@@ -45,7 +45,7 @@ class Graphics
 		bool roundStarted = false;
 		
 		int numBalls = 2;
-		float minBallSpeed = 2.5;
+		float ballSpeed = 1.25;
 		
 		int numWalls = 0;
 		int wallLength[300] = {0};
@@ -57,7 +57,7 @@ class Graphics
     std::string ErrorString(GLenum error);
     
     btScalar mass = 1; //mass for balls
-		float force = 0.1; //for off wall bounce
+		float force = 1; //for off wall bounce
 		float ballSize = 0.425; //radius of ball
 		
 		float cursor_x = 0.0;
@@ -74,7 +74,11 @@ class Graphics
     Object *ball[5];
     Object *cursor;
     
-    Object *wall[300][28];
+    Object *wall[300][40];
+    unsigned int waitTime;
+    unsigned int waitCount = 0;
+    unsigned int wallCount = 1;
+    unsigned int wallOffset = 1;
 
     Object *stars;
     

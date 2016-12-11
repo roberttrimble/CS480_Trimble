@@ -24,10 +24,10 @@ class Object
     Magick::Image* m_pImage;
   	Magick::Blob m_blob;
   	
-  	const float upperBound = 7;
-  	const float lowerBound = -7;
-  	const float leftBound = 11;
-  	const float rightBound = -11;
+  	float upperBound = 7;
+  	float lowerBound = -7;
+  	float leftBound = 13;
+  	float rightBound = -13;
 
   private:
     

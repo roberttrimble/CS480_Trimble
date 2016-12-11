@@ -348,85 +348,96 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    //Left
 		    /////////////////////////////
 		    case '<':
-
-		    	if(!cursorVertical && cursor_x < 13){
-            cursor_x += 1;
-		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		    	}
-		    	else if(cursor_x < 13){
-            cursor_x += 1;
-						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+					if(wallMaking == false)
+		    	{
+				  	if(!cursorVertical && cursor_x < 13){
+		          cursor_x += 1;
+				  		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+				  		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  	}
+				  	else if(cursor_x < 13){
+		          cursor_x += 1;
+							cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		        }
           }
 		    break;
 		    
 		    //Right
 		    ///////////////////////
 		    case '>':
-					
-					if(!cursorVertical && cursor_x > -13){
-            cursor_x -= 1;
-		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		    	}
-		    	else if(cursor_x > -13){
-            cursor_x -= 1;
-						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+					if(wallMaking == false)
+		    	{
+						if(!cursorVertical && cursor_x > -13){
+		          cursor_x -= 1;
+				  		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+				  		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  	}
+				  	else if(cursor_x > -13){
+		          cursor_x -= 1;
+							cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+						}
 					}
 		    break;
 		      
 		    //Up
 		    ///////////////////////
 		    case '^':    
-		      
-		      if(!cursorVertical && cursor_y < 7){
-            cursor_y += 1;
-		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		    	}
-		    	
-          else if(cursor_y < 7){
-            cursor_y += 1;
-						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-          }
+		      if(wallMaking == false)
+		    	{
+				    if(!cursorVertical && cursor_y < 7){
+		          cursor_y += 1;
+				  		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+				  		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  	}
+		        else if(cursor_y < 7){
+		          cursor_y += 1;
+							cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		        }
+		      }
 		      
 		      
 		    break;   
 		    //Down
 		    ///////////////////////
 		    case 'v':
-		    	
-		    	if(!cursorVertical && cursor_y > -7){
-            cursor_y -= 1;
-		    		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
-		    		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		    	}
-		    	
-          else if(cursor_y > -7){
-            cursor_y -= 1;
-						cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		    	if(wallMaking == false)
+		    	{
+				  	if(!cursorVertical && cursor_y > -7){
+		          cursor_y -= 1;
+				  		cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+				  		cursor->model =	 glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  	}
+		        else if(cursor_y > -7){
+		          cursor_y -= 1;
+							cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.5, cursor_y)));
+		        }
           }
 		    break;
 
 		    //turn cursor
 		    ////////////////
 		    case '_':
-		    	
-				  cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
-		    	cursorVertical = !cursorVertical;
+		    	if(wallMaking == false)
+		    	{
+				  	cursor->model = glm::rotate(cursor->model, angle, glm::vec3(0.0, 12.0, 0.0));
+		    		cursorVertical = !cursorVertical;
+		    	}
 		    break;
 		    //Launch the ball
 		    ///////////////////////
 		    case 'n':
-		    	if (numWalls < 300)
+		    	if(wallMaking == false)
 		    	{
-				  	wall[numWalls][0] = new Object("../models/wall_v3.obj");
-				  	wall[numWalls][0]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
-				  		if(cursorVertical)
-				  	wall[numWalls][0]->model = glm::rotate(wall[numWalls][0]->model, angle, glm::vec3(0.0, 12.0, 0.0));
-				  
-				  numWalls++;
-				  wallMaking = true;
+				  	if (numWalls < 300)
+				  	{
+							wall[numWalls][0] = new Object("../models/wall_v3.obj");
+							wall[numWalls][0]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y)));
+								if(cursorVertical)
+							wall[numWalls][0]->model = glm::rotate(wall[numWalls][0]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+						
+						numWalls++;
+						wallMaking = true;
+				  	}
 		    	}
 		    break;
 		    
@@ -480,7 +491,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  	}
 		  }
 		  
-		  if (camera)
+		  if (!camera)
     	{
     		m_camera->UpdateCamera(0.0f ,25.0f , 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
     	}
@@ -491,52 +502,73 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
     	
     	
 ///////////////////////////////////////////////////////////////////////////////////////
+	//Get delay time
+	if(waitTime != dt)
+    {
+    	waitCount++;
+    	waitTime = dt;
+    }
+
+
 	//Build vertical walls
 	///////////////////////////
 			if(cursorVertical && wallMaking == true)
-				  {
-				  	
-				  	for(int j = 1; j < 28; j+=0)
+			{
+				  	if(waitCount > 8)
 				  	{
-				  		if(cursor_y - j >= -8 && cursor_y + j <= 8)
+				  		if(cursor_y - wallOffset >= -8 && cursor_y + wallOffset <= 8)
 				  		{
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - j)));
-				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v4.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - wallOffset)));
+				  			wall[numWalls-1][wallCount]->model = glm::rotate(wall[numWalls-1][wallCount]->model, angle, glm::vec3(0.0, 12.0, 0.0));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
 				  			
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y + j)));
-				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v4.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y + wallOffset)));
+				  			wall[numWalls-1][wallCount]->model = glm::rotate(wall[numWalls-1][wallCount]->model, angle, glm::vec3(0.0, 12.0, 0.0));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
+				  			wallOffset++;
 				  		}
-				  		else if(cursor_y - j >= -8)
+				  		else if(cursor_y - wallOffset >= -8)
 				  		{
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - j)));
-				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y - wallOffset)));
+				  			wall[numWalls-1][wallCount]->model = glm::rotate(wall[numWalls-1][wallCount]->model, angle, glm::vec3(0.0, 12.0, 0.0));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
+				  			wallOffset++;
 				  		}
-				  		else if(cursor_y + j <= 8)
+				  		else if(cursor_y + wallOffset <= 8)
 				  		{
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y + j)));
-				  			wall[numWalls-1][j]->model = glm::rotate(wall[numWalls-1][j]->model, angle, glm::vec3(0.0, 12.0, 0.0));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x, 1.0, cursor_y + wallOffset)));
+				  			wall[numWalls-1][wallCount]->model = glm::rotate(wall[numWalls-1][wallCount]->model, angle, glm::vec3(0.0, 12.0, 0.0));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
+				  			wallOffset++;
 				  		}
-				  		else if(cursor_y - j <= -8 && cursor_y + j >= 8)
+				  		else
 				  		{
 				  			wallMaking = false;
-				  			break;
+				  			wallCount = 1;
+				  			wallOffset = 1;
+				  			
+				  			for(int currentBall = 0; currentBall < numBalls; currentBall++)
+				  			{
+				  				if(ballModel[currentBall].x > cursor_x && ball[currentBall]->rightBound < cursor_x)
+				  					ball[currentBall]->rightBound = cursor_x+1.25;
+				  				else if(ballModel[currentBall].x < cursor_x && ball[currentBall]->leftBound > cursor_x)
+				  					ball[currentBall]->leftBound = cursor_x-1.25;
+				  			}
+				  			
 				  		}
+				  	waitCount = 0;
 				  	}
 				  }
 	
@@ -545,46 +577,59 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			if(!cursorVertical && wallMaking == true)
 				  {
 				  	
-				  	for(int j = 1; j < 28; j+=0)
+				  	if(waitCount > 8)
 				  	{
-				  		if(cursor_x - j >= -13 && cursor_x + j <= 13)
+				  		if(cursor_x - wallOffset >= -14 && cursor_x + wallOffset <= 14)
 				  		{
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - j, 1.0, cursor_y)));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v4.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - wallOffset, 1.0, cursor_y)));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
 				  			
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + j, 1.0, cursor_y)));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v4.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + wallOffset, 1.0, cursor_y)));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
+				  			wallOffset++;
 				  		}
-				  		else if(cursor_x - j >= -13)
+				  		else if(cursor_x - wallOffset >= -14)
 				  		{
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - j, 1.0, cursor_y)));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x - wallOffset, 1.0, cursor_y)));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
+				  			wallOffset++;
 				  		}
-				  		else if(cursor_x + j <= 13)
+				  		else if(cursor_x + wallOffset <= 14)
 				  		{
-				  			wall[numWalls-1][j] = new Object("../models/wall_v3.obj");
-				  			wall[numWalls-1][j]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + j, 1.0, cursor_y)));
+				  			wall[numWalls-1][wallCount] = new Object("../models/wall_v3.obj");
+				  			wall[numWalls-1][wallCount]->model = (glm::translate(glm::mat4(1.0f), glm::vec3(cursor_x + wallOffset, 1.0, cursor_y)));
 				  			
 				  			wallLength[numWalls-1]++;
-				  			j++;
+				  			wallCount++;
+				  			wallOffset++;
 				  		}
-				  		else if(cursor_x - j <= -13 && cursor_x + j >= 13)
+				  		else
 				  		{
 				  			wallMaking = false;
-				  			break;
+								wallCount = 1;
+								wallOffset = 1;
+								
+								for(int currentBall = 0; currentBall < numBalls; currentBall++)
+				  			{
+				  				if(ballModel[currentBall].z > cursor_y && ball[currentBall]->lowerBound < cursor_y)
+				  					ball[currentBall]->lowerBound = cursor_y+1.25;
+				  				else if(ballModel[currentBall].z < cursor_y && ball[currentBall]->upperBound > cursor_y)
+				  					ball[currentBall]->upperBound = cursor_y-1.25;
+				  			}
+								
 				  		}
+				  	waitCount = 0;
 				  	}
 				  }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -597,10 +642,10 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		////////////////////////////
 		btVector3 v = ballRigidBody[currentBall]->getLinearVelocity();
 		btScalar currentSpeed = v.length();
-		if (currentSpeed < minBallSpeed && roundStarted == true)
+		if (/*currentSpeed < minBallSpeed &&*/ roundStarted == true)
 		{
 			v = v/currentSpeed;
-			v = v*minBallSpeed;
+			v = v*ballSpeed;
 			ballRigidBody[currentBall]->setLinearVelocity(v);
 		}
 		/////////////////////////////////////
@@ -611,44 +656,36 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		
 
 		if ( ballModel[currentBall].x > ball[currentBall]->leftBound){
-		
-		  //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
-		  //normalize(normalVec);
-		  
+	
 		  if (diffz[currentBall] >= 0)
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, force ));
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, -force ));
+		  	
 		}
 		if ( ballModel[currentBall].x < ball[currentBall]->rightBound){
 		
-		  //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
-		  //normalize(normalVec);
-		  
 		  if (diffz[currentBall] >= 0)
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, force ));
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, -force ));
+		  	
 		}
 		if ( ballModel[currentBall].z > ball[currentBall]->upperBound){
-		
-		  //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
-		  //normalize(normalVec);
-		  
+		 
 		  if (diffx[currentBall] >= 0)
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, -force ));
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, -force ));
+		  	
 		}
 		if ( ballModel[currentBall].z < ball[currentBall]->lowerBound){
 
-		  //glm::vec3 normalVec = glm::vec3 (ballModel.x , ballModel.y , ballModel.z);
-		  //normalize(normalVec);
-		  
 		  if (diffx[currentBall] >= 0)
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, force ));
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, force ));
+		  	
 		}
 		
 		
