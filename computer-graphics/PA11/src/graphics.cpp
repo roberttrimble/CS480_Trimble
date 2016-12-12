@@ -821,7 +821,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			wall[numWalls-1][i] = NULL;
 			wallLength[numWalls-1] = 0;
 			difference = difference2 = 20;
-      //currentLives--;
+      currentLives--;
 		}
     numWalls--;
 		wallDestroyed = false;
@@ -829,17 +829,16 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 	
 //New round
 //////////////////////////////////////
-	if(ballWaitTime > 100)
+	if(ballWaitTime > 50)
 	{
 		int totalBounces = 0;
-		for(int currentBall; currentBall < numBalls; currentBall++)
+		for(int currentBall = 0; currentBall < numBalls; currentBall++)
 		{
-			totalBounces += ballBounces[currentBall];
+			totalBounces = totalBounces + ballBounces[currentBall];
 		}
 		
 		ballWaitTime = 0;
-		std::cout << totalBounces << std::endl;
-		if(totalBounces > 1*numBalls)
+		if(totalBounces > 18*numBalls)
 		{
 			if (numBalls < 5)
 		    	{
@@ -907,6 +906,10 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		    		
 		    		
 		    		roundStarted = false;
+		    	}
+		    	else
+		    	{
+		    		gameWon = true;
 		    	}
 		}
 		for (int i = 0; i < numBalls; i++)

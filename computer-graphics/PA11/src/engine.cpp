@@ -78,7 +78,16 @@ void Engine::Run()
     m_window->Swap();
    
    if(m_graphics->currentLives <= 0)
+   {
+   std::cout << std::endl << "You Lost all your lives!" << std::endl << std::endl;
    	m_running = false;
+   }
+   
+   if(m_graphics->gameWon == true)
+   {
+   	std::cout << "Congradulations! You Won" << std::endl;
+   	m_running = false;
+   }
     
   }
 }

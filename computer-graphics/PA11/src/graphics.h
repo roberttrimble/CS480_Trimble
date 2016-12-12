@@ -57,7 +57,7 @@ class Graphics
 		
 		int currentLives = 2;
 		
-		
+		bool gameWon = false;
 		
   private:
     std::string ErrorString(GLenum error);
@@ -94,7 +94,7 @@ class Graphics
     unsigned int wallCount = 1;
     unsigned int wallOffset = 1;
     
-    unsigned int ballBounces[5] = {0};
+    float ballBounces[5] = {0};
     unsigned int ballWaitTime = 0;
 
     Object *stars;
