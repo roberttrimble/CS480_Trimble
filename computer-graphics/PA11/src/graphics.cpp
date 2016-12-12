@@ -101,6 +101,28 @@ bool Graphics::Initialize(int width, int height)
   cursor = new Object("../models/jezzBallArrow_v2.obj");
   cursor->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.5, 0.0)));
 
+  livesText = new Object("../models/text/lives_v3.obj");
+  livesText->model = glm::translate(glm::mat4(1.0f), glm::vec3(22.5, 0.0, 8.0));
+  livesText->model = glm::rotate(livesText->model, (PI), glm::vec3(0.0, 1.0, 0.0));
+  livesText->model = glm::scale(livesText->model, glm::vec3(2.0, 2.0, 2.0));
+
+  title = new Object("../models/text/jezzballTitle.obj");
+  title->model = glm::translate(glm::mat4(1.0f), glm::vec3(5.0, 0.0, 10.5));
+  title->model = glm::rotate(title->model, (PI), glm::vec3(0.0, 1.0, 0.0));
+  title->model = glm::scale(title->model, glm::vec3(3.0, 3.0, 3.0));
+
+  numbers[0] = new Object("../models/text/one.obj");
+  numbers[1] = new Object("../models/text/two.obj");
+  numbers[2] = new Object("../models/text/three.obj");
+  numbers[3] = new Object("../models/text/four.obj");
+  numbers[4] = new Object("../models/text/five.obj");
+
+  for(int i = 0; i <= 4; i++){
+    numbers[i]->model = glm::translate(glm::mat4(1.0f), glm::vec3(21, 0.0, 6.5));
+    numbers[i]->model = glm::rotate(numbers[i]->model, (PI), glm::vec3(0.0, 1.0, 0.0));
+    numbers[i]->model = glm::scale(numbers[i]->model, glm::vec3(1.5, 1.5, 1.5));
+  }
+
   //wall = new Object("../models/wall_v3.obj");
   //wall->model = (glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 1.0, 0.0)));
 
@@ -321,6 +343,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			ballRigidBody[0]->applyCentralImpulse(btVector3(force*5 ,0.0,-force*5));
 			ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
 			ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
+      currentLives = 3;
 		}
 		if (numBalls == 4)
 		{
@@ -328,6 +351,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			ballRigidBody[1]->applyCentralImpulse(btVector3(-force*5,0.0,force*5));
 			ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
 			ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
+      currentLives = 4;
 		}
 	 if (numBalls == 5)
 		{
@@ -336,6 +360,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			ballRigidBody[2]->applyCentralImpulse(btVector3(force*5,0.0,-force*5));
 			ballRigidBody[3]->applyCentralImpulse(btVector3(-force*5,0.0,-force*5));
 			ballRigidBody[4]->applyCentralImpulse(btVector3(force*5,0.0,force*5));
+      currentLives = 5;
 		}
 		    	
 		roundStarted = true;
@@ -543,7 +568,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			if(cursorVertical && wallMaking == true)
 			{
 						
-				  	if(waitCount > 8)
+				  	if(waitCount > 4)
 				  	{
 				  		float stopTop = 8;
 				  		float stopBottom = -8;
@@ -652,7 +677,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 							{
 								glm::vec3 wallModel = glm::vec3(wall[numWalls-1][k]->model[3]);
 								
-								if( abs(ballModel[currentBall].x - wallModel.x) < 0.5 && abs(ballModel[currentBall].y - wallModel.y) < 0.5)
+								if( abs(ballModel[currentBall].x - wallModel.x) < 0.5 && abs(ballModel[currentBall].z - wallModel.z) < 0.5)
 								{
 									wallDestroyed = true;
 									wallMaking = false;
@@ -671,7 +696,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 				  {
 				  
 				  	
-				  	if(waitCount > 8)
+				  	if(waitCount > 4)
 				  	{
 				  	
 				  		float stopLeft = 14;
@@ -776,7 +801,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 							{
 								glm::vec3 wallModel = glm::vec3(wall[numWalls-1][k]->model[3]);
 								
-								if( abs(ballModel[currentBall].x - wallModel.x) < 0.5 && abs(ballModel[currentBall].y - wallModel.y) < 0.5)
+								if( abs(ballModel[currentBall].x - wallModel.x) < 0.5 && abs(ballModel[currentBall].z - wallModel.z) < 0.5)
 								{
 									wallDestroyed = true;
 									wallMaking = false;
@@ -795,8 +820,9 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			wall[numWalls-1][i] = NULL;
 			wallLength[numWalls-1] = 0;
 			difference = difference2 = 20;
-			numWalls--;
+      currentLives--;
 		}
+    numWalls--;
 		wallDestroyed = false;
 	}
 
@@ -969,6 +995,15 @@ void Graphics::Render(char keyboardInput, bool newInput)
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(table->GetModel()));
   table->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(livesText->GetModel()));
+  livesText->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(title->GetModel()));
+  title->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(numbers[currentLives - 1]->GetModel()));
+  numbers[currentLives - 1]->Render();
 
 	for (int i = 0; i < numBalls; i++)
   {

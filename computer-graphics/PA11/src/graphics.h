@@ -77,6 +77,12 @@ class Graphics
     Object *table;
     Object *ball[5];
     Object *cursor;
+    Object *livesText;
+    Object *title;
+    Object *numbers[5];
+    int currentLives = 2;
+
+    float PI = M_PI;
     
     Object *wall[50][40];
     std::vector<float> wallLocationX;
