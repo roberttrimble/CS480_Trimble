@@ -559,6 +559,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 	if(waitTime != dt)
     {
     	waitCount++;
+    	ballWaitTime++;
     	waitTime = dt;
     }
 
@@ -820,10 +821,99 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 			wall[numWalls-1][i] = NULL;
 			wallLength[numWalls-1] = 0;
 			difference = difference2 = 20;
-      currentLives--;
+      //currentLives--;
 		}
     numWalls--;
 		wallDestroyed = false;
+	}
+	
+//New round
+//////////////////////////////////////
+	if(ballWaitTime > 100)
+	{
+		int totalBounces = 0;
+		for(int currentBall; currentBall < numBalls; currentBall++)
+		{
+			totalBounces += ballBounces[currentBall];
+		}
+		
+		ballWaitTime = 0;
+		std::cout << totalBounces << std::endl;
+		if(totalBounces > 1*numBalls)
+		{
+			if (numBalls < 5)
+		    	{
+		    	
+		    		//Object *wall[50][40];
+		    		for (int i = 0; i < 50; i++)
+		    		{
+		    			for (int j = 0; j < 40; j++)
+		    			{
+		    				wall[i][j] = NULL;
+		    			}
+		    		}
+		    		
+		    		for (int i = 0; i < numBalls; i++)
+		    		{
+		    			ball[i]->upperBound = 7;
+		    			ball[i]->lowerBound = -7;
+		    			ball[i]->leftBound = 13;
+		    			ball[i]->rightBound = -13;
+		    		}
+		    		
+		    		for (int i = 0; i < 50; i++)
+		    		{
+		    			wallLength[i] = 0;
+		    		}
+		    	
+		    		wallLocationX.clear();
+		    		wallLocationY.clear();
+		    		numWalls = 0;
+		    	
+		    	
+		    		numBalls++;
+		    		dynamicsWorld->addRigidBody(ballRigidBody[numBalls - 1]);
+		    		
+		    			
+				  	ballRigidBody[0]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(0.0f, 1.15f, 0.0f));
+						ballRigidBody[0]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[0]->setMotionState(ballRigidBody[0]->getMotionState());
+						ball[0]->model = glm::make_mat4(m);
+						
+						ballRigidBody[1]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(3.0f, 1.15f, 0.0f));
+						ballRigidBody[1]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[1]->setMotionState(ballRigidBody[1]->getMotionState());
+						ball[1]->model = glm::make_mat4(m);
+						
+						ballRigidBody[2]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(-3.0f, 1.15f, 0.0f));
+						ballRigidBody[2]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[2]->setMotionState(ballRigidBody[2]->getMotionState());
+						ball[2]->model = glm::make_mat4(m);
+						
+						ballRigidBody[3]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(0.0f, 1.15f, 3.0f));
+						ballRigidBody[3]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[3]->setMotionState(ballRigidBody[3]->getMotionState());
+						ball[3]->model = glm::make_mat4(m);
+						
+						ballRigidBody[4]->getMotionState()->getWorldTransform(trans);
+						trans.setOrigin(btVector3(0.0f, 1.15f, -3.0f));
+						ballRigidBody[4]->getMotionState()->setWorldTransform(trans);
+						ballRigidBody[4]->setMotionState(ballRigidBody[4]->getMotionState());
+						ball[4]->model = glm::make_mat4(m);
+		    		
+		    		
+		    		roundStarted = false;
+		    	}
+		}
+		for (int i = 0; i < numBalls; i++)
+		{
+			ballBounces[i] = 0;
+		}
+		
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -857,6 +947,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, -force ));
 		  	
+		  ballBounces[currentBall]++;
 		}
 		if ( ballModel[currentBall].x < ball[currentBall]->rightBound){
 		
@@ -865,6 +956,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( force, 0, -force ));
 		  	
+		  ballBounces[currentBall]++;
 		}
 		if ( ballModel[currentBall].z > ball[currentBall]->upperBound){
 		 
@@ -873,6 +965,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, -force ));
 		  	
+		  ballBounces[currentBall]++;
 		}
 		if ( ballModel[currentBall].z < ball[currentBall]->lowerBound){
 
@@ -881,6 +974,7 @@ bool Graphics::Update(unsigned int dt, char keyboardInput, bool newInput)
 		  else
 		  	ballRigidBody[currentBall]->applyCentralImpulse(btVector3( -force, 0, force ));
 		  	
+		  ballBounces[currentBall]++;
 		}
 		
 		

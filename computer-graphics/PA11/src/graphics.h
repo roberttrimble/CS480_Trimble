@@ -55,6 +55,8 @@ class Graphics
 		float difference = 20;
 		float difference2 = 20;
 		
+		int currentLives = 2;
+		
 		
 		
   private:
@@ -80,7 +82,7 @@ class Graphics
     Object *livesText;
     Object *title;
     Object *numbers[5];
-    int currentLives = 2;
+    
 
     float PI = M_PI;
     
@@ -91,6 +93,9 @@ class Graphics
     unsigned int waitCount = 0;
     unsigned int wallCount = 1;
     unsigned int wallOffset = 1;
+    
+    unsigned int ballBounces[5] = {0};
+    unsigned int ballWaitTime = 0;
 
     Object *stars;
     

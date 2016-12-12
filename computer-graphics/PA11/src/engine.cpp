@@ -76,6 +76,9 @@ void Engine::Run()
 
     // Swap to the Window
     m_window->Swap();
+   
+   if(m_graphics->currentLives <= 0)
+   	m_running = false;
     
   }
 }
